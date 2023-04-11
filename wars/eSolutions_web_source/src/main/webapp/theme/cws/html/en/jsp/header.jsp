@@ -49,6 +49,7 @@
     <head>
         <title><spring:message code="theme.title" /></title>
         <link rel="stylesheet" href="/static/layout/styles/layout.css" type="text/css" />
+        <link rel="stylesheet" href="/static/layout/styles/messages.css" type="text/css" />
         <link rel="image/x-icon" href="/static/img/favicon.ico" />
         <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />

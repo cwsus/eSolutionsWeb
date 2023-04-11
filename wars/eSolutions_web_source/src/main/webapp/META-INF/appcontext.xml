@@ -17,69 +17,41 @@
  *
  */
 -->
-<Context useNaming="true" sessionCookiePath="/esolutions" sessionCookieName="ESOLUTIONS_ID" reloadable="true"
-    docBase="${catalina.home}/installedApps/eSolutions_web_source-1.0-SNAPSHOT.war">
+<Context useNaming="true" sessionCookiePath="/esolutions" sessionCookieName="ESOLUTIONS_ID" reloadable="true" docBase="${catalina.home}/installedApps/eSolutions_web_source-1.0-SNAPSHOT.war">
 
     <Environment name="environment" value="dev" type="java.lang.String" override="false" />
     <Environment name="isTestSystem" value="true" type="java.lang.String" override="false" />
+    <Environment name="webURL" value="esolutions.caspersbox.com" type="java.lang.String" override="false" />
 
     <Resource name="jdbc/esolutions" auth="Container" type="javax.sql.DataSource"
-        username="appadm" password="XwNT5EQqpfRWnFVfgYyW" driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://localhost/ESOLUTIONS?useConfigs=fullDebug&amp;useCompression=true&amp;
-            useSSL=true&amp;requireSSL=true&amp;verifyServerCertificate=true&amp;
-            trustCertificateKeyStoreUrl=file:///home/appsrv/etc/kdb/trust.p12&amp;
-            trustCertificateKeyStoreType=PKCS12&amp;trustCertificateKeyStorePassword=twO23w2urkcVh3S4QGrD&amp;
-            autoReconnect=true&amp;autoReconnectForPools=true&amp;paranoid=true&amp;
-            useLocalTransactionState=true&amp;characterEncoding=UTF8&amp;useServerPrepStmts=true&amp;
-            zeroDateTimeBehavior=CONVERT_TO_NULL" removeAbandonedOnMaintenance="true"
-        testWhileIdle="true" testOnBorrow="true" testOnReturn="false"
-        validationQuery="/* ping */"
-        timeBetweenEvictionRunsMillis="5000" maxTotal="100" minIdle="0"
-        maxWaitMillis="10000" initialSize="0" removeAbandonedTimeout="60" singleton="true"
-        removeAbandonedOnBorrow="true" logAbandoned="true" minEvictableIdleTimeMillis="30000" />
-
-    <Resource name="jdbc/esolutionssvc" auth="Container" type="javax.sql.DataSource"
-        username="appadm" password="XwNT5EQqpfRWnFVfgYyW" driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://localhost/ESOLUTIONSSVC?useConfigs=fullDebug&amp;useCompression=true&amp;
-            useSSL=true&amp;requireSSL=true&amp;verifyServerCertificate=true&amp;
-            trustCertificateKeyStoreUrl=file:///home/appsrv/etc/kdb/trust.p12&amp;
-            trustCertificateKeyStoreType=PKCS12&amp;trustCertificateKeyStorePassword=twO23w2urkcVh3S4QGrD&amp;
-            autoReconnect=true&amp;autoReconnectForPools=true&amp;paranoid=true&amp;
-            useLocalTransactionState=true&amp;characterEncoding=UTF8&amp;useServerPrepStmts=true&amp;
-            zeroDateTimeBehavior=CONVERT_TO_NULL" removeAbandonedOnMaintenance="true"
-        testWhileIdle="true" testOnBorrow="true" testOnReturn="false"
-        validationQuery="/* ping */"
-        timeBetweenEvictionRunsMillis="5000" maxTotal="100" minIdle="0"
-        maxWaitMillis="10000" initialSize="0" removeAbandonedTimeout="60" singleton="true"
-        removeAbandonedOnBorrow="true" logAbandoned="true" minEvictableIdleTimeMillis="30000" />
+        factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" driverClassName="com.mysql.cj.jdbc.Driver"
+        username="username" password="password"
+        url="jdbc:mysql://sqlsrv.lan/ESOLUTIONS?useCompression=true&amp;useSSL=true&amp;requireSSL=true&amp;verifyServerCertificate=true&amp;trustCertificateKeyStoreUrl=file:///home/appsrv/etc/kdb/trust.p12&amp;trustCertificateKeyStoreType=PKCS12&amp;trustCertificateKeyStorePassword=keystore-password&amp;autoReconnect=true&amp;autoReconnectForPools=true&amp;paranoid=true&amp;useLocalTransactionState=true&amp;characterEncoding=UTF8&amp;useServerPrepStmts=true&amp;zeroDateTimeBehavior=CONVERT_TO_NULL"
+        removeAbandonedOnMaintenance="true" testWhileIdle="true" testOnBorrow="true" testOnReturn="false" validationQuery="/* ping */" 
+        initialSize="10" maxActive="150" timeBetweenEvictionRunsMillis="5000" maxTotal="100" minIdle="0"
+        maxWaitMillis="10000" removeAbandonedTimeout="60" removeAbandonedOnBorrow="true" logAbandoned="true" minEvictableIdleTimeMillis="30000" />
 
     <Resource name="jdbc/cwssec" auth="Container" type="javax.sql.DataSource"
-        username="appadm" password="XwNT5EQqpfRWnFVfgYyW" driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://localhost/CWSSEC?useConfigs=fullDebug&amp;useCompression=true&amp;
-            useSSL=true&amp;requireSSL=true&amp;verifyServerCertificate=true&amp;
-            trustCertificateKeyStoreUrl=file:///home/appsrv/etc/kdb/trust.p12&amp;
-            trustCertificateKeyStoreType=PKCS12&amp;trustCertificateKeyStorePassword=twO23w2urkcVh3S4QGrD&amp;
-            autoReconnect=true&amp;autoReconnectForPools=true&amp;paranoid=true&amp;
-            useLocalTransactionState=true&amp;characterEncoding=UTF8&amp;useServerPrepStmts=true&amp;
-            zeroDateTimeBehavior=CONVERT_TO_NULL" removeAbandonedOnMaintenance="true"
-        testWhileIdle="true" testOnBorrow="true" testOnReturn="false"
-        validationQuery="/* ping */"
-        timeBetweenEvictionRunsMillis="5000" maxTotal="100" minIdle="0"
-        maxWaitMillis="10000" initialSize="0" removeAbandonedTimeout="60" singleton="true"
-        removeAbandonedOnBorrow="true" logAbandoned="true" minEvictableIdleTimeMillis="30000" />
+        factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" driverClassName="com.mysql.cj.jdbc.Driver"
+        username="username" password="password"
+        url="jdbc:mysql://sqlsrv.lan/CWSSEC?useCompression=true&amp;useSSL=true&amp;requireSSL=true&amp;verifyServerCertificate=true&amp;trustCertificateKeyStoreUrl=file:///home/appsrv/etc/kdb/trust.p12&amp;trustCertificateKeyStoreType=PKCS12&amp;trustCertificateKeyStorePassword=keystore-password&amp;autoReconnect=true&amp;autoReconnectForPools=true&amp;paranoid=true&amp;useLocalTransactionState=true&amp;characterEncoding=UTF8&amp;useServerPrepStmts=true&amp;zeroDateTimeBehavior=CONVERT_TO_NULL"
+        removeAbandonedOnMaintenance="true" testWhileIdle="true" testOnBorrow="true" testOnReturn="false" validationQuery="/* ping */" 
+        initialSize="10" maxActive="150" timeBetweenEvictionRunsMillis="5000" maxTotal="100" minIdle="0"
+        maxWaitMillis="10000" removeAbandonedTimeout="60" removeAbandonedOnBorrow="true" logAbandoned="true" minEvictableIdleTimeMillis="30000" />
 
     <Resource name="jdbc/audit" auth="Container" type="javax.sql.DataSource"
-        username="appadm" password="XwNT5EQqpfRWnFVfgYyW" driverClassName="com.mysql.cj.jdbc.Driver"
-        url="jdbc:mysql://localhost/AUDIT?useConfigs=fullDebug&amp;useCompression=true&amp;
-            useSSL=true&amp;requireSSL=true&amp;verifyServerCertificate=true&amp;
-            trustCertificateKeyStoreUrl=file:///home/appsrv/etc/kdb/trust.p12&amp;
-            trustCertificateKeyStoreType=PKCS12&amp;trustCertificateKeyStorePassword=twO23w2urkcVh3S4QGrD&amp;
-            autoReconnect=true&amp;autoReconnectForPools=true&amp;paranoid=true&amp;
-            useLocalTransactionState=true&amp;characterEncoding=UTF8&amp;useServerPrepStmts=true&amp;
-            zeroDateTimeBehavior=CONVERT_TO_NULL" removeAbandonedOnMaintenance="true"
-        testWhileIdle="true" testOnBorrow="true" testOnReturn="false"
-        validationQuery="/* ping */"
-        timeBetweenEvictionRunsMillis="5000" maxTotal="100" minIdle="0"
-        maxWaitMillis="10000" initialSize="0" removeAbandonedTimeout="60" singleton="true"
-        removeAbandonedOnBorrow="true" logAbandoned="true" minEvictableIdleTimeMillis="30000" />
+        factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" driverClassName="com.mysql.cj.jdbc.Driver"
+        username="username" password="password"
+        url="jdbc:mysql://sqlsrv.lan/AUDIT?useCompression=true&amp;useSSL=true&amp;requireSSL=true&amp;verifyServerCertificate=true&amp;trustCertificateKeyStoreUrl=file:///home/appsrv/etc/kdb/trust.p12&amp;trustCertificateKeyStoreType=PKCS12&amp;trustCertificateKeyStorePassword=keystore-password&amp;autoReconnect=true&amp;autoReconnectForPools=true&amp;paranoid=true&amp;useLocalTransactionState=true&amp;characterEncoding=UTF8&amp;useServerPrepStmts=true&amp;zeroDateTimeBehavior=CONVERT_TO_NULL"
+        removeAbandonedOnMaintenance="true" testWhileIdle="true" testOnBorrow="true" testOnReturn="false" validationQuery="/* ping */" 
+        initialSize="10" maxActive="150" timeBetweenEvictionRunsMillis="5000" maxTotal="100" minIdle="0"
+        maxWaitMillis="10000" removeAbandonedTimeout="60" removeAbandonedOnBorrow="true" logAbandoned="true" minEvictableIdleTimeMillis="30000" />
+
+    <Resource name="jdbc/contact" auth="Container" type="javax.sql.DataSource"
+        factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" driverClassName="com.mysql.cj.jdbc.Driver"
+        username="username" password="password"
+        url="jdbc:mysql://sqlsrv.lan/CONTACT?useCompression=true&amp;useSSL=true&amp;requireSSL=true&amp;verifyServerCertificate=true&amp;trustCertificateKeyStoreUrl=file:///home/appsrv/etc/kdb/trust.p12&amp;trustCertificateKeyStoreType=PKCS12&amp;trustCertificateKeyStorePassword=keystore-password&amp;autoReconnect=true&amp;autoReconnectForPools=true&amp;paranoid=true&amp;useLocalTransactionState=true&amp;characterEncoding=UTF8&amp;useServerPrepStmts=true&amp;zeroDateTimeBehavior=CONVERT_TO_NULL"
+        removeAbandonedOnMaintenance="true" testWhileIdle="true" testOnBorrow="true" testOnReturn="false" validationQuery="/* ping */" 
+        initialSize="10" maxActive="150" timeBetweenEvictionRunsMillis="5000" maxTotal="100" minIdle="0"
+        maxWaitMillis="10000" removeAbandonedTimeout="60" removeAbandonedOnBorrow="true" logAbandoned="true" minEvictableIdleTimeMillis="30000" />
 </Context>
