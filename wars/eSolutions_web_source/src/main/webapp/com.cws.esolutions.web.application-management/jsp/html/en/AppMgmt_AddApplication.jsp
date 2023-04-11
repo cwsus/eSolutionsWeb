@@ -220,5 +220,6 @@
                 <li><a href="${pageContext.request.contextPath}/ui/application-management/add-application" title="<spring:message code='app.mgmt.add.application' />"><spring:message code='app.mgmt.add.application' /></a></li>
             </ul>
         </div>
+        <br class="clear" />
     </div>
 </div>

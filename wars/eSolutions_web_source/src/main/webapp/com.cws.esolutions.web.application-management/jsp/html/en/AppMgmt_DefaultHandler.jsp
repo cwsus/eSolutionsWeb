@@ -89,8 +89,6 @@
 	            <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
 	        </form:form>
 	    </p>
-	    <br class="clear" />
-	    <br class="clear" />
         <c:if test="${not empty searchResults}">
             <h1><spring:message code="theme.search.results" /></h1>
             <table id="searchResults">
@@ -123,6 +121,7 @@
                 </table>
             </c:if>
         </c:if>
+        <br class="clear" />
 	</div>
 </div>
 

@@ -92,37 +92,38 @@
         <br class="clear" />
         <br class="clear" />
         <c:if test="${not empty searchResults}">
-            <h1><spring:message code="theme.search.results" /></h1>
-            <table id="searchResults">
-                <c:forEach var="result" items="${searchResults}">
-                    <tr>
-                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/knowledge/${result.guid}" title="${result.name}">${result.name}</a></td>
-                    </tr>
-                </c:forEach>
-            </table>
+         <h1><spring:message code="theme.search.results" /></h1>
+         <table id="searchResults">
+             <c:forEach var="result" items="${searchResults}">
+                 <tr>
+                     <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/${result.articleId}" title="${result.title}">${result.title}</a></td>
+                 </tr>
+             </c:forEach>
+         </table>
 
-            <c:if test="${pages gt 1}">
-                <br />
-                <hr />
-                <br />
-                <table>
-                    <tr>
-                        <c:forEach begin="1" end="${pages}" var="i">
-                            <c:choose>
-                                <c:when test="${page eq i}">
-                                    <td>${i}</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td>
-                                        <a href="${pageContext.request.contextPath}/knowledge-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a>
-                                    </td>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </tr>
-                </table>
+         <c:if test="${pages gt 1}">
+             <br />
+             <hr />
+             <br />
+             <table>
+                 <tr>
+                     <c:forEach begin="1" end="${pages}" var="i">
+                         <c:choose>
+                             <c:when test="${page eq i}">
+                                 <td>${i}</td>
+                             </c:when>
+                             <c:otherwise>
+                                 <td>
+                                     <a href="${pageContext.request.contextPath}/knowledge-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a>
+                                 </td>
+                             </c:otherwise>
+                         </c:choose>
+                     </c:forEach>
+                 </tr>
+             </table>
             </c:if>
         </c:if>
+        <br class="clear" />
     </div>
 </div>
 
@@ -131,8 +132,11 @@
         <div id="content">
             <h1><spring:message code="knowledge.mgmt.header" /></h1>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/list-articles" title="<spring:message code='knowledge.mgmt.list.articles' />"><spring:message code='knowledge.mgmt.list.knowledges' /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/add-article" title="<spring:message code='knowledge.mgmt.add.article' />"><spring:message code='knowledge.mgmt.add.knowledge' /></a></li>
+                <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/list-articles" title="<spring:message code='knowledge.mgmt.list.articles' />"><spring:message code='knowledge.mgmt.list.articles' /></a></li>
+                <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/add-article" title="<spring:message code='knowledge.mgmt.add.article' />"><spring:message code='knowledge.mgmt.add.article' /></a></li>
+				<c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
+				    <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/list-articles/pending-approval" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></li>
+				</c:if>
             </ul>
         </div>
         <br class="clear" />

@@ -32,7 +32,6 @@
  * cws-khuntly          11/23/2008 22:39:20             Created.
  */
 --%>
-<%@page import="com.cws.esolutions.security.enums.SecurityUserRole" %>
 
 <script>
 <!--
