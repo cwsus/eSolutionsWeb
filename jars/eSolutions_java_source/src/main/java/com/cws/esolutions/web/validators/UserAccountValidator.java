@@ -46,7 +46,6 @@ public class UserAccountValidator implements Validator
     private String messageEmailAddrRequired = null;
     private String messageGivenNameRequired = null;
     private String messageUserSurnameRequired = null;
-    private String messageSuspensionFlagRequired = null;
 
     private static final String CNAME = UserAccountValidator.class.getName();
 
@@ -116,19 +115,6 @@ public class UserAccountValidator implements Validator
         }
 
         this.messageUserSurnameRequired = value;
-    }
-
-    public final void setMessageSuspensionFlagRequired(final String value)
-    {
-        final String methodName = UserAccountValidator.CNAME + "#setMessageSuspensionFlagRequired(final String value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.messageSuspensionFlagRequired = value;
     }
 
     public final boolean supports(final Class<?> value)

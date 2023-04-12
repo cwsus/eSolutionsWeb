@@ -184,9 +184,18 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/ui/user-management/default" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
                 <li><a href="${pageContext.request.contextPath}/ui/user-management/add-user" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/user-management/audit/account/${foundAccount.guid}" title="<spring:message code='user.mgmt.audit.user' />"><spring:message code='user.mgmt.audit.user' /></a></li>
             </ul>
         </div>
-        <br class="clear" />
+
+        <div id="column">
+            <div class="holder">
+                <h2><spring:message code="user.mgmt.this.account" /></h2>
+	            <ul>
+                    <li><a href="${pageContext.request.contextPath}/ui/user-management/audit/account/${foundAccount.guid}" title="<spring:message code='user.mgmt.audit.user' />"><spring:message code='user.mgmt.audit.user' /></a></li>
+                    <li><a href="${pageContext.request.contextPath}/ui/user-management/disable/account/${foundAccount.guid}" title="<spring:message code='user.mgmt.remove.user' />"><spring:message code='user.mgmt.remove.user' /></a></li>
+	            </ul>
+            </div>
+        </div>
     </div>
+    <br class="clear" />
 </div>

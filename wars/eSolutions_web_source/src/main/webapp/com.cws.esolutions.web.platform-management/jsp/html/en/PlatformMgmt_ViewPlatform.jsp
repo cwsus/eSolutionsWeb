@@ -57,22 +57,42 @@
         </c:if>
 
         <h1><spring:message code="platform.mgmt.view.platform" arguments="${platform.platformName}" /></h1>
-        <p>
-            <table>
-                <tr>
-                    <td><label id="txtPlatformName"><spring:message code="platform.mgmt.name" /></label></td>
-                    <td>${platform.platformName}</td>
-                </tr>
-                <tr>
-                    <td><label id="txtPlatformStatus"><spring:message code="platform.mgmt.status" /></label></td>
-                    <td>${platform.platformStatus}</td>
-                </tr>
-                <tr>
-                    <td><label id="txtPlatformDescription"><spring:message code="platform.mgmt.description" /></label></td>
-                    <td>${platform.platformDescription}</td>
-                </tr>
-            </table>
-        </p>
+        <table>
+            <tr>
+                <td><label id="txtPlatformName"><spring:message code="platform.mgmt.name" /></label></td>
+                <td>${platform.platformName}</td>
+            </tr>
+            <tr>
+                <td><label id="txtPlatformStatus"><spring:message code="platform.mgmt.status" /></label></td>
+                <td>${platform.platformStatus}</td>
+            </tr>
+            <tr>
+                <td><label id="txtPlatformDescription"><spring:message code="platform.mgmt.description" /></label></td>
+                <td>${platform.platformDescription}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="container">
+    <div class="wrapper">
+        <div id="content">
+            <h1><spring:message code="user.mgmt.header" /></h1>
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/ui/platform-management/list-platforms" title="<spring:message code='platform.mgmt.list.platforms' />"><spring:message code="platform.mgmt.list.platforms" /></a></li>
+                <li><a href="${pageContext.request.contextPath}/ui/platform-management/add-platform" title="<spring:message code='platform.mgmt.add.platform' />"><spring:message code="platform.mgmt.add.platform" /></a></li>
+            </ul>
+        </div>
+
+        <div id="column">
+            <div class="holder">
+                <h2><spring:message code="platform.mgmt.this.platform" /></h2>
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/ui/platform-management/platform/update/${platform.platformGuid}" title="<spring:message code='platform.mgmt.update.service' />"><spring:message code="platform.mgmt.update.service" /></a></li>
+                </ul>
+            </div>
+        </div>
+    <br class="clear" />
     </div>
 </div>
 
@@ -81,9 +101,8 @@
         <div id="holder">
 	        <h1><spring:message code="platform.mgmt.header" /></h1>
 	        <ul>
-	            <li><a href="${pageContext.request.contextPath}/ui/platform-management/platform/update/${platform.platformGuid}" title="<spring:message code='platform.mgmt.update.service' />"><spring:message code="platform.mgmt.update.service" /></a></li>
-	            <li><a href="${pageContext.request.contextPath}/ui/platform-management/list-platforms" title="<spring:message code='platform.mgmt.list.platforms' />"><spring:message code="platform.mgmt.list.platforms" /></a></li>
-	            <li><a href="${pageContext.request.contextPath}/ui/platform-management/add-platform" title="<spring:message code='platform.mgmt.add.platform' />"><spring:message code="platform.mgmt.add.platform" /></a></li>
+	            
+
 	        </ul>
         </div>
         <br class="clear" />

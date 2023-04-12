@@ -27,6 +27,7 @@ package com.cws.esolutions.web.controllers;
  * cws-khuntly          11/23/2008 22:39:20             Created.
  */
 import java.util.List;
+import java.util.Objects;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -79,6 +80,7 @@ public class UserManagementController
     private int recordsPerPage = 20;
     private String viewUserPage = null;
     private String viewAuditPage = null;
+    private String viewUsersPage = null;
     private String createUserPage = null;
     private String searchUsersPage = null;
     private String addUserRedirect = null;
@@ -100,6 +102,8 @@ public class UserManagementController
     private String messageNoAuditHistoryFound = null;
     private String messageAccountUnlockSuccess = null;
     private String messageAccountUnlockFailure = null;
+    private String messageAccountRemovalFailure = null;
+    private String messageAccountRemovalSuccess = null;
     private String messageAccountSuspendSuccess = null;
     private String messageAccountSuspendFailure = null;
     private String messageAccountUnsuspendFailure = null;
@@ -228,6 +232,19 @@ public class UserManagementController
         this.searchUsersPage = value;
     }
 
+    public final void setViewUsersPage(final String value)
+    {
+        final String methodName = UserManagementController.CNAME + "#setViewUsersPage(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.viewUsersPage = value;
+    }
+    
     public final void setMessageAccountResetSuccess(final String value)
     {
         final String methodName = UserManagementController.CNAME + "#setMessageResetComplete(final String value)";
@@ -488,6 +505,32 @@ public class UserManagementController
         this.messageNoAuditHistoryFound = value;
     }
 
+    public final void setMessageAccountRemovalSuccess(final String value)
+    {
+        final String methodName = UserManagementController.CNAME + "#setMessageAccountRemovalSuccess(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.messageAccountRemovalSuccess = value;
+    }
+
+    public final void setMessageAccountRemovalFailure(final String value)
+    {
+        final String methodName = UserManagementController.CNAME + "#setMessageAccountRemovalFailure(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.messageAccountRemovalFailure = value;
+    }
+    
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public final ModelAndView showDefaultPage(final Model model)
     {
@@ -628,6 +671,146 @@ public class UserManagementController
 
         return mView;
     }
+    
+    @RequestMapping(value = "/list-users", method = RequestMethod.GET)
+    public final ModelAndView showListUsers(final Model model)
+    {
+        final String methodName = UserManagementController.CNAME + "#showListUsers(final Model model)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+        }
+
+        ModelAndView mView = new ModelAndView();
+
+        final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        final HttpServletRequest hRequest = requestAttributes.getRequest();
+        final HttpSession hSession = hRequest.getSession();
+        final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
+        final IAccountControlProcessor processor = (IAccountControlProcessor) new AccountControlProcessorImpl();
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug("ServletRequestAttributes: {}", requestAttributes);
+            DEBUGGER.debug("HttpServletRequest: {}", hRequest);
+            DEBUGGER.debug("HttpSession: {}", hSession);
+            DEBUGGER.debug("Session ID: {}", hSession.getId());
+            DEBUGGER.debug("UserAccount: {}", userAccount);
+
+            DEBUGGER.debug("Dumping session content:");
+            Enumeration<String> sessionEnumeration = hSession.getAttributeNames();
+
+            while (sessionEnumeration.hasMoreElements())
+            {
+                String element = sessionEnumeration.nextElement();
+                Object value = hSession.getAttribute(element);
+
+                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
+            }
+
+            DEBUGGER.debug("Dumping request content:");
+            Enumeration<String> requestEnumeration = hRequest.getAttributeNames();
+
+            while (requestEnumeration.hasMoreElements())
+            {
+                String element = requestEnumeration.nextElement();
+                Object value = hRequest.getAttribute(element);
+
+                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
+            }
+
+            DEBUGGER.debug("Dumping request parameters:");
+            Enumeration<String> paramsEnumeration = hRequest.getParameterNames();
+
+            while (paramsEnumeration.hasMoreElements())
+            {
+                String element = paramsEnumeration.nextElement();
+                Object value = hRequest.getParameter(element);
+
+                DEBUGGER.debug("Parameter: {}; Value: {}", element, value);
+            }
+        }
+
+        try
+        {
+            // ensure authenticated access
+            RequestHostInfo reqInfo = new RequestHostInfo();
+            reqInfo.setHostAddress(hRequest.getRemoteAddr());
+            reqInfo.setHostName(hRequest.getRemoteHost());
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
+            }
+
+            AccountControlRequest request = new AccountControlRequest();
+            request.setHostInfo(reqInfo);
+            request.setApplicationId(this.appConfig.getApplicationId());
+            request.setRequestor(userAccount);
+            request.setApplicationId(this.appConfig.getApplicationId());
+            request.setApplicationName(this.appConfig.getApplicationName());
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("AccountControlRequest: {}", request);
+            }
+
+            AccountControlResponse response = processor.listUserAccounts(request);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("AccountControlResponse: {}", response);
+            }
+
+            switch (response.getRequestStatus())
+            {
+				case FAILURE:
+                	mView.addObject(Constants.ERROR_RESPONSE, this.messageSearchFailed);
+                	mView.addObject(Constants.COMMAND, new AccountSearchRequest());
+                	mView.setViewName(this.searchUsersPage);
+
+					break;
+				case SUCCESS:
+					if ((Objects.isNull(response.getUserList()) || (response.getUserList().size() == 0)))
+					{
+	                	mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageNoSearchResults());
+	                	mView.addObject(Constants.COMMAND, new AccountSearchRequest());
+	                	mView.setViewName(this.searchUsersPage);
+					}
+					else
+	                {
+	                	mView.addObject("userList", response.getUserList());
+	                	mView.setViewName(this.viewUsersPage);
+	                }
+
+					break;
+				case UNAUTHORIZED:
+					mView.setViewName(this.appConfig.getUnauthorizedPage());
+
+					break;
+				default:
+                	mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageNoSearchResults());
+                	mView.addObject(Constants.COMMAND, new AccountSearchRequest());
+                	mView.setViewName(this.searchUsersPage);
+
+					break;
+            }
+        }
+        catch (final AccountControlException acx)
+        {
+            ERROR_RECORDER.error(acx.getMessage(), acx);
+
+            mView.setViewName(this.appConfig.getErrorResponsePage());
+        }
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug("ModelAndView: {}", mView);
+        }
+
+        return mView;
+    }
 
     @RequestMapping(value = "/view/account/{userGuid}", method = RequestMethod.GET)
     public final ModelAndView showAccountData(@PathVariable("userGuid") final String userGuid, final Model model)
@@ -734,7 +917,7 @@ public class UserManagementController
             {
 				case FAILURE:
                 	mView.addObject(Constants.ERROR_RESPONSE, this.messageSearchFailed);
-                	mView.addObject(Constants.COMMAND, new UserAccount());
+                	mView.addObject(Constants.COMMAND, new AccountSearchRequest());
                 	mView.setViewName(this.searchUsersPage);
 
 					break;
@@ -748,7 +931,7 @@ public class UserManagementController
 	                else
 	                {
 	                	mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageNoSearchResults());
-	                	mView.addObject(Constants.COMMAND, new UserAccount());
+	                	mView.addObject(Constants.COMMAND, new AccountSearchRequest());
 	                	mView.setViewName(this.searchUsersPage);
 	                }
 
@@ -759,7 +942,7 @@ public class UserManagementController
 					break;
 				default:
                 	mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageNoSearchResults());
-                	mView.addObject(Constants.COMMAND, new UserAccount());
+                	mView.addObject(Constants.COMMAND, new AccountSearchRequest());
                 	mView.setViewName(this.searchUsersPage);
 
 					break;
@@ -1753,7 +1936,7 @@ public class UserManagementController
                     break;
                 default:
                     mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageNoSearchResults());
-                    mView.addObject(Constants.COMMAND, new UserAccount());
+                    mView.addObject(Constants.COMMAND, new AccountSearchRequest());
                     mView.setViewName(this.searchUsersPage);
 
                     break;
@@ -1926,6 +2109,148 @@ public class UserManagementController
         return mView;
     }
 
+    @RequestMapping(value = "/disable/account/{userGuid}", method = RequestMethod.GET)
+    public final ModelAndView disableUserAccount(@PathVariable("userGuid") final String userGuid, final Model model)
+    {
+        final String methodName = UserManagementController.CNAME + "#disableUserAccount(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", userGuid);
+        }
+
+        ModelAndView mView = new ModelAndView();
+
+        final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        final HttpServletRequest hRequest = requestAttributes.getRequest();
+        final HttpSession hSession = hRequest.getSession();
+        final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
+        final IAccountControlProcessor processor = (IAccountControlProcessor) new AccountControlProcessorImpl();
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug("ServletRequestAttributes: {}", requestAttributes);
+            DEBUGGER.debug("HttpServletRequest: {}", hRequest);
+            DEBUGGER.debug("HttpSession: {}", hSession);
+            DEBUGGER.debug("Session ID: {}", hSession.getId());
+            DEBUGGER.debug("UserAccount: {}", userAccount);
+
+            DEBUGGER.debug("Dumping session content:");
+            Enumeration<String> sessionEnumeration = hSession.getAttributeNames();
+
+            while (sessionEnumeration.hasMoreElements())
+            {
+                String element = sessionEnumeration.nextElement();
+                Object value = hSession.getAttribute(element);
+
+                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
+            }
+
+            DEBUGGER.debug("Dumping request content:");
+            Enumeration<String> requestEnumeration = hRequest.getAttributeNames();
+
+            while (requestEnumeration.hasMoreElements())
+            {
+                String element = requestEnumeration.nextElement();
+                Object value = hRequest.getAttribute(element);
+
+                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
+            }
+
+            DEBUGGER.debug("Dumping request parameters:");
+            Enumeration<String> paramsEnumeration = hRequest.getParameterNames();
+
+            while (paramsEnumeration.hasMoreElements())
+            {
+                String element = paramsEnumeration.nextElement();
+                Object value = hRequest.getParameter(element);
+
+                DEBUGGER.debug("Parameter: {}; Value: {}", element, value);
+            }
+        }
+
+        try
+        {
+            RequestHostInfo reqInfo = new RequestHostInfo();
+            reqInfo.setHostAddress(hRequest.getRemoteAddr());
+            reqInfo.setHostName(hRequest.getRemoteHost());
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
+            }
+
+            // load the user account
+            UserAccount searchAccount = new UserAccount();
+            searchAccount.setGuid(userGuid);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("UserAccount: {}", searchAccount);
+            }
+
+            AccountControlRequest request = new AccountControlRequest();
+            request.setHostInfo(reqInfo);
+            request.setUserAccount(searchAccount);
+            request.setApplicationId(this.appConfig.getApplicationId());
+            request.setRequestor(userAccount);
+            request.setApplicationId(this.appConfig.getApplicationId());
+            request.setApplicationName(this.appConfig.getApplicationName());
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("AccountControlRequest: {}", request);
+            }
+
+            AccountControlResponse response = processor.removeUserAccount(request);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("AccountControlResponse: {}", response);
+            }
+
+            switch (response.getRequestStatus())
+            {
+				case FAILURE:
+					mView.addObject(Constants.COMMAND, new AccountSearchRequest());
+                    mView.addObject(Constants.ERROR_RESPONSE, this.messageAccountRemovalFailure);
+                    mView.setViewName(this.searchUsersPage);
+
+					break;
+				case SUCCESS:
+					mView.addObject(Constants.COMMAND, new AccountSearchRequest());
+                    mView.addObject(Constants.RESPONSE_MESSAGE, this.messageAccountRemovalSuccess);
+                    mView.setViewName(this.searchUsersPage);
+
+                    break;
+				case UNAUTHORIZED:
+                    mView.setViewName(this.appConfig.getUnauthorizedPage());
+
+                    break;
+                default:
+                    mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageRequestProcessingFailure());
+                    mView.addObject(Constants.COMMAND, new AccountSearchRequest());
+                    mView.setViewName(this.searchUsersPage);
+
+                    break;
+            }
+        }
+        catch (final AccountControlException acx)
+        {
+            ERROR_RECORDER.error(acx.getMessage(), acx);
+
+            mView.setViewName(this.appConfig.getErrorResponsePage());
+        }
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug("ModelAndView: {}", mView);
+        }
+
+        return mView;
+    }
+
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public final ModelAndView doSearchUsers(@ModelAttribute("request") final AccountSearchRequest request, final BindingResult bindResult, final Model model)
     {
@@ -2023,7 +2348,7 @@ public class UserManagementController
             {
 				case FAILURE:
 					mView.addObject(Constants.ERROR_RESPONSE, this.messageSearchFailed);
-					mView.addObject(Constants.COMMAND, new UserAccount());
+					mView.addObject(Constants.COMMAND, new AccountSearchRequest());
 					mView.setViewName(this.searchUsersPage);
 
 					break;
@@ -2046,8 +2371,7 @@ public class UserManagementController
 	                else
 	                {
 	                	mView.addObject(Constants.ERROR_RESPONSE, this.messageNoAccountsFound);
-	                	mView.addObject(Constants.COMMAND, new UserAccount());
-	                	mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageNoSearchResults());
+	                	mView.addObject(Constants.COMMAND, new AccountSearchRequest());
 	                }
 
 	                mView.setViewName(this.searchUsersPage);
@@ -2059,7 +2383,7 @@ public class UserManagementController
 					break;
 				default:
 					mView.addObject(Constants.ERROR_RESPONSE, this.messageNoAccountsFound);
-					mView.addObject(Constants.COMMAND, new UserAccount());
+					mView.addObject(Constants.COMMAND, new AccountSearchRequest());
 					mView.setViewName(this.searchUsersPage);
 
 					break;
@@ -2281,10 +2605,10 @@ public class UserManagementController
 		
 		                        mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageEmailSendFailed());
 		                    }
-		
-		                    mView.addObject(Constants.RESPONSE_MESSAGE, String.format(this.messageAddUserSuccess, newUser.getUsername()));
 
-		                    mView.setViewName(this.addUserRedirect);
+		                    mView.addObject(Constants.COMMAND, new UserAccount());
+		                    mView.addObject(Constants.RESPONSE_MESSAGE, String.format(this.messageAddUserSuccess, newUser.getUsername()));
+		                    mView.setViewName(this.createUserPage);
 		                }
 		                else
 		                {

@@ -150,7 +150,7 @@
                 </tbody>
             </table>
             <br class="clear" />
-            <form:textarea path="resolution" />
+            <form:textarea path="resolution" style="width: 915px; height: 150px;" spellcheck="true" />
             <form:errors path="resolution" cssClass="error" />
             <br class="clear" />
             <table>

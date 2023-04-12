@@ -62,7 +62,20 @@
             <table id="searchResults">
                 <c:forEach var="result" items="${searchResults}">
                     <tr>
-                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/${result.articleId}" title="${result.title}">${result.title}</a></td>
+                        <c:choose>
+                            <c:when test="${isApprovalFlow}">
+		                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/approve/${result.articleId}" title="${result.title}">${result.title}</a></td>
+		                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/approve/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
+                            </c:when>
+                            <c:when test="${isReviewFlow}">
+                                <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/review/${result.articleId}" title="${result.title}">${result.title}</a></td>
+                                <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/review/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
+                            </c:when>                            
+                            <c:otherwise>
+		                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.title}</a></td>
+		                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
+                            </c:otherwise>
+                        </c:choose>
                     </tr>
                 </c:forEach>
             </table>

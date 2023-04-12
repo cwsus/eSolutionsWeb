@@ -29,6 +29,7 @@
         <property name="addArticlePage" value=".knowledge-management/jsp/html/en/KnowledgeManagement_AddArticle" />
         <property name="viewArticlePage" value=".knowledge-management/jsp/html/en/KnowledgeManagement_ViewArticle" />
         <property name="viewArticlesPage" value=".knowledge-management/jsp/html/en/KnowledgeManagement_ViewArticles" />
+        <property name="viewApprovalPage" value=".knowledge-management/jsp/html/en/KnowledgeManagement_ApproveArticle" />
         <property name="messageArticleAdded" value="knowledge.mgmt.article.added" />
         <property name="messageNoArticlesFound" value="knowledge.mgmt.no.results" />
         <property name="messageArticleAddFailed" value="knowledge.mgmt.article.failed" />

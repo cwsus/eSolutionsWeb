@@ -42,7 +42,7 @@
             clearText(theForm);
 
             document.getElementById('validationError').innerHTML = 'Please provide a brief subject for your request.';
-            document.getElementById('"txtUsername"').style.color = '#FF0000';
+            document.getElementById('txtUsername').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('username').focus();
         }

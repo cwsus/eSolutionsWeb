@@ -89,13 +89,22 @@
 
 <div id="container">
     <div class="wrapper">
-        <div id="holder">
-        <h1><spring:message code="app.mgmt.header" /></h1>
-	        <ul>
-	            <li><a href="${pageContext.request.contextPath}/ui/application-management/list-applications" title="<spring:message code='app.mgmt.list.applications' />"><spring:message code='app.mgmt.list.applications' /></a></li>
-	            <li><a href="${pageContext.request.contextPath}/ui/application-management/add-application" title="<spring:message code='app.mgmt.add.application' />"><spring:message code='app.mgmt.add.application' /></a></li>
-	        </ul>
+        <div id="content">
+            <h1><spring:message code="app.mgmt.header" /></h1>
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/ui/application-management/list-applications" title="<spring:message code='app.mgmt.list.applications' />"><spring:message code='app.mgmt.list.applications' /></a></li>
+                <li><a href="${pageContext.request.contextPath}/ui/application-management/add-application" title="<spring:message code='app.mgmt.add.application' />"><spring:message code='app.mgmt.add.application' /></a></li>
+            </ul>
         </div>
-        <br class="clear" />
+
+        <div id="column">
+            <div class="holder">
+                <h2><spring:message code="app.mgmt.this.application" /></h2>
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/ui/application-management/disable/application/${application.guid}" title="<spring:message code='app.mgmt.remove.application' />"><spring:message code='app.mgmt.remove.application' /></a></li>
+                </ul>
+            </div>
+        </div>
     </div>
+    <br class="clear" />
 </div>

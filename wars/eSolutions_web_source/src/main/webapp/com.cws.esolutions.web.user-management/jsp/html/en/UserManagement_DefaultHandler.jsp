@@ -100,10 +100,7 @@
                 </tr>
                 <c:forEach var="userResult" items="${requestScope.searchResults}">
                     <tr>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/ui/user-management/view/account/${userResult.guid}"
-                                title="${userResult.username}">${userResult.username}</a>
-                        </td>
+                        <td><a href="${pageContext.request.contextPath}/ui/user-management/view/account/${userResult.guid}" title="${userResult.username}">${userResult.username}</a></td>
                         <td>${userResult.displayName}</td>
                     </tr>
                 </c:forEach>
@@ -139,6 +136,7 @@
             <h1><spring:message code="user.mgmt.header" /></h1>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/ui/user-management/add-user" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
+                <li><a href="${pageContext.request.contextPath}/ui/user-management/list-users" title="<spring:message code='user.mgmt.list.users' />"><spring:message code="user.mgmt.list.users" /></a></li>
             </ul>
         </div>
         <br class="clear" />

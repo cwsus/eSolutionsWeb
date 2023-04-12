@@ -70,6 +70,7 @@ public class KnowledgeManagementController
 	private String addArticlePage = null;
 	private String viewArticlePage = null;
 	private String viewArticlesPage = null;
+	private String viewApprovalPage = null;
 	private String messageArticleAdded = null;
 	private ArticleValidator validator = null;
 	private String messageNoArticlesFound = null;
@@ -184,6 +185,19 @@ public class KnowledgeManagementController
         }
 
         this.addArticlePage = value;
+    }
+
+    public final void setViewApprovalPage(final String value)
+    {
+        final String methodName = KnowledgeManagementController.CNAME + "#setViewApprovalPage(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.viewApprovalPage = value;
     }
 
     public final void setMessageNoArticlesFound(final String value)
@@ -438,7 +452,7 @@ public class KnowledgeManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/list-articles/pending-approval", method = RequestMethod.GET)
+    @RequestMapping(value = { "/list-articles/pending-approval", "/approve-article" }, method = RequestMethod.GET)
     public final ModelAndView listPendingArticles(final Model model)
     {
         final String methodName = KnowledgeManagementController.CNAME + "#listPendingArticles(final Model model)";
@@ -530,7 +544,7 @@ public class KnowledgeManagementController
                 DEBUGGER.debug("KnowledgeManagementRequest: {}", request);
             }
 
-            KnowledgeManagementResponse response = processor.listArticlesByAttribute(request);
+            KnowledgeManagementResponse response = processor.listPendingArticles(request);
 
             if (DEBUG)
             {
@@ -555,6 +569,7 @@ public class KnowledgeManagementController
 
 	                if ((articleList != null) && (articleList.size() != 0))
 	                {
+	                	mView.addObject("isApprovalFlow", Boolean.TRUE);
 	                    mView.addObject(Constants.SEARCH_RESULTS, articleList);
 	                    mView.setViewName(this.viewArticlesPage);
 	                }
@@ -593,10 +608,10 @@ public class KnowledgeManagementController
         return mView;
     }
 
-    @RequestMapping(value = "article/{guid}", method = RequestMethod.GET)
-    public final ModelAndView showArticle(@PathVariable("guid") final String guid, final Model model)
+    @RequestMapping(value = "article/view/{guid}", method = RequestMethod.GET)
+    public final ModelAndView showViewArticle(@PathVariable("guid") final String guid, final Model model)
     {
-        final String methodName = KnowledgeManagementController.CNAME + "#showArticle(@PathVariable(\"guid\") final String guid, final Model model)";
+        final String methodName = KnowledgeManagementController.CNAME + "#showViewArticle(@PathVariable(\"guid\") final String guid, final Model model)";
 
         if (DEBUG)
         {
@@ -717,6 +732,155 @@ public class KnowledgeManagementController
 	
 					break;
 				default:
+					mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageRequestProcessingFailure());
+	                mView.setViewName(this.defaultPage);
+	
+					break;
+            }
+        }
+        catch (final KnowledgeManagementException kmx)
+        {
+            ERROR_RECORDER.error(kmx.getMessage(), kmx);
+
+            mView.setViewName(this.appConfig.getErrorResponsePage());
+        }
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug("ModelAndView: {}", mView);
+        }
+
+        return mView;
+    }
+
+    @RequestMapping(value = "article/approve/{guid}", method = RequestMethod.GET)
+    public final ModelAndView showApproveArticle(@PathVariable("guid") final String guid, final Model model)
+    {
+        final String methodName = KnowledgeManagementController.CNAME + "#showApproveArticle(@PathVariable(\"guid\") final String guid, final Model model)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", guid);
+        }
+
+        ModelAndView mView = new ModelAndView();
+
+        final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        final HttpServletRequest hRequest = requestAttributes.getRequest();
+        final HttpSession hSession = hRequest.getSession();
+        final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
+        final IKnowledgeManagementProcessor processor = (IKnowledgeManagementProcessor) new KnowledgeManagementProcessorImpl();
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug("ServletRequestAttributes: {}", requestAttributes);
+            DEBUGGER.debug("HttpServletRequest: {}", hRequest);
+            DEBUGGER.debug("HttpSession: {}", hSession);
+            DEBUGGER.debug("Session ID: {}", hSession.getId());
+            DEBUGGER.debug("UserAccount: {}", userAccount);
+
+            DEBUGGER.debug("Dumping session content:");
+            Enumeration<?> sessionEnumeration = hSession.getAttributeNames();
+
+            while (sessionEnumeration.hasMoreElements())
+            {
+                String element = (String) sessionEnumeration.nextElement();
+                Object value = hSession.getAttribute(element);
+
+                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
+            }
+
+            DEBUGGER.debug("Dumping request content:");
+            Enumeration<?> requestEnumeration = hRequest.getAttributeNames();
+
+            while (requestEnumeration.hasMoreElements())
+            {
+                String element = (String) requestEnumeration.nextElement();
+                Object value = hRequest.getAttribute(element);
+
+                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
+            }
+
+            DEBUGGER.debug("Dumping request parameters:");
+            Enumeration<?> paramsEnumeration = hRequest.getParameterNames();
+
+            while (paramsEnumeration.hasMoreElements())
+            {
+                String element = (String) paramsEnumeration.nextElement();
+                Object value = hRequest.getParameter(element);
+
+                DEBUGGER.debug("Parameter: {}; Value: {}", element, value);
+            }
+        }
+
+        try
+        {
+            RequestHostInfo reqInfo = new RequestHostInfo();
+            reqInfo.setHostName(hRequest.getRemoteHost());
+            reqInfo.setHostAddress(hRequest.getRemoteAddr());
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
+            }
+
+            Article reqArticle = new Article();
+            reqArticle.setArticleId(guid);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("Article: {}", reqArticle);
+            }
+
+            KnowledgeManagementRequest request = new KnowledgeManagementRequest();
+            request.setApplicationId(this.appConfig.getApplicationId());
+            request.setApplicationName(this.appConfig.getApplicationName());
+            request.setServiceId(this.serviceId);
+            request.setRequestInfo(reqInfo);
+            request.setUserAccount(userAccount);
+            request.setArticle(reqArticle);
+            request.setIsApproval(Boolean.TRUE);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("KnowledgeManagementRequest: {}", request);
+            }
+
+            KnowledgeManagementResponse response = processor.getArticleForApproval(request);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("KnowledgeManagementResponse: {}", response);
+            }
+
+            switch (response.getRequestStatus())
+            {
+				case FAILURE:
+					mView.addObject(Constants.COMMAND, new Article());
+	                mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageNoSearchResults());
+	                mView.setViewName(this.defaultPage);
+	
+					break;
+				case SUCCESS:
+	                Article resArticle = response.getArticle();
+
+	                if (DEBUG)
+	                {
+	                    DEBUGGER.debug("Article: {}", resArticle);
+	                }
+
+	                mView.addObject("articleData", resArticle);
+	                mView.addObject(Constants.COMMAND, resArticle);
+	                mView.setViewName(this.viewApprovalPage);
+	
+					break;
+				case UNAUTHORIZED:
+					mView.setViewName(this.appConfig.getUnauthorizedPage());
+	
+					break;
+				default:
+					mView.addObject(Constants.COMMAND, new Article());
 					mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageRequestProcessingFailure());
 	                mView.setViewName(this.defaultPage);
 	
@@ -1079,6 +1243,145 @@ public class KnowledgeManagementController
 
                 mView.setViewName(this.appConfig.getErrorResponsePage());
             }
+        }
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug("ModelAndView: {}", mView);
+        }
+
+        return mView;
+    }
+
+    @RequestMapping(value = "approve-article", method = RequestMethod.POST)
+    public final ModelAndView doApproveArticle(@ModelAttribute("article") final Article article, final BindingResult bindResult, final Model model)
+    {
+        final String methodName = KnowledgeManagementController.CNAME + "#doApproveArticle(@ModelAttribute(\"request\") final Application request, final BindingResult bindResult, final Model model)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", article);
+        }
+
+        ModelAndView mView = new ModelAndView();
+
+        final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        final HttpServletRequest hRequest = requestAttributes.getRequest();
+        final HttpSession hSession = hRequest.getSession();
+        final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
+        final IKnowledgeManagementProcessor processor = (IKnowledgeManagementProcessor) new KnowledgeManagementProcessorImpl();
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug("ServletRequestAttributes: {}", requestAttributes);
+            DEBUGGER.debug("HttpServletRequest: {}", hRequest);
+            DEBUGGER.debug("HttpSession: {}", hSession);
+            DEBUGGER.debug("Session ID: {}", hSession.getId());
+            DEBUGGER.debug("UserAccount: {}", userAccount);
+
+            DEBUGGER.debug("Dumping session content:");
+            Enumeration<?> sessionEnumeration = hSession.getAttributeNames();
+
+            while (sessionEnumeration.hasMoreElements())
+            {
+                String element = (String) sessionEnumeration.nextElement();
+                Object value = hSession.getAttribute(element);
+
+                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
+            }
+
+            DEBUGGER.debug("Dumping request content:");
+            Enumeration<?> requestEnumeration = hRequest.getAttributeNames();
+
+            while (requestEnumeration.hasMoreElements())
+            {
+                String element = (String) requestEnumeration.nextElement();
+                Object value = hRequest.getAttribute(element);
+
+                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
+            }
+
+            DEBUGGER.debug("Dumping request parameters:");
+            Enumeration<?> paramsEnumeration = hRequest.getParameterNames();
+
+            while (paramsEnumeration.hasMoreElements())
+            {
+                String element = (String) paramsEnumeration.nextElement();
+                Object value = hRequest.getParameter(element);
+
+                DEBUGGER.debug("Parameter: {}; Value: {}", element, value);
+            }
+        }
+
+        try
+        {
+            RequestHostInfo reqInfo = new RequestHostInfo();
+            reqInfo.setHostName(hRequest.getRemoteHost());
+            reqInfo.setHostAddress(hRequest.getRemoteAddr());
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
+            }
+
+            Article apprArticle = new Article();
+            apprArticle.setArticleId(article.getArticleId());
+            apprArticle.setStatus(ArticleStatus.APPROVED);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("Article: {}", apprArticle);
+            }
+
+            KnowledgeManagementRequest request = new KnowledgeManagementRequest();
+            request.setApplicationId(this.appConfig.getApplicationId());
+            request.setApplicationName(this.appConfig.getApplicationName());
+            request.setRequestInfo(reqInfo);
+            request.setServiceId(this.serviceId);
+            request.setUserAccount(userAccount);
+            request.setArticle(apprArticle);
+
+            if (DEBUG)
+            {
+            	DEBUGGER.debug("KnowledgeManagementRequest: {}", request);
+            }
+
+            KnowledgeManagementResponse response = processor.updateArticleStatus(request);
+
+            if (DEBUG)
+            {
+            	DEBUGGER.debug("KnowledgeManagementResponse: {}", response);
+            }
+
+            switch (response.getRequestStatus())
+            {
+				case FAILURE:
+	                mView.addObject(Constants.ERROR_RESPONSE, this.messageArticleAddFailed);
+	                mView.setViewName(this.viewApprovalPage);
+
+					break;
+				case SUCCESS:
+                    mView.addObject(Constants.RESPONSE_MESSAGE, this.messageArticleAdded);
+                    mView.setViewName(this.viewApprovalPage);
+
+					break;
+				case UNAUTHORIZED:
+					mView.setViewName(this.appConfig.getUnauthorizedPage());
+
+					break;
+				default:
+					mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageRequestProcessingFailure());
+	                mView.setViewName(this.viewApprovalPage);
+
+					break;
+            }
+        }
+        catch (final KnowledgeManagementException kmx)
+        {
+            ERROR_RECORDER.error(kmx.getMessage(), kmx);
+
+            mView.setViewName(this.appConfig.getErrorResponsePage());
         }
 
         if (DEBUG)

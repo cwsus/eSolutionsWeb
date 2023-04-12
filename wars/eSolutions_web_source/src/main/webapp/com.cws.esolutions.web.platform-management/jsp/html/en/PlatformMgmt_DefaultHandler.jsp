@@ -96,7 +96,7 @@
             <table id="searchResults">
                 <c:forEach var="result" items="${searchResults}">
                     <tr>
-                        <td><a href="${pageContext.request.contextPath}/ui/platform-management/${result.path}" title="${result.title}">${result.title}</a></td>
+                        <td><a href="${pageContext.request.contextPath}/ui/platform-management/platform/view/${result.platformGuid}" title="${result.platformName}">${result.platformName}</a></td>
                     </tr>
                 </c:forEach>
             </table>
