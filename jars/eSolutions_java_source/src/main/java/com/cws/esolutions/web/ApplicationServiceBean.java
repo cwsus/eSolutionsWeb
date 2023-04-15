@@ -47,10 +47,10 @@ public class ApplicationServiceBean
 	@Autowired private String olrRedirect = null;
 	@Autowired private String fileEncoding = null;
 	@Autowired private String homeRedirect = null;
-	@Autowired private String isTestSystem = null;
 	@Autowired private String emailAddress = null;
 	@Autowired private String logonRedirect = null;
 	@Autowired private String applicationId = null;
+	@Autowired private Boolean isTestSystem = false;
 	@Autowired private String expiredRedirect = null;
 	@Autowired private String applicationName = null;
 	@Autowired private String unavailablePage = null;
@@ -60,6 +60,7 @@ public class ApplicationServiceBean
 	@Autowired private String contactAdminsPage = null;
 	@Autowired private String errorResponsePage = null;
 	@Autowired private String searchRequestPage = null;
+	@Autowired private Boolean isResetAvailable = false;
 	@Autowired private String passwordMaxLength = "128";
 	@Autowired private String themeMessageSource = null;
 	@Autowired private String requestCompletePage = null;
@@ -487,9 +488,9 @@ public class ApplicationServiceBean
         this.emailValidator = value;
     }
 
-    public final void setIsTestSystem(final String value)
+    public final void setIsTestSystem(final Boolean value)
     {
-        final String methodName = ApplicationServiceBean.CNAME + "#setIsTestSystem(final String value)";
+        final String methodName = ApplicationServiceBean.CNAME + "#setIsTestSystem(final Boolean value)";
 
         if (DEBUG)
         {
@@ -563,6 +564,19 @@ public class ApplicationServiceBean
         }
 
         this.passwordMaxLength = value;
+    }
+
+    public final void setIsResetAvailable(final Boolean value)
+    {
+        final String methodName = ApplicationServiceBean.CNAME + "#setIsResetAvailable(final Boolean value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.isResetAvailable = value;
     }
 
     public final String getFileEncoding()
@@ -994,7 +1008,7 @@ public class ApplicationServiceBean
         return this.messageAccountSuspended;
     }
     
-	public final boolean getIsTestSystem()
+	public final Boolean getIsTestSystem()
 	{
         final String methodName = ApplicationServiceBean.CNAME + "#getIsTestSystem()";
 
@@ -1004,10 +1018,10 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isTestSystem);
         }
 
-        return Boolean.valueOf(this.isTestSystem);
+        return this.isTestSystem;
 	}
 
-	public final boolean isTestSystem()
+	public final Boolean isTestSystem()
 	{
         final String methodName = ApplicationServiceBean.CNAME + "#isTestSystem()";
 
@@ -1017,7 +1031,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isTestSystem);
         }
 
-        return Boolean.valueOf(this.isTestSystem);
+        return this.isTestSystem;
 	}
 
 	public final String getWebURL()
@@ -1057,6 +1071,32 @@ public class ApplicationServiceBean
         }
 
         return this.passwordMaxLength;
+    }
+
+    public final Boolean getIsResetAvailable()
+    {
+        final String methodName = ApplicationServiceBean.CNAME + "#getIsResetAvailable()";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", this.isResetAvailable);
+        }
+
+        return this.isResetAvailable;
+    }
+
+    public final Boolean isResetAvailable()
+    {
+        final String methodName = ApplicationServiceBean.CNAME + "#isResetAvailable()";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", this.isResetAvailable);
+        }
+
+        return this.isResetAvailable;
     }
 
     @Override

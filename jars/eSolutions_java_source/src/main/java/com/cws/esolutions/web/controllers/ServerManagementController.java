@@ -566,7 +566,7 @@ public class ServerManagementController
             serviceReq.setServiceId(this.serviceId);
             serviceReq.setApplicationId(this.appConfig.getApplicationId());
             serviceReq.setApplicationName(this.appConfig.getApplicationName());
-            serviceReq.setAttribute(ServerType.DMGRSERVER.name());
+            serviceReq.setAttribute(ServerType.DMGRSERVER.toString());
 
             if (DEBUG)
             {
@@ -596,9 +596,9 @@ public class ServerManagementController
                 }
                 else
                 {
-                    mView = new ModelAndView(new RedirectView());
+                	mView.addObject(Constants.COMMAND, new Server());
                     mView.addObject(Constants.MESSAGE_RESPONSE, this.messageNoDmgrsFound);
-                    mView.setViewName(this.addServerRedirect);
+                    mView.setViewName(this.addServerPage);
                 }
             }
             else if (response.getRequestStatus() == CoreServicesStatus.UNAUTHORIZED)
@@ -911,7 +911,7 @@ public class ServerManagementController
         dmgrRequest.setServiceId(this.serviceId);
         dmgrRequest.setApplicationId(this.appConfig.getApplicationId());
         dmgrRequest.setApplicationName(this.appConfig.getApplicationName());
-        dmgrRequest.setAttribute(ServerType.DMGRSERVER.name());
+        dmgrRequest.setAttribute(ServerType.DMGRSERVER.toString());
 
         try
         {
@@ -1033,7 +1033,7 @@ public class ServerManagementController
             DEBUGGER.debug("ServerRequest: {}", request);
         }
 
-        ModelAndView mView = new ModelAndView(new RedirectView());
+        ModelAndView mView = new ModelAndView();
 
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         final HttpServletRequest hRequest = requestAttributes.getRequest();
@@ -1111,7 +1111,7 @@ public class ServerManagementController
             }
 
             Datacenter datacenter = new Datacenter();
-            datacenter.setGuid(request.getDatacenter());
+            datacenter.setGuid(request.getDatacenter().getGuid());
 
             if (DEBUG)
             {
@@ -1240,14 +1240,14 @@ public class ServerManagementController
 		                    }
 		                default:
 		                    Datacenter reqDatacenter = new Datacenter();
-		                    reqDatacenter.setGuid(request.getDatacenter());
+		                    reqDatacenter.setGuid(request.getDatacenter().getGuid());
 
 		                    if (DEBUG)
 		                    {
 		                        DEBUGGER.debug("Datacenter: {}", reqDatacenter);
 		                    }
 
-		                    server.setDatacenter(reqDatacenter.getGuid());
+		                    server.setDatacenter(reqDatacenter);
 		                    server.setServerRegion(request.getServerRegion());
 		                    server.setDomainName(request.getDomainName());
 		                    server.setDmgrPort(request.getDmgrPort());

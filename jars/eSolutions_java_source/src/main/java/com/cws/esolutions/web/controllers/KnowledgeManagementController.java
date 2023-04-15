@@ -255,6 +255,7 @@ public class KnowledgeManagementController
         final HttpServletRequest hRequest = requestAttributes.getRequest();
         final HttpSession hSession = hRequest.getSession();
         final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
+        final IKnowledgeManagementProcessor processor = (IKnowledgeManagementProcessor) new KnowledgeManagementProcessorImpl();
 
         if (DEBUG)
         {
@@ -298,8 +299,78 @@ public class KnowledgeManagementController
             }
         }
 
-        mView.addObject(Constants.COMMAND, new Article());
-		mView.setViewName(this.defaultPage);
+        try
+        {
+            RequestHostInfo reqInfo = new RequestHostInfo();
+            reqInfo.setHostName(hRequest.getRemoteHost());
+            reqInfo.setHostAddress(hRequest.getRemoteAddr());
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
+            }
+
+            KnowledgeManagementRequest request = new KnowledgeManagementRequest();
+            request.setApplicationId(this.appConfig.getApplicationId());
+            request.setApplicationName(this.appConfig.getApplicationName());
+            request.setRequestInfo(reqInfo);
+            request.setServiceId(this.serviceId);
+            request.setUserAccount(userAccount);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("KnowledgeManagementRequest: {}", request);
+            }
+
+            KnowledgeManagementResponse response = processor.listArticles(request);
+
+            if (DEBUG)
+            {
+                DEBUGGER.debug("KnowledgeManagementResponse: {}", response);
+            }
+
+            switch (response.getRequestStatus())
+            {
+            	case UNAUTHORIZED:
+					mView.setViewName(this.appConfig.getUnauthorizedPage());
+
+            		break;
+                case SUCCESS:
+                    List<Article> articleList = response.getArticleList();
+
+                    if (DEBUG)
+                    {
+                        DEBUGGER.debug("List<Article>: {}", articleList);
+                    }
+
+                    if ((articleList != null) && (articleList.size() != 0))
+                    {
+                        mView.addObject(Constants.COMMAND, new Article());
+                        mView.addObject("articleList", articleList);
+                        mView.setViewName(this.defaultPage);
+                    }
+                    else
+                    {
+                        mView.addObject(Constants.COMMAND, new Article());
+                        mView.addObject(Constants.ERROR_MESSAGE, this.messageNoArticlesFound);
+                        mView.setViewName(this.defaultPage);
+                    }
+    
+                    break;
+                default:
+                    mView.addObject(Constants.COMMAND, new Article());
+                    mView.addObject(Constants.ERROR_RESPONSE, this.appConfig.getMessageRequestProcessingFailure());
+                    mView.setViewName(this.defaultPage);
+    
+                    break;
+            }
+        }
+        catch (final KnowledgeManagementException kmx)
+        {
+            ERROR_RECORDER.error(kmx.getMessage(), kmx);
+
+            mView.setViewName(this.appConfig.getErrorResponsePage());
+        }
 
         if (DEBUG)
         {

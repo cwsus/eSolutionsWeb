@@ -72,6 +72,7 @@ import com.cws.esolutions.security.processors.interfaces.IAccountChangeProcessor
 @RequestMapping("user-account")
 public class UserAccountController
 {
+	private String serviceId = null;
     private String myAccountPage = null;
     private String changeEmailPage = null;
     private String changeContactPage = null;
@@ -97,6 +98,19 @@ public class UserAccountController
     private static final Logger DEBUGGER = LogManager.getLogger(Constants.DEBUGGER);
     private static final boolean DEBUG = DEBUGGER.isDebugEnabled();
     private static final Logger ERROR_RECORDER = LogManager.getLogger(Constants.ERROR_LOGGER + CNAME);
+
+    public final void setServiceId(final String value)
+    {
+        final String methodName = UserAccountController.CNAME + "#setServiceId(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.serviceId = value;
+    }
 
     public final void setAppConfig(final ApplicationServiceBean value)
     {
@@ -561,6 +575,7 @@ public class UserAccountController
 
             AccountResetRequest request = new AccountResetRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(userAccount);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setApplicationName(this.appConfig.getApplicationName());
@@ -833,6 +848,7 @@ public class UserAccountController
             AccountChangeRequest req = new AccountChangeRequest();
             req.setApplicationId(this.appConfig.getApplicationId());
             req.setApplicationName(this.appConfig.getApplicationName());
+            req.setServiceId(this.serviceId);
             req.setHostInfo(reqInfo);
             req.setUserAccount(userAccount);
             req.setRequestor(userAccount);
@@ -992,8 +1008,10 @@ public class UserAccountController
             request.setUserAccount(userAccount);
             request.setUserSecurity(userSecurity);
             request.setIsReset(changeReq.isReset());
+            request.setChangeData(changeReq);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setApplicationName(this.appConfig.getApplicationName());
+            request.setServiceId(this.serviceId);
 
             if (DEBUG)
             {
@@ -1026,7 +1044,7 @@ public class UserAccountController
             			hRequest.getSession().invalidate();
 
             			mView = new ModelAndView(new RedirectView());
-            			mView.addObject("responseMessage", this.messagePasswordChangeSuccess);
+            			mView.addObject(Constants.RESPONSE_MESSAGE, this.messagePasswordChangeSuccess);
             			mView.setViewName(this.appConfig.getLogonRedirect());
 
             			if (DEBUG)
@@ -1171,6 +1189,7 @@ public class UserAccountController
             request.setChangeData(changeReq);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setApplicationName(this.appConfig.getApplicationName());
+            request.setServiceId(this.serviceId);
 
             if (DEBUG)
             {
@@ -1330,6 +1349,7 @@ public class UserAccountController
             request.setUserSecurity(userSecurity);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setApplicationName(this.appConfig.getApplicationName());
+            request.setServiceId(this.serviceId);
 
             if (DEBUG)
             {
@@ -1493,6 +1513,7 @@ public class UserAccountController
             request.setUserSecurity(userSecurity);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setApplicationName(this.appConfig.getApplicationName());
+            request.setServiceId(this.serviceId);
 
             if (DEBUG)
             {

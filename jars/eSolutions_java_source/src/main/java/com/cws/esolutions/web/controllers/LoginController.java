@@ -36,6 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,10 +49,10 @@ import com.cws.esolutions.security.dto.UserAccount;
 import com.cws.esolutions.web.ApplicationServiceBean;
 import com.cws.esolutions.web.validators.LoginValidator;
 import com.cws.esolutions.security.enums.SecurityUserRole;
+import com.cws.esolutions.security.processors.dto.RequestHostInfo;
 import com.cws.esolutions.security.processors.dto.AuthenticationData;
 import com.cws.esolutions.security.processors.dto.AuthenticationRequest;
 import com.cws.esolutions.security.processors.dto.AuthenticationResponse;
-import com.cws.esolutions.security.processors.dto.RequestHostInfo;
 import com.cws.esolutions.security.processors.impl.AuthenticationProcessorImpl;
 import com.cws.esolutions.security.processors.exception.AuthenticationException;
 import com.cws.esolutions.security.processors.interfaces.IAuthenticationProcessor;
@@ -65,7 +66,6 @@ import com.cws.esolutions.security.processors.interfaces.IAuthenticationProcesso
 public class LoginController
 {
     private String loginPage = null;
-    private boolean allowUserReset = true;
     private LoginValidator validator = null;
     private String logoffCompleteString = null;
     private ApplicationServiceBean appConfig = null;
@@ -128,19 +128,6 @@ public class LoginController
         this.appConfig = value;
     }
 
-    public final void setAllowUserReset(final boolean value)
-    {
-        final String methodName = LoginController.CNAME + "#setAllowUserReset(final boolean value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.allowUserReset = value;
-    }
-
     @RequestMapping(value = {"default", "login", "submit"}, method = RequestMethod.GET)
     public final ModelAndView showDefaultPage(final Model model)
     {
@@ -152,12 +139,10 @@ public class LoginController
         }
 
         ModelAndView mView = new ModelAndView();
-        mView.addObject(Constants.ALLOW_RESET, this.allowUserReset);
 
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         final HttpServletRequest hRequest = requestAttributes.getRequest();
         final HttpSession hSession = hRequest.getSession();
-        final String forwardedFor = hRequest.getHeader("X-Forwarded-For");
 
         if (DEBUG)
         {
@@ -165,7 +150,6 @@ public class LoginController
             DEBUGGER.debug("HttpServletRequest: {}", hRequest);
             DEBUGGER.debug("HttpSession: {}", hSession);
             DEBUGGER.debug("Session ID: {}", hSession.getId());
-            DEBUGGER.debug("forwardedFor: {}", forwardedFor);
 
             DEBUGGER.debug("Dumping session content:");
             Enumeration<?> sessionEnumeration = hSession.getAttributeNames();
@@ -253,16 +237,9 @@ public class LoginController
             }
         }
 
-        if (!(Objects.isNull(hSession.getAttribute(Constants.USER_ACCOUNT))))
-        {
-        	mView.setViewName(this.appConfig.getHomePage());
-        }
-        else
-        {
-        	mView.addObject(this.allowUserReset);
-        	mView.addObject(Constants.COMMAND, new AuthenticationData());
-        	mView.setViewName(this.loginPage);
-        }
+        mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
+        mView.addObject(Constants.COMMAND, new AuthenticationData());
+        mView.setViewName(this.loginPage);
 
         if (DEBUG)
         {
@@ -288,7 +265,6 @@ public class LoginController
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         final HttpServletRequest hRequest = requestAttributes.getRequest();
         final HttpSession hSession = hRequest.getSession();
-        final String forwardedFor = hRequest.getHeader("X-Forwarded-For");
         final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
         final IAuthenticationProcessor authProcessor = (IAuthenticationProcessor) new AuthenticationProcessorImpl();
 
@@ -298,7 +274,6 @@ public class LoginController
             DEBUGGER.debug("HttpServletRequest: {}", hRequest);
             DEBUGGER.debug("HttpSession: {}", hSession);
             DEBUGGER.debug("Session ID: {}", hSession.getId());
-            DEBUGGER.debug("forwardedFor: {}", forwardedFor);
 
             DEBUGGER.debug("Dumping session content:");
             Enumeration<?> sessionEnumeration = hSession.getAttributeNames();
@@ -369,7 +344,7 @@ public class LoginController
         hSession.removeAttribute(Constants.USER_ACCOUNT);
         hSession.invalidate();
 
-        mView.addObject(Constants.ALLOW_RESET, this.allowUserReset);
+        mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
         mView.addObject(Constants.RESPONSE_MESSAGE, this.logoffCompleteString);
         mView.addObject(Constants.COMMAND, new AuthenticationData());
         mView.setViewName(this.loginPage);
@@ -396,7 +371,7 @@ public class LoginController
         }
 
         ModelAndView mView = new ModelAndView();
-        mView.addObject(Constants.ALLOW_RESET, this.allowUserReset);
+        ModelAndView rView = new ModelAndView(new RedirectView());
 
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         final HttpServletRequest hRequest = requestAttributes.getRequest();
@@ -512,6 +487,7 @@ public class LoginController
 	                    	hSession.invalidate();
 	
 	                    	mView.setViewName(this.loginPage);
+	                    	mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                        mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountNotAuthorized());
 	                        mView.addObject(Constants.COMMAND, new AuthenticationData());
 	
@@ -539,45 +515,54 @@ public class LoginController
 	                    	case LOCKOUT:
 	                    		hSession.invalidate();
 
+	                    		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 			                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountLocked());
 			                    mView.addObject(Constants.COMMAND, new AuthenticationData());
 			                    mView.setViewName(this.loginPage);
-		
+
 			                    break;
 	                    	case SUSPENDED:
 	                    		hSession.invalidate();
 
+	                    		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 			                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountSuspended());
 			                    mView.addObject(Constants.COMMAND, new AuthenticationData());
 			                    mView.setViewName(this.loginPage);
-			                    
+
 			                    break;
 	                    	case EXPIRED:
-	                    		// password expired - redirect to change password page
 	                    		userAccount.setSessionId(hSession.getId());
 	                        	hSession.setAttribute(Constants.USER_ACCOUNT, userAccount);
 
-	                        	redirectAttributes.addFlashAttribute("userAccount", userAccount);
-	                        	redirectAttributes.addFlashAttribute(Constants.ALLOW_RESET, this.allowUserReset);
-	                        	redirectAttributes.addFlashAttribute(Constants.RESPONSE_MESSAGE, this.appConfig.getMessagePasswordExpired());
+	                			rView.addObject(Constants.RESPONSE_MESSAGE, this.appConfig.getMessagePasswordExpired());
+	                			rView.setViewName(this.appConfig.getExpiredRedirect());
 
-	                        	mView.setViewName(this.appConfig.getExpiredRedirect());
+	                			if (DEBUG)
+	                			{
+	                				DEBUGGER.debug("ModelAndView: rView: {}", rView);
+	                			}
 
-	                        	break;
+	                        	return rView;
 	                    	case OLRSETUP:
+	                    		userAccount.setSessionId(hSession.getId());
 	                        	hSession.setAttribute(Constants.USER_ACCOUNT, userAccount);
 
-	                        	redirectAttributes.addFlashAttribute("userAccount", userAccount);
-	                        	redirectAttributes.addFlashAttribute(Constants.ALLOW_RESET, this.allowUserReset);
-	                        	redirectAttributes.addFlashAttribute(Constants.RESPONSE_MESSAGE, this.appConfig.getMessageOlrSetup());
+	                			rView.addObject(Constants.RESPONSE_MESSAGE, this.appConfig.getMessageOlrSetup());
+	                			rView.setViewName(this.appConfig.getOlrRedirect());
 
-	                        	mView.setViewName(this.appConfig.getOlrRedirect());
+	                			if (DEBUG)
+	                			{
+	                				DEBUGGER.debug("ModelAndView: rView: {}", rView);
+	                			}
 
-	                        	break;
+	                        	return rView;
 	                        default:
 	                            // no dice (but its also an unspecified failure)
 	                            ERROR_RECORDER.error("An unspecified error occurred during authentication.");
 
+	                            hSession.invalidate();
+
+	                            mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                            mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
 	                            mView.addObject(Constants.COMMAND, new AuthenticationData());
 	                            mView.setViewName(this.loginPage);
@@ -589,6 +574,7 @@ public class LoginController
 	            	case FAILURE:
 	            		hSession.invalidate();
 
+	            		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
 	                    mView.addObject(Constants.COMMAND, new AuthenticationData());
 	                    mView.setViewName(this.loginPage);
@@ -597,6 +583,7 @@ public class LoginController
 	            	case UNAUTHORIZED:
 	            		hSession.invalidate();
 
+	            		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountNotAuthorized());
 	                    mView.addObject(Constants.COMMAND, new AuthenticationData());
 	                    mView.setViewName(this.loginPage);
@@ -605,6 +592,7 @@ public class LoginController
 	            	default:
 	            		hSession.invalidate();
 
+	            		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                	mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
 	                	mView.addObject(Constants.COMMAND, new AuthenticationData());
 	                	mView.setViewName(this.loginPage);
@@ -617,7 +605,8 @@ public class LoginController
 	        	hSession.invalidate();
 	
 	            ERROR_RECORDER.error(ax.getMessage(), ax);
-	
+
+	            mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	            mView.addObject(Constants.COMMAND, new AuthenticationData());
 	            mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
 	            mView.setViewName(this.loginPage);
@@ -626,7 +615,7 @@ public class LoginController
 
         if (DEBUG)
         {
-            DEBUGGER.debug("ModelAndView: {}", mView);
+            DEBUGGER.debug("ModelAndView: mView: {}", mView);
         }
 
         return mView;

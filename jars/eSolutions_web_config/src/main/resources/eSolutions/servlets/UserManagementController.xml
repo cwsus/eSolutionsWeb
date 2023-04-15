@@ -30,6 +30,7 @@
         <property name="mailSender">
             <ref bean="appMailSender" />
         </property>
+        <property name="serviceId" value="C7DE2E53-400A-4D20-B4B6-146918822339" />
         <property name="recordsPerPage" value="20" />
         <property name="adminResetEmail" ref="adminResetEmail" />
         <property name="resetURL" value="/ui/olr/forgot-password/" />

@@ -77,6 +77,7 @@ import com.cws.esolutions.security.processors.interfaces.IAccountControlProcesso
 public class UserManagementController
 {
     private String resetURL = null;
+    private String serviceId = null;
     private int recordsPerPage = 20;
     private String viewUserPage = null;
     private String viewAuditPage = null;
@@ -114,6 +115,19 @@ public class UserManagementController
     private static final Logger DEBUGGER = LogManager.getLogger(Constants.DEBUGGER);
     private static final boolean DEBUG = DEBUGGER.isDebugEnabled();
     private static final Logger ERROR_RECORDER = LogManager.getLogger(Constants.ERROR_LOGGER + CNAME);
+
+    public final void setServiceId(final String value)
+    {
+        final String methodName = UserManagementController.CNAME + "#setServiceId(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.serviceId = value;
+    }
 
     public final void setMailSender(final JavaMailSender value)
     {
@@ -746,6 +760,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setRequestor(userAccount);
             request.setApplicationId(this.appConfig.getApplicationId());
@@ -895,6 +910,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setRequestor(userAccount);
@@ -1046,6 +1062,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setRequestor(userAccount);
@@ -1209,6 +1226,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationName(this.appConfig.getApplicationName());
             request.setApplicationId(this.appConfig.getApplicationId());
@@ -1360,6 +1378,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationName(this.appConfig.getApplicationName());
             request.setApplicationId(this.appConfig.getApplicationId());
@@ -1511,6 +1530,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationName(this.appConfig.getApplicationName());
             request.setApplicationId(this.appConfig.getApplicationId());
@@ -1662,6 +1682,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationName(this.appConfig.getApplicationName());
             request.setApplicationId(this.appConfig.getApplicationId());
@@ -1813,6 +1834,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setRequestor(userAccount);
@@ -2040,6 +2062,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setRequestor(userAccount);
@@ -2192,6 +2215,7 @@ public class UserManagementController
 
             AccountControlRequest request = new AccountControlRequest();
             request.setHostInfo(reqInfo);
+            request.setServiceId(this.serviceId);
             request.setUserAccount(searchAccount);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setRequestor(userAccount);
@@ -2328,6 +2352,7 @@ public class UserManagementController
             searchRequest.setApplicationId(this.appConfig.getApplicationId());
             searchRequest.setApplicationName(this.appConfig.getApplicationName());
             searchRequest.setHostInfo(reqInfo);
+            searchRequest.setServiceId(this.serviceId);
             searchRequest.setSearchTerms(request.getSearchTerms());
             searchRequest.setUserAccount(userAccount);
 
@@ -2506,6 +2531,7 @@ public class UserManagementController
 	            // search accounts
 	            AccountControlRequest request = new AccountControlRequest();
 	            request.setHostInfo(reqInfo);
+	            request.setServiceId(this.serviceId);
 	            request.setUserAccount(newUser);
 	            request.setApplicationId(this.appConfig.getApplicationName());
 	            request.setRequestor(userAccount);

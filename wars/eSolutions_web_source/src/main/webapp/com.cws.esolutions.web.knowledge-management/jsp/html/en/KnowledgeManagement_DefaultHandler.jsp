@@ -92,39 +92,48 @@
         <br class="clear" />
         <br class="clear" />
         <c:if test="${not empty searchResults}">
-         <h1><spring:message code="theme.search.results" /></h1>
-         <table id="searchResults">
-             <c:forEach var="result" items="${searchResults}">
-                 <tr>
-                     <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.title}</a></td>
-                     <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
-                 </tr>
-             </c:forEach>
-         </table>
+            <h1><spring:message code="theme.search.results" /></h1>
+            <table id="searchResults">
+                <c:forEach var="result" items="${searchResults}">
+                    <tr>
+                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.title}</a></td>
+                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
 
-         <c:if test="${pages gt 1}">
-             <br />
-             <hr />
-             <br />
-             <table>
-                 <tr>
-                     <c:forEach begin="1" end="${pages}" var="i">
-                         <c:choose>
-                             <c:when test="${page eq i}">
-                                 <td>${i}</td>
-                             </c:when>
-                             <c:otherwise>
-                                 <td>
-                                     <a href="${pageContext.request.contextPath}/knowledge-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a>
-                                 </td>
-                             </c:otherwise>
-                         </c:choose>
-                     </c:forEach>
-                 </tr>
-             </table>
+            <c:if test="${pages gt 1}">
+                <br class="clear" />
+                <hr />
+                <br class="clear" />
+                <table>
+                    <tr>
+                        <c:forEach begin="1" end="${pages}" var="i">
+                            <c:choose>
+                                <c:when test="${page eq i}">
+                                    <td>${i}</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><a href="${pageContext.request.contextPath}/knowledge-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a></td>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </tr>
+                </table>
             </c:if>
         </c:if>
         <br class="clear" />
+        <c:if test="${not empty articleList}">
+            <h1><spring:message code="knowledgebase.article.list" /></h1>
+            <table id="articleList">
+                <c:forEach var="entry" items="${articleList}">
+                    <tr>
+                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${entry.articleId}" title="${entry.title}">${entry.title}</a></td>
+                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${entry.articleId}" title="${entry.title}">${entry.author.username}</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
     </div>
 </div>
 
