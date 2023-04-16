@@ -34,7 +34,6 @@
 --%>
 
 <script type="text/javascript">
-<!--
     function validateForm(theForm)
     {
         if (theForm.username.value == '')
@@ -51,7 +50,6 @@
             theForm.submit();
         }
     }
-//-->
 </script>
 
 <div id="homecontent">

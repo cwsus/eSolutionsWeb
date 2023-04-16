@@ -34,12 +34,10 @@
 --%>
 
 <script>
-<!--
     function validateForm(theForm)
     {
 	   theForm.submit()
     }
-//-->
 </script>
 
 <div id="homecontent">

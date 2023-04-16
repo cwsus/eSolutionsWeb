@@ -34,7 +34,6 @@
 --%>
 
 <script>
-<!--
     function validateForm(theForm)
     {
         if (theForm.operHostName.value == '')
@@ -51,7 +50,6 @@
 
         theForm.submit();
     }
-//-->
 </script>
 
 <div id="homecontent">
@@ -93,37 +91,35 @@
         <br class="clear" />
         <c:if test="${not empty searchResults}">
             <h1><spring:message code="theme.search.results" /></h1>
-            <p>
-                <table id="searchResults">
-                    <c:forEach var="result" items="${searchResults}">
-                        <tr>
-                            <td><a href="${pageContext.request.contextPath}/ui/server-management/server/${result.serverGuid}" title="${result.operHostName}">${result.operHostName}</a></td>
-                        </tr>
-                    </c:forEach>
-                </table>
+            <table id="searchResults">
+                <c:forEach var="result" items="${searchResults}">
+                    <tr>
+                        <td><a href="${pageContext.request.contextPath}/ui/server-management/server/${result.serverGuid}" title="${result.operHostName}">${result.operHostName}</a></td>
+                    </tr>
+                </c:forEach>
+            </table>
 
-                <c:if test="${pages gt 1}">
-                    <br />
-                    <hr />
-                    <br />
-                    <table>
-                        <tr>
-                            <c:forEach begin="1" end="${pages}" var="i">
-                                <c:choose>
-                                    <c:when test="${page eq i}">
-                                        <td>${i}</td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td>
-                                            <a href="${pageContext.request.contextPath}/server-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a>
-                                        </td>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </tr>
-                    </table>
-                </c:if>
-            </p>
+            <c:if test="${pages gt 1}">
+                <br />
+                <hr />
+                <br />
+                <table>
+                    <tr>
+                        <c:forEach begin="1" end="${pages}" var="i">
+                            <c:choose>
+                                <c:when test="${page eq i}">
+                                    <td>${i}</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/server-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+                    </tr>
+                </table>
+            </c:if>
         </c:if>
     </div>
 </div>
@@ -134,7 +130,6 @@
             <h1><spring:message code="server.mgmt.header" /></h1>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/ui/server-management/add-server" title="<spring:message code='server.mgmt.add.server' />"><spring:message code="server.mgmt.add.server" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/service-consoles" title="<spring:message code='server.mgmt.service.consoles' />"><spring:message code='server.mgmt.service.consoles' /></a></li>
                 <li><a href="${pageContext.request.contextPath}/ui/server-management/install-software" title="<spring:message code='server.mgmt.install.software.header' />"><spring:message code="server.mgmt.install.software.header" /></a></li>
                 <li><a href="${pageContext.request.contextPath}/ui/server-management/server-control" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
             </ul>
