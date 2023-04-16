@@ -11,7 +11,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>eSolutions_web_source</artifactId>
-    <version>${project.parent.version}</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>${project.artifactId}</name>
     <description>WAR file for eSolutions_web_source</description>
