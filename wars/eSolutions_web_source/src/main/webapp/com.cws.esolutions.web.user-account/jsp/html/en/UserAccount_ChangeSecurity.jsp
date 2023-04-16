@@ -34,9 +34,33 @@
 --%>
 
 <script>
-<!--
     function validateForm(theForm)
     {
+    	secQuestionOneElement = document.getElementById('secQuestionOne');
+    	secQuestionTwoElement = document.getElementById('secQuestionTwo');
+
+    	if (theForm.secAnswerOne.value == '')
+    	{
+            clearText(theForm);
+
+            document.getElementById('validationError').innerHTML = 'You must provide answers for the given questions.';
+            document.getElementById('txtAnswerOne').style.color = '#FF0000';
+            document.getElementById('execute').disabled = false;
+            document.getElementById('secAnswerOne').focus();
+    	}
+    	else if (theForm.secAnswerTwo.value == '')
+        {
+            clearText(theForm);
+
+            document.getElementById('validationError').innerHTML = 'You must provide answers for the given questions.';
+            document.getElementById('txtAnswerOne').style.color = '#FF0000';
+            document.getElementById('execute').disabled = false;
+            document.getElementById('secAnswerOne').focus();
+        }
+    	else if (theForm.secAnswerOne.value == theForm.secAnswerTwo.value)
+    	{
+    		
+    	}
         if ((theForm.secQuestionOne.value == 'Select....') || (theForm.secQuestionTwo.value == 'Select....') ||
         		(theForm.secQuestionTwo.value == '------') || (theForm.secQuestionTwo.value == '------'))
         {
@@ -49,25 +73,6 @@
             document.getElementById('secQuestionOne').focus();
         }
         else if ((theForm.secAnswerOne.value == '') || (theForm.secAnswerTwo.value == ''))
-        {
-            clearText(theForm);
-
-            document.getElementById('validationError').innerHTML = 'You must provide answers for the given questions.';
-            document.getElementById('txtAnswerOne').style.color = '#FF0000';
-            document.getElementById('txtAnswerTwo').style.color = '#FF0000';
-            document.getElementById('execute').disabled = false;
-            document.getElementById('secAnswerOne').focus();
-        }
-        else if (theForm.secQuestionOne.value == theForm.secQuestionTwo.value)
-        {
-            clearText(theForm);
-
-            document.getElementById('validationError').innerHTML = 'Your security questions must be different.';
-            document.getElementById('txtQuestionOne').style.color = '#FF0000';
-            document.getElementById('execute').disabled = false;
-            document.getElementById('secQuestionOne').focus();
-        }
-        else if (theForm.secAnswerOne.value == theForm.secAnswerTwo.value)
         {
             clearText(theForm);
 
@@ -88,10 +93,30 @@
         }
         else
         {
-            theForm.submit();
+            if ((secQuestionOneElement == '') || (secQuestionOneElement.text == 'Select....') || (secQuestionOneElement.text == '------'))
+            {
+                clearText(theForm);
+        
+                document.getElementById('validationError').innerHTML = 'A security question must be provided.';
+                document.getElementById('txtQuestionOne').style.color = '#FF0000';
+                document.getElementById('execute').disabled = false;
+                document.getElementById('secQuestionOne').focus();
+            }
+            else if ((secQuestionTwoElement == '') || (secQuestionTwoElement.text == 'Select....') || (secQuestionTwoElement.text == '------'))
+            {
+                clearText(theForm);
+        
+                document.getElementById('validationError').innerHTML = 'A security question must be provided.';
+                document.getElementById('txtQuestionTwo').style.color = '#FF0000';
+                document.getElementById('execute').disabled = false;
+                document.getElementById('secQuestionTwo').focus();
+            }
+            else
+            {
+            	theForm.submit();
+            }
         }
     }
-//-->
 </script>
 
 <div id="homecontent">
@@ -177,7 +202,6 @@
                 <li><a href="${pageContext.request.contextPath}/ui/user-account/email" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></li>
                 <li><a href="${pageContext.request.contextPath}/ui/user-account/contact" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
                 <li><a href="${pageContext.request.contextPath}/ui/user-account/password" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/user-account/regenerate-keys" title="<spring:message code='user.account.change.keys' />"><spring:message code="user.account.change.keys" /></a></li>
             </ul>
         </div>
         <br class="clear" />

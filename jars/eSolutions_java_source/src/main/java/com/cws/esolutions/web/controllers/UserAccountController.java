@@ -82,9 +82,7 @@ public class UserAccountController
     private ApplicationServiceBean appConfig = null;
     private String messageEmailChangeSuccess = null;
     private String messageEmailChangeFailure = null;
-    private String messageKeyGenerationSuccess = null;
     private String messageContactChangeSuccess = null;
-    private String messageKeyGenerationFailure = null;
     private String messageContactChangeFailure = null;
     private String messagePasswordChangeSuccess = null;
     private String messageSecurityChangeSuccess = null;
@@ -229,19 +227,6 @@ public class UserAccountController
         this.changeContactPage = value;
     }
 
-    public final void setMessageKeyGenerationSuccess(final String value)
-    {
-        final String methodName = UserAccountController.CNAME + "#setMessageKeyGenerationSuccess(final String value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.messageKeyGenerationSuccess = value;
-    }
-
     public final void setMessageEmailChangeSuccess(final String value)
     {
         final String methodName = UserAccountController.CNAME + "#setMessageEmailChangeSuccess(final String value)";
@@ -292,19 +277,6 @@ public class UserAccountController
         }
 
         this.messageSecurityChangeSuccess = value;
-    }
-
-    public final void setMessageKeyGenerationFailure(final String value)
-    {
-        final String methodName = UserAccountController.CNAME + "#setMessageKeyGenerationFailure(final String value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.messageKeyGenerationFailure = value;
     }
 
     public final void setMessageContactChangeFailure(final String value)
@@ -764,136 +736,6 @@ public class UserAccountController
 
         mView.addObject(Constants.COMMAND, new AccountChangeData());
         mView.setViewName(this.changeContactPage);
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug("ModelAndView: {}", mView);
-        }
-
-        return mView;
-    }
-
-    @RequestMapping(value = "/regenerate-keys", method = RequestMethod.GET)
-    public final ModelAndView doRegenerateKeys()
-    {
-        final String methodName = UserAccountController.CNAME + "#doRegenerateKeys()";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-        }
-
-        ModelAndView mView = new ModelAndView();
-
-        final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        final HttpServletRequest hRequest = requestAttributes.getRequest();
-        final HttpSession hSession = hRequest.getSession();
-        final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
-        final IAccountChangeProcessor processor = (IAccountChangeProcessor) new AccountChangeProcessorImpl();
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug("ServletRequestAttributes: {}", requestAttributes);
-            DEBUGGER.debug("HttpServletRequest: {}", hRequest);
-            DEBUGGER.debug("HttpSession: {}", hSession);
-            DEBUGGER.debug("Session ID: {}", hSession.getId());
-            DEBUGGER.debug("UserAccount: {}", userAccount);
-
-            DEBUGGER.debug("Dumping session content:");
-            Enumeration<String> sessionEnumeration = hSession.getAttributeNames();
-
-            while (sessionEnumeration.hasMoreElements())
-            {
-                String element = sessionEnumeration.nextElement();
-                Object value = hSession.getAttribute(element);
-
-                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
-            }
-
-            DEBUGGER.debug("Dumping request content:");
-            Enumeration<String> requestEnumeration = hRequest.getAttributeNames();
-
-            while (requestEnumeration.hasMoreElements())
-            {
-                String element = requestEnumeration.nextElement();
-                Object value = hRequest.getAttribute(element);
-
-                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
-            }
-
-            DEBUGGER.debug("Dumping request parameters:");
-            Enumeration<String> paramsEnumeration = hRequest.getParameterNames();
-
-            while (paramsEnumeration.hasMoreElements())
-            {
-                String element = paramsEnumeration.nextElement();
-                Object value = hRequest.getParameter(element);
-
-                DEBUGGER.debug("Parameter: {}; Value: {}", element, value);
-            }
-        }
-
-        try
-        {
-            RequestHostInfo reqInfo = new RequestHostInfo();
-            reqInfo.setHostAddress(hRequest.getRemoteAddr());
-            reqInfo.setHostName(hRequest.getRemoteHost());
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
-            }
-
-            // reset keys !
-            AccountChangeRequest req = new AccountChangeRequest();
-            req.setApplicationId(this.appConfig.getApplicationId());
-            req.setApplicationName(this.appConfig.getApplicationName());
-            req.setServiceId(this.serviceId);
-            req.setHostInfo(reqInfo);
-            req.setUserAccount(userAccount);
-            req.setRequestor(userAccount);
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("AccountChangeRequest: {}", req);
-            }
-
-            AccountChangeResponse response = processor.changeUserKeys(req);
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("AccountChangeResponse: {}", response);
-            }
-
-            switch (response.getRequestStatus())
-            {
-				case FAILURE:
-					mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
-					mView.setViewName(this.appConfig.getErrorResponsePage());
-
-					break;
-				case SUCCESS:
-					mView.addObject(Constants.RESPONSE_MESSAGE, this.messageKeyGenerationSuccess);
-					mView.setViewName(this.myAccountPage);
-
-					break;
-				case UNAUTHORIZED:
-					mView.setViewName(this.appConfig.getUnauthorizedPage());
-
-					break;
-				default:
-					mView.addObject(Constants.RESPONSE_MESSAGE, this.messageKeyGenerationFailure);
-					mView.setViewName(this.myAccountPage);
-
-					break;
-            }
-        }
-        catch (final AccountChangeException acx)
-        {
-            ERROR_RECORDER.error(acx.getMessage(), acx);
-
-            mView.setViewName(this.appConfig.getErrorResponsePage());
-        }
 
         if (DEBUG)
         {

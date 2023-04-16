@@ -34,7 +34,6 @@
 --%>
 
 <script>
-<!--
     function validateForm(theForm)
     {
         if (theForm.messageSubject.value == '')
@@ -60,7 +59,6 @@
             theForm.submit();
         }
     }
-//-->
 </script>
 
 <div id="homecontent">

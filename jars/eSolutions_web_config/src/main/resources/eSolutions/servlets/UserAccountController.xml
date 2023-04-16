@@ -53,9 +53,7 @@
         <property name="messageEmailChangeSuccess" value="user.account.email.change.success" />
         <property name="messagePasswordChangeSuccess" value="user.account.password.change.success" />
         <property name="messageSecurityChangeSuccess" value="user.account.update.security.success" />
-        <property name="messageKeyGenerationSuccess" value="user.account.update.keys.success" />
         <property name="messageContactChangeSuccess" value="user.account.update.contact.success" />
-        <property name="messageKeyGenerationFailure" value="user.account.update.keys.failure" />
         <property name="messageContactChangeFailure" value="user.account.update.contact.failure" />
         <property name="messageEmailChangeFailure" value="user.account.email.change.failure" />
         <property name="messageSecurityChangeFailure" value="user.account.update.security.failure" />

@@ -34,7 +34,6 @@
 --%>
 
 <script>
-<!--
     function validateForm(theForm)
     {
         if (theForm.title.value == '')
@@ -87,7 +86,6 @@
             theForm.submit();
         }
     }
-//-->
 </script>
 
 <div id="homecontent">

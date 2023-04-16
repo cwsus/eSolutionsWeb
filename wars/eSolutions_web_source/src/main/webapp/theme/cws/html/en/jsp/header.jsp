@@ -83,15 +83,12 @@
 			}));
 		</script>
         <script type="text/javascript">
-            <!--
                 if (top != self)
                 {
                     top.location = self.location;
                 }
-            //-->
         </script>
         <script type="text/javascript">
-            <!--
                 var timeout = ${pageContext.session.maxInactiveInterval} * 1000;
                 var documentURI = location.pathname.substring(1);
                 var ignoreURIs = new Array("esolutions/ui/auth/login", "esolutions/ui/auth/logout", "esolutions/ui/auth/default", "esolutions/ui/auth/submit", "esolutions/ui/online-reset", "esolutions/ui/common/submit-contact");
@@ -109,7 +106,6 @@
 
 					break;
                 }
-            //-->
         </script>
     </head>
 
@@ -127,7 +123,7 @@
     					<ul>
         					<li><a href="${pageContext.request.contextPath}/ui/application-management/default" title="<spring:message code='theme.navbar.application-mgmt' />"><spring:message code='theme.navbar.application-mgmt' /></a></li>
         					<li><a href="${pageContext.request.contextPath}/ui/dns-service/default" title="<spring:message code='theme.navbar.dns-services' />"><spring:message code='theme.navbar.dns-services' /></a></li>
-        					<li><a href="${pageContext.request.contextPath}/ui/platform-management/default" title="<spring:message code='theme.navbar.platform-mgmt' />"><spring:message code='theme.navbar.platform-mgmt' /></a></li>
+        					<li><a href="${pageContext.request.contextPath}/ui/datacenter-management/default" title="<spring:message code='theme.navbar.datacenter-mgmt' />"><spring:message code='theme.navbar.datacenter-mgmt' /></a></li>
                             <li><a href="${pageContext.request.contextPath}/ui/server-management/default" title="<spring:message code='theme.navbar.server-mgmt' />"><spring:message code='theme.navbar.server-mgmt' /></a></li>
                             <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/default" title="<spring:message code='theme.navbar.knowledge' />"><spring:message code="theme.navbar.knowledge" /></a></li>
 	                        <c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.USER_ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
