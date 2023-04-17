@@ -45,11 +45,11 @@
         <param-value>true</param-value>
     </context-param>
     <context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
+        <param-name>jakarta.servlet.jsp.jstl.fmt.locale</param-name>
         <param-value>en</param-value>
     </context-param>
     <context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
+        <param-name>jakarta.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
         <param-value>en</param-value>
     </context-param>
 
@@ -120,7 +120,7 @@
     <resource-ref id="mail">
         <description>Mail Service</description>
         <res-ref-name>mail/MailSession</res-ref-name>
-        <res-type>javax.mail.Session</res-type>
+        <res-type>jakarta.mail.Session</res-type>
         <res-auth>Container</res-auth>
         <res-sharing-scope>Unshareable</res-sharing-scope>
     </resource-ref>

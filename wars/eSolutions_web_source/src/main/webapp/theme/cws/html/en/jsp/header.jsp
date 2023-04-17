@@ -34,9 +34,9 @@
  */
 --%>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isThreadSafe="true" errorPage="/theme/cws/html/en/jsp/errHandler.jsp" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib uri="jakarta.tags.core" prefix="c" %>
+<%@taglib uri="jakarta.tags.fmt" prefix="fmt" %>
+<%@taglib uri="jakarta.tags.functions" prefix="fn" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@page import="com.cws.esolutions.security.enums.SecurityUserRole" %>
@@ -91,11 +91,11 @@
         <script type="text/javascript">
                 var timeout = ${pageContext.session.maxInactiveInterval} * 1000;
                 var documentURI = location.pathname.substring(1);
-                var ignoreURIs = new Array("esolutions/ui/auth/login", "esolutions/ui/auth/logout", "esolutions/ui/auth/default", "esolutions/ui/auth/submit", "esolutions/ui/online-reset", "esolutions/ui/common/submit-contact");
+                var ignoreURIs = ["esolutions/ui/auth/login", "esolutions/ui/auth/logout", "esolutions/ui/auth/default", "esolutions/ui/auth/submit", "esolutions/ui/online-reset", "esolutions/ui/common/submit-contact"];
     
                 for (var x = 0; x < ignoreURIs.length; x++)
                 {
-                    if (documentURI == ignoreURIs[x])
+                    if (documentURI === ignoreURIs[x])
                     {
                         x++;
 

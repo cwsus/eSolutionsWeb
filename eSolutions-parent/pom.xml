@@ -6,14 +6,14 @@
     <parent>
         <groupId>com.cws</groupId>
         <artifactId>cws</artifactId>
-        <version>5.5.4</version>
+        <version>5.5.9</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <name>eSolutions</name>
     <groupId>eSolutions</groupId>
     <artifactId>eSolutions-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
     <description>eSolutions</description>
 
@@ -23,7 +23,6 @@
 
     <properties>
         <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
-        <taglibs.version>1.2.5</taglibs.version>
         <jstl.version>3.0.0</jstl.version>
         <jsp-api.version>3.1.1</jsp-api.version>
         <spring.version>6.0.7</spring.version>
@@ -78,13 +77,6 @@
                 <scope>compile</scope>
             </dependency>
             <!-- servlet/jstl -->
-            <dependency>
-                <groupId>org.apache.taglibs</groupId>
-                <artifactId>taglibs-standard-impl</artifactId>
-                <version>${taglibs.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
             <dependency>
                 <groupId>jakarta.servlet.jsp.jstl</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
