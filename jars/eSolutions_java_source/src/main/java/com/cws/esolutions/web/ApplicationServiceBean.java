@@ -42,7 +42,6 @@ import com.cws.esolutions.web.validators.WebMessageValidator;
 @Component
 public class ApplicationServiceBean
 {
-	
 	@Autowired private String homePage = null;
 	@Autowired private String dateFormat = null;
 	@Autowired private String olrRedirect = null;
@@ -79,8 +78,8 @@ public class ApplicationServiceBean
 	@Autowired private WebMessageValidator messageValidator = null;
 	@Autowired private String messageRequestProcessingFailure = null;
 	@Autowired private String messagePasswordLengthCheckFailed = null;
-	@Autowired @Qualifier("isTestSystem") private String isTestSystem = "false";
-	@Autowired @Qualifier("isResetAvailable") private String isResetAvailable = "false";
+	@Autowired @Qualifier("isTestSystem") private Boolean isTestSystem = false;
+	@Autowired @Qualifier("isResetAvailable") private Boolean isResetAvailable = false;
 
     private static final String CNAME = ApplicationServiceBean.class.getName();
 
@@ -490,9 +489,9 @@ public class ApplicationServiceBean
         this.emailValidator = value;
     }
 
-    public final void setIsTestSystem(final String value)
+    public final void setIsTestSystem(final Boolean value)
     {
-        final String methodName = ApplicationServiceBean.CNAME + "#setIsTestSystem(final String value)";
+        final String methodName = ApplicationServiceBean.CNAME + "#setIsTestSystem(final Boolean value)";
 
         if (DEBUG)
         {
@@ -568,9 +567,9 @@ public class ApplicationServiceBean
         this.passwordMaxLength = value;
     }
 
-    public final void setIsResetAvailable(final String value)
+    public final void setIsResetAvailable(final Boolean value)
     {
-        final String methodName = ApplicationServiceBean.CNAME + "#setIsResetAvailable(final String value)";
+        final String methodName = ApplicationServiceBean.CNAME + "#setIsResetAvailable(final Boolean value)";
 
         if (DEBUG)
         {
@@ -1020,7 +1019,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isTestSystem);
         }
 
-        return Boolean.valueOf(this.isTestSystem);
+        return this.isTestSystem;
 	}
 
 	public final Boolean isTestSystem()
@@ -1033,7 +1032,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isTestSystem);
         }
 
-        return Boolean.valueOf(this.isTestSystem);
+        return this.isTestSystem;
 	}
 
 	public final String getWebURL()
@@ -1085,7 +1084,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isResetAvailable);
         }
 
-        return Boolean.valueOf(this.isResetAvailable);
+        return this.isResetAvailable;
     }
 
     public final Boolean isResetAvailable()
@@ -1098,7 +1097,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isResetAvailable);
         }
 
-        return Boolean.valueOf(this.isResetAvailable);
+        return this.isResetAvailable;
     }
 
     @Override
