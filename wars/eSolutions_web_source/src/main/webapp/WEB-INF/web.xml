@@ -17,10 +17,8 @@
  *
  */
 -->
-<web-app metadata-complete="true" id="eSolutions_web_source" version="4.0"
-    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+<web-app id="eSolutions_web_source" version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
     <display-name>eSolutions_web_source</display-name>
     <description>eSolutions_web_source</description>
@@ -56,50 +54,9 @@
     </context-param>
 
     <listener>
-        <listener-class>com.cws.esolutions.utility.init.UtilityListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>com.cws.esolutions.security.listeners.SecurityServiceListener</listener-class>
-    </listener>
-    <listener>
-        <listener-class>com.cws.esolutions.core.listeners.CoreServicesListener</listener-class>
-    </listener>
-    <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
 
-    <filter id="SessionAuthenticationFilter">
-        <description>Session Authentication Filter</description>
-        <display-name>SessionAuthenticationFilter</display-name>
-        <filter-name>SessionAuthenticationFilter</filter-name>
-        <filter-class>com.cws.esolutions.security.filters.SessionAuthenticationFilter</filter-class>
-        <init-param>
-        	<param-name>filter-config</param-name>
-        	<param-value>SecurityService/filters/SessionAuthenticationFilter</param-value>
-        </init-param>
-    </filter>
-    <filter id="SessionFixationFilter">
-        <description>Session Fixation Filter</description>
-        <display-name>SessionFixationFilter</display-name>
-        <filter-name>SessionFixationFilter</filter-name>
-        <filter-class>com.cws.esolutions.security.filters.SessionFixationFilter</filter-class>
-    </filter>
-    <filter id="ApplicationEnablementFilter">
-        <description>Application Enablement Filter</description>
-        <display-name>Application Enablement Filter</display-name>
-        <filter-name>ApplicationEnablementFilter</filter-name>
-        <filter-class>com.cws.esolutions.core.filters.ApplicationEnablementFilter</filter-class>
-        <init-param>
-            <param-name>filter-config</param-name>
-            <param-value>eSolutionsCore/filters/ApplicationEnablementFilter</param-value>
-        </init-param>
-    </filter>
-    <filter id="ResponseTimeFilter">
-        <description>Response Timing Filter</description>
-        <display-name>ResponseTimeFilter</display-name>
-        <filter-name>ResponseTimeFilter</filter-name>
-        <filter-class>com.cws.esolutions.core.filters.ResponseTimeFilter</filter-class>
-    </filter>
     <filter id="SpringEncodingFilter">
         <description>Spring Encoding Filter</description>
         <display-name>SpringEncodingFilter</display-name>
@@ -111,22 +68,6 @@
         </init-param>
     </filter>
 
-    <filter-mapping id="SessionAuthenticationFilter_mapping">
-        <filter-name>SessionAuthenticationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping id="SessionFixationFilter_mapping">
-        <filter-name>SessionFixationFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping id="ResponseTimeFilter_mapping">
-        <filter-name>ResponseTimeFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping id="ApplicationEnablementFilter_mapping">
-        <filter-name>ApplicationEnablementFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
     <filter-mapping id="SpringEncodingFilter_mapping">
         <filter-name>encoding-filter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -236,6 +177,8 @@
             <include-coda>/theme/cws/html/en/jsp/footer.jsp</include-coda>
         </jsp-property-group>
     </jsp-config>
+
+    <deny-uncovered-http-methods />
 
     <security-constraint>
         <web-resource-collection>

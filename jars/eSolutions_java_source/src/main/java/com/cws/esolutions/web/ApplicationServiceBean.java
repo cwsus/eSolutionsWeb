@@ -31,6 +31,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.cws.esolutions.web.validators.EmailAddressValidator;
 import com.cws.esolutions.web.validators.WebMessageValidator;
@@ -41,7 +42,7 @@ import com.cws.esolutions.web.validators.WebMessageValidator;
 @Component
 public class ApplicationServiceBean
 {
-	@Autowired private String webURL = null;
+	
 	@Autowired private String homePage = null;
 	@Autowired private String dateFormat = null;
 	@Autowired private String olrRedirect = null;
@@ -50,7 +51,6 @@ public class ApplicationServiceBean
 	@Autowired private String emailAddress = null;
 	@Autowired private String logonRedirect = null;
 	@Autowired private String applicationId = null;
-	@Autowired private Boolean isTestSystem = false;
 	@Autowired private String expiredRedirect = null;
 	@Autowired private String applicationName = null;
 	@Autowired private String unavailablePage = null;
@@ -60,7 +60,6 @@ public class ApplicationServiceBean
 	@Autowired private String contactAdminsPage = null;
 	@Autowired private String errorResponsePage = null;
 	@Autowired private String searchRequestPage = null;
-	@Autowired private Boolean isResetAvailable = false;
 	@Autowired private String passwordMaxLength = "128";
 	@Autowired private String themeMessageSource = null;
 	@Autowired private String requestCompletePage = null;
@@ -74,11 +73,14 @@ public class ApplicationServiceBean
 	@Autowired private String messageValidationFailed = null;
 	@Autowired private String messageEmailSentSuccess = null;
 	@Autowired private String messageAccountSuspended = null;
+	@Autowired @Qualifier("webURL") private String webURL = null;
 	@Autowired private String messageAccountNotAuthorized = null;
 	@Autowired private EmailAddressValidator emailValidator = null;
 	@Autowired private WebMessageValidator messageValidator = null;
 	@Autowired private String messageRequestProcessingFailure = null;
 	@Autowired private String messagePasswordLengthCheckFailed = null;
+	@Autowired @Qualifier("isTestSystem") private String isTestSystem = "false";
+	@Autowired @Qualifier("isResetAvailable") private String isResetAvailable = "false";
 
     private static final String CNAME = ApplicationServiceBean.class.getName();
 
@@ -488,9 +490,9 @@ public class ApplicationServiceBean
         this.emailValidator = value;
     }
 
-    public final void setIsTestSystem(final Boolean value)
+    public final void setIsTestSystem(final String value)
     {
-        final String methodName = ApplicationServiceBean.CNAME + "#setIsTestSystem(final Boolean value)";
+        final String methodName = ApplicationServiceBean.CNAME + "#setIsTestSystem(final String value)";
 
         if (DEBUG)
         {
@@ -566,9 +568,9 @@ public class ApplicationServiceBean
         this.passwordMaxLength = value;
     }
 
-    public final void setIsResetAvailable(final Boolean value)
+    public final void setIsResetAvailable(final String value)
     {
-        final String methodName = ApplicationServiceBean.CNAME + "#setIsResetAvailable(final Boolean value)";
+        final String methodName = ApplicationServiceBean.CNAME + "#setIsResetAvailable(final String value)";
 
         if (DEBUG)
         {
@@ -1018,7 +1020,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isTestSystem);
         }
 
-        return this.isTestSystem;
+        return Boolean.valueOf(this.isTestSystem);
 	}
 
 	public final Boolean isTestSystem()
@@ -1031,7 +1033,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isTestSystem);
         }
 
-        return this.isTestSystem;
+        return Boolean.valueOf(this.isTestSystem);
 	}
 
 	public final String getWebURL()
@@ -1083,7 +1085,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isResetAvailable);
         }
 
-        return this.isResetAvailable;
+        return Boolean.valueOf(this.isResetAvailable);
     }
 
     public final Boolean isResetAvailable()
@@ -1096,7 +1098,7 @@ public class ApplicationServiceBean
             DEBUGGER.debug("Value: {}", this.isResetAvailable);
         }
 
-        return this.isResetAvailable;
+        return Boolean.valueOf(this.isResetAvailable);
     }
 
     @Override
