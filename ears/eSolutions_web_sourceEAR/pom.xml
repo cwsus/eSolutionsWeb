@@ -10,7 +10,6 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>eSolutions</groupId>
     <artifactId>eSolutionsWeb</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>ear</packaging>

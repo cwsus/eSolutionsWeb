@@ -82,9 +82,7 @@ public class UserAccountController
     private ApplicationServiceBean appConfig = null;
     private String messageEmailChangeSuccess = null;
     private String messageEmailChangeFailure = null;
-    private String messageKeyGenerationSuccess = null;
     private String messageContactChangeSuccess = null;
-    private String messageKeyGenerationFailure = null;
     private String messageContactChangeFailure = null;
     private String messagePasswordChangeSuccess = null;
     private String messageSecurityChangeSuccess = null;
@@ -229,19 +227,6 @@ public class UserAccountController
         this.changeContactPage = value;
     }
 
-    public final void setMessageKeyGenerationSuccess(final String value)
-    {
-        final String methodName = UserAccountController.CNAME + "#setMessageKeyGenerationSuccess(final String value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.messageKeyGenerationSuccess = value;
-    }
-
     public final void setMessageEmailChangeSuccess(final String value)
     {
         final String methodName = UserAccountController.CNAME + "#setMessageEmailChangeSuccess(final String value)";
@@ -292,19 +277,6 @@ public class UserAccountController
         }
 
         this.messageSecurityChangeSuccess = value;
-    }
-
-    public final void setMessageKeyGenerationFailure(final String value)
-    {
-        final String methodName = UserAccountController.CNAME + "#setMessageKeyGenerationFailure(final String value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.messageKeyGenerationFailure = value;
     }
 
     public final void setMessageContactChangeFailure(final String value)
