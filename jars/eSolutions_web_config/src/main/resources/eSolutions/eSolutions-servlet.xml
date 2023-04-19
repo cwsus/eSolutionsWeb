@@ -21,10 +21,10 @@
     </bean>
 
     <!-- load the datasources -->
-    <jee:jndi-lookup expected-type="jakarta.mail.Session" id="mailSession" jndi-name="java:comp/env/mail/MailSession" />
-    <jee:jndi-lookup expected-type="java.lang.Boolean" id="isTestSystem" jndi-name="java:comp/env/isTestSystem" />
-    <jee:jndi-lookup expected-type="java.lang.String" id="webURL" jndi-name="java:comp/env/webURL" />
-    <jee:jndi-lookup expected-type="java.lang.Boolean" id="isResetAvailable" jndi-name="java:comp/env/isResetAvailable" />
+    <jee:jndi-lookup id="mailSession" jndi-name="java:comp/env/mail/MailSession" />
+    <jee:jndi-lookup id="isTestSystem" jndi-name="java:comp/env/isTestSystem" />
+    <jee:jndi-lookup id="webURL" jndi-name="java:comp/env/webURL" />
+    <jee:jndi-lookup id="isResetAvailable" jndi-name="java:comp/env/isResetAvailable" />
 
 	<!-- email -->
 	<bean id="appMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

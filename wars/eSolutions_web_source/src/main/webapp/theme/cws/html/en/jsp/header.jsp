@@ -83,29 +83,29 @@
 			}));
 		</script>
         <script type="text/javascript">
-                if (top != self)
-                {
-                    top.location = self.location;
-                }
+            if (top != self)
+            {
+                top.location = self.location;
+            }
         </script>
         <script type="text/javascript">
-                var timeout = ${pageContext.session.maxInactiveInterval} * 1000;
-                var documentURI = location.pathname.substring(1);
-                var ignoreURIs = ["esolutions/ui/auth/login", "esolutions/ui/auth/logout", "esolutions/ui/auth/default", "esolutions/ui/auth/submit", "esolutions/ui/online-reset", "esolutions/ui/common/submit-contact"];
-    
-                for (var x = 0; x < ignoreURIs.length; x++)
+            var timeout = ${pageContext.session.maxInactiveInterval} * 1000;
+            var documentURI = location.pathname.substring(1);
+            var ignoreURIs = ["esolutions/ui/auth/login", "esolutions/ui/auth/logout", "esolutions/ui/auth/default", "esolutions/ui/auth/submit", "esolutions/ui/online-reset", "esolutions/ui/common/submit-contact"];
+ 
+            for (var x = 0; x < ignoreURIs.length; x++)
+            {
+                if (documentURI === ignoreURIs[x])
                 {
-                    if (documentURI === ignoreURIs[x])
-                    {
-                        x++;
+                    x++;
 
-                        continue;
-                    }
-
-                    setInterval(function() { window.location.href = '${pageContext.request.contextPath}/ui/auth/logout'; }, timeout);
-
-					break;
+                    continue;
                 }
+
+                setInterval(function() { window.location.href = '${pageContext.request.contextPath}/ui/auth/logout'; }, timeout);
+
+                break;
+            }
         </script>
     </head>
 
@@ -120,7 +120,8 @@
   			<div class="wrapper">
     			<c:if test="${not empty fn:trim(sessionScope.userAccount)}">
     				<div id="topnav">
-    					<ul><li><a href="${pageContext.request.contextPath}/ui/datacenter-management/default" title="<spring:message code='theme.navbar.datacenter-mgmt' />"><spring:message code='theme.navbar.datacenter-mgmt' /></a></li>
+    					<ul>
+    					    <li><a href="${pageContext.request.contextPath}/ui/datacenter-management/default" title="<spring:message code='theme.navbar.datacenter-mgmt' />"><spring:message code='theme.navbar.datacenter-mgmt' /></a></li>
         					<li><a href="${pageContext.request.contextPath}/ui/dns-service/default" title="<spring:message code='theme.navbar.dns-services' />"><spring:message code='theme.navbar.dns-services' /></a></li>
                             <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/default" title="<spring:message code='theme.navbar.knowledge' />"><spring:message code="theme.navbar.knowledge" /></a></li>
                             <li><a href="${pageContext.request.contextPath}/ui/server-management/default" title="<spring:message code='theme.navbar.server-mgmt' />"><spring:message code='theme.navbar.server-mgmt' /></a></li>
