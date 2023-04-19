@@ -78,8 +78,6 @@ public class ApplicationServiceBean
 	@Autowired private WebMessageValidator messageValidator = null;
 	@Autowired private String messageRequestProcessingFailure = null;
 	@Autowired private String messagePasswordLengthCheckFailed = null;
-	@Autowired @Qualifier("isTestSystem") private Boolean isTestSystem = false;
-	@Autowired @Qualifier("isResetAvailable") private Boolean isResetAvailable = false;
 
     private static final String CNAME = ApplicationServiceBean.class.getName();
 
@@ -489,19 +487,6 @@ public class ApplicationServiceBean
         this.emailValidator = value;
     }
 
-    public final void setIsTestSystem(final Boolean value)
-    {
-        final String methodName = ApplicationServiceBean.CNAME + "#setIsTestSystem(final Boolean value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.isTestSystem = value;
-    }
-
     public final void setMessageAccountSuspended(final String value)
     {
         final String methodName = ApplicationServiceBean.CNAME + "#setMessageAccountSuspended(final String value)";
@@ -565,19 +550,6 @@ public class ApplicationServiceBean
         }
 
         this.passwordMaxLength = value;
-    }
-
-    public final void setIsResetAvailable(final Boolean value)
-    {
-        final String methodName = ApplicationServiceBean.CNAME + "#setIsResetAvailable(final Boolean value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.isResetAvailable = value;
     }
 
     public final String getFileEncoding()
@@ -1008,32 +980,6 @@ public class ApplicationServiceBean
 
         return this.messageAccountSuspended;
     }
-    
-	public final Boolean getIsTestSystem()
-	{
-        final String methodName = ApplicationServiceBean.CNAME + "#getIsTestSystem()";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", this.isTestSystem);
-        }
-
-        return this.isTestSystem;
-	}
-
-	public final Boolean isTestSystem()
-	{
-        final String methodName = ApplicationServiceBean.CNAME + "#isTestSystem()";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", this.isTestSystem);
-        }
-
-        return this.isTestSystem;
-	}
 
 	public final String getWebURL()
 	{
@@ -1072,32 +1018,6 @@ public class ApplicationServiceBean
         }
 
         return this.passwordMaxLength;
-    }
-
-    public final Boolean getIsResetAvailable()
-    {
-        final String methodName = ApplicationServiceBean.CNAME + "#getIsResetAvailable()";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", this.isResetAvailable);
-        }
-
-        return this.isResetAvailable;
-    }
-
-    public final Boolean isResetAvailable()
-    {
-        final String methodName = ApplicationServiceBean.CNAME + "#isResetAvailable()";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", this.isResetAvailable);
-        }
-
-        return this.isResetAvailable;
     }
 
     @Override

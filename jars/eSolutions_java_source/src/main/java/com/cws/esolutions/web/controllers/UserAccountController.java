@@ -390,7 +390,6 @@ public class UserAccountController
             }
         }
 
-        // in here, we're going to get all the messages to display and such
         mView.setViewName(this.myAccountPage);
 
         if (DEBUG)

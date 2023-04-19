@@ -40,10 +40,6 @@
 	    <h1><spring:message code="theme.error.system.failure" /></h1>
 	    <p>
         	<spring:message code="theme.system.service.failure" />
-        	<c:if test="${appBean.isTestSystem eq true}">
-				<br /><br />
-				<font color="#FF0000"><%= exception.getMessage() %></font>
-   			</c:if>
 	    </p>
 	</div>
 </div>

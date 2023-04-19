@@ -237,7 +237,6 @@ public class LoginController
             }
         }
 
-        mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
         mView.addObject(Constants.COMMAND, new AuthenticationData());
         mView.setViewName(this.loginPage);
 
@@ -344,7 +343,6 @@ public class LoginController
         hSession.removeAttribute(Constants.USER_ACCOUNT);
         hSession.invalidate();
 
-        mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
         mView.addObject(Constants.RESPONSE_MESSAGE, this.logoffCompleteString);
         mView.addObject(Constants.COMMAND, new AuthenticationData());
         mView.setViewName(this.loginPage);
@@ -487,7 +485,6 @@ public class LoginController
 	                    	hSession.invalidate();
 	
 	                    	mView.setViewName(this.loginPage);
-	                    	mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                        mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountNotAuthorized());
 	                        mView.addObject(Constants.COMMAND, new AuthenticationData());
 	
@@ -515,7 +512,6 @@ public class LoginController
 	                    	case LOCKOUT:
 	                    		hSession.invalidate();
 
-	                    		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 			                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountLocked());
 			                    mView.addObject(Constants.COMMAND, new AuthenticationData());
 			                    mView.setViewName(this.loginPage);
@@ -524,7 +520,6 @@ public class LoginController
 	                    	case SUSPENDED:
 	                    		hSession.invalidate();
 
-	                    		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 			                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountSuspended());
 			                    mView.addObject(Constants.COMMAND, new AuthenticationData());
 			                    mView.setViewName(this.loginPage);
@@ -562,7 +557,6 @@ public class LoginController
 
 	                            hSession.invalidate();
 
-	                            mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                            mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
 	                            mView.addObject(Constants.COMMAND, new AuthenticationData());
 	                            mView.setViewName(this.loginPage);
@@ -574,7 +568,6 @@ public class LoginController
 	            	case FAILURE:
 	            		hSession.invalidate();
 
-	            		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
 	                    mView.addObject(Constants.COMMAND, new AuthenticationData());
 	                    mView.setViewName(this.loginPage);
@@ -583,7 +576,6 @@ public class LoginController
 	            	case UNAUTHORIZED:
 	            		hSession.invalidate();
 
-	            		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountNotAuthorized());
 	                    mView.addObject(Constants.COMMAND, new AuthenticationData());
 	                    mView.setViewName(this.loginPage);
@@ -592,7 +584,6 @@ public class LoginController
 	            	default:
 	            		hSession.invalidate();
 
-	            		mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	                	mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
 	                	mView.addObject(Constants.COMMAND, new AuthenticationData());
 	                	mView.setViewName(this.loginPage);
@@ -606,7 +597,6 @@ public class LoginController
 	
 	            ERROR_RECORDER.error(ax.getMessage(), ax);
 
-	            mView.addObject(Constants.ALLOW_RESET, this.appConfig.isResetAvailable());
 	            mView.addObject(Constants.COMMAND, new AuthenticationData());
 	            mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
 	            mView.setViewName(this.loginPage);

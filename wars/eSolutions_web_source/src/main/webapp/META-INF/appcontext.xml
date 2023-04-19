@@ -20,9 +20,7 @@
 <Context useNaming="true" reloadable="true" docBase="${catalina.home}/installedApps/eSolutions_web_source-1.0-SNAPSHOT.war">
 
     <Environment name="environment" value="dev" type="java.lang.String" override="false" />
-    <Environment name="isTestSystem" value="true" type="java.lang.Boolean" override="false" />
     <Environment name="webURL" value="esolutions.caspersbox.com" type="java.lang.String" override="false" />
-    <Environment name="isResetAvailable" value="true" type="java.lang.Boolean" override="false" />
 
     <Resource name="jdbc/esolutions" auth="Container" type="javax.sql.DataSource"
         factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" driverClassName="com.mysql.cj.jdbc.Driver"
