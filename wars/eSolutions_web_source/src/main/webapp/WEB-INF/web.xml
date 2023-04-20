@@ -24,7 +24,11 @@
     <description>eSolutions_web_source</description>
     <distributable />
 
-	<context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:eSolutions/eSolutions-application.xml</param-value>
+    </context-param>
+    <context-param>
         <param-name>eSolutionsCoreConfig</param-name>
         <param-value>eSolutionsCore/config/ServiceConfig.xml</param-value>
     </context-param>
@@ -52,6 +56,10 @@
         <param-name>jakarta.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
         <param-value>en</param-value>
     </context-param>
+
+    <listener> 
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+    </listener>
 
     <filter id="SpringEncodingFilter">
         <description>Spring Encoding Filter</description>
@@ -173,6 +181,8 @@
             <include-coda>/theme/cws/html/en/jsp/footer.jsp</include-coda>
         </jsp-property-group>
     </jsp-config>
+
+    <deny-uncovered-http-methods />
 
     <security-constraint>
         <web-resource-collection>

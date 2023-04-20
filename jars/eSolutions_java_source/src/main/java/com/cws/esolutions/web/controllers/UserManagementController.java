@@ -2355,6 +2355,7 @@ public class UserManagementController
             searchRequest.setServiceId(this.serviceId);
             searchRequest.setSearchTerms(request.getSearchTerms());
             searchRequest.setUserAccount(userAccount);
+            searchRequest.setRequestor(userAccount);
 
             if (DEBUG)
             {

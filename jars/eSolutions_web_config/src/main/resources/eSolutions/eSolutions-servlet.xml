@@ -20,12 +20,6 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <!-- load the datasources -->
-    <jee:jndi-lookup id="mailSession" jndi-name="java:comp/env/mail/MailSession" />
-    <jee:jndi-lookup id="isTestSystem" jndi-name="java:comp/env/isTestSystem" />
-    <jee:jndi-lookup id="webURL" jndi-name="java:comp/env/webURL" />
-    <jee:jndi-lookup id="isResetAvailable" jndi-name="java:comp/env/isResetAvailable" />
-
 	<!-- email -->
 	<bean id="appMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	    <property name="session">
@@ -51,14 +45,8 @@
         <property name="emailValidator">
             <ref bean="addressValidator" />
         </property>
-        <property name="isTestSystem">
-        	<ref bean="isTestSystem" />
-        </property>
         <property name="webURL">
             <ref bean="webURL" />
-        </property>
-        <property name="isResetAvailable">
-            <ref bean="isResetAvailable" />
         </property>
         <property name="fileEncoding" value="UTF-8" />
         <property name="passwordMinLength" value="8" />
@@ -102,30 +90,6 @@
       			</entry>
       		</map>
       	</property>
-    </bean>
-
-    <!-- internationalization -->
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basenames">
-            <list>
-                <value>classpath:nls/DatacenterManagementServlet/DatacenterManagementServlet</value>
-                <value>classpath:nls/DNSServiceServlet/DNSServiceServlet</value>
-                <value>classpath:nls/LoginServlet/LoginServlet</value>
-                <value>classpath:nls/KnowledgeManagementServlet/KnowledgeManagementServlet</value>
-                <value>classpath:nls/OnlineResetServlet/OnlineResetServlet</value>
-                <value>classpath:nls/ServiceMessagingServlet/ServiceMessagingServlet</value>
-                <value>classpath:nls/SystemCheckServlet/SystemCheckServlet</value>
-                <value>classpath:nls/ServerManagementServlet/ServerManagementServlet</value>
-                <value>classpath:nls/UserAccountServlet/UserAccountServlet</value>
-                <value>classpath:nls/UserManagementServlet/UserManagementServlet</value>
-                <value>classpath:nls/theme/resources</value>
-            </list>
-        </property>
-        <property name="cacheSeconds">
-            <value>600</value>
-        </property>
-        <property name="fallbackToSystemLocale" value="true" />
-        <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
     <!-- import controllers -->

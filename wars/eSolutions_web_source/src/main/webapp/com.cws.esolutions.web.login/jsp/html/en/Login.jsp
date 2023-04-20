@@ -93,11 +93,7 @@
                         <form:input path="username" />
                         <form:errors path="username" cssClass="error" />
                     </td>
-                    <td>
-                        <c:if test="${allowUserReset eq true}">
-                            <a href="${pageContext.request.contextPath}/ui/online-reset/forgot-username" title="<spring:message code='login.user.forgot_uid' />"><spring:message code="login.user.forgot_uid" /></a>
-                        </c:if>
-                    </td>
+                    <td><a href="${pageContext.request.contextPath}/ui/online-reset/forgot-username" title="<spring:message code='login.user.forgot_uid' />"><spring:message code="login.user.forgot_uid" /></a></td>
                 </tr>
                 <tr>
                     <td><label id="txtPassword"><spring:message code="login.user.pwd" /></label></td>
@@ -105,11 +101,7 @@
                         <form:password path="password" />
                         <form:errors path="password" cssClass="error" />
                     </td>
-                    <td>
-                        <c:if test="${allowUserReset eq true}">
-                            <a href="${pageContext.request.contextPath}/ui/online-reset/forgot-password" title="<spring:message code='login.user.forgot_pwd' />"><spring:message code="login.user.forgot_pwd" /></a>
-                        </c:if>
-                    </td>
+                    <td><a href="${pageContext.request.contextPath}/ui/online-reset/forgot-password" title="<spring:message code='login.user.forgot_pwd' />"><spring:message code="login.user.forgot_pwd" /></a></td>
             </table>
             <br class="clear" /><br class="clear" />
             <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />

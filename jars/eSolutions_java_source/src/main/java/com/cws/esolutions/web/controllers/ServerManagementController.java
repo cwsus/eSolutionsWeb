@@ -489,142 +489,6 @@ public class ServerManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/service-consoles", method = RequestMethod.GET)
-    public final ModelAndView showAdminConsoles()
-    {
-        final String methodName = ServerManagementController.CNAME + "#showAdminConsoles()";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-        }
-
-        ModelAndView mView = new ModelAndView();
-
-        final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        final HttpServletRequest hRequest = requestAttributes.getRequest();
-        final HttpSession hSession = hRequest.getSession();
-        final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
-        final IServerManagementProcessor serverMgr = (IServerManagementProcessor) new ServerManagementProcessorImpl();
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug("ServletRequestAttributes: {}", requestAttributes);
-            DEBUGGER.debug("HttpServletRequest: {}", hRequest);
-            DEBUGGER.debug("HttpSession: {}", hSession);
-            DEBUGGER.debug("Session ID: {}", hSession.getId());
-            DEBUGGER.debug("UserAccount: {}", userAccount);
-
-            DEBUGGER.debug("Dumping session content:");
-            Enumeration<?> sessionEnumeration = hSession.getAttributeNames();
-
-            while (sessionEnumeration.hasMoreElements())
-            {
-                String element = (String) sessionEnumeration.nextElement();
-                Object value = hSession.getAttribute(element);
-
-                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
-            }
-
-            DEBUGGER.debug("Dumping request content:");
-            Enumeration<?> requestEnumeration = hRequest.getAttributeNames();
-
-            while (requestEnumeration.hasMoreElements())
-            {
-                String element = (String) requestEnumeration.nextElement();
-                Object value = hRequest.getAttribute(element);
-
-                DEBUGGER.debug("Attribute: {}; Value: {}", element, value);
-            }
-
-            DEBUGGER.debug("Dumping request parameters:");
-            Enumeration<?> paramsEnumeration = hRequest.getParameterNames();
-
-            while (paramsEnumeration.hasMoreElements())
-            {
-                String element = (String) paramsEnumeration.nextElement();
-                Object value = hRequest.getParameter(element);
-
-                DEBUGGER.debug("Parameter: {}; Value: {}", element, value);
-            }
-        }
-
-        try
-        {
-            RequestHostInfo reqInfo = new RequestHostInfo();
-            reqInfo.setHostName(hRequest.getRemoteHost());
-            reqInfo.setHostAddress(hRequest.getRemoteAddr());
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
-            }
-
-            ServerManagementRequest serviceReq = new ServerManagementRequest();
-            serviceReq.setRequestInfo(reqInfo);
-            serviceReq.setUserAccount(userAccount);
-            serviceReq.setServiceId(this.serviceId);
-            serviceReq.setApplicationId(this.appConfig.getApplicationId());
-            serviceReq.setApplicationName(this.appConfig.getApplicationName());
-            serviceReq.setAttribute(ServerType.DMGRSERVER.toString());
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("ServerManagementRequest: {}", serviceReq);
-            }
-
-            ServerManagementResponse response = serverMgr.listServersByAttribute(serviceReq);
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("ServerManagementResponse: {}", response);
-            }
-
-            if (response.getRequestStatus() == CoreServicesStatus.SUCCESS)
-            {
-                List<Server> serverList = response.getServerList();
-
-                if (DEBUG)
-                {
-                    DEBUGGER.debug("serverList: {}", serverList);
-                }
-
-                if ((serverList != null) && (serverList.size() != 0))
-                {
-                    mView.addObject("serverList", serverList);
-                    mView.setViewName(this.adminConsolePage);
-                }
-                else
-                {
-                	mView.addObject(Constants.COMMAND, new Server());
-                    mView.addObject(Constants.MESSAGE_RESPONSE, this.messageNoDmgrsFound);
-                    mView.setViewName(this.addServerPage);
-                }
-            }
-            else if (response.getRequestStatus() == CoreServicesStatus.UNAUTHORIZED)
-            {
-                mView.setViewName(this.appConfig.getUnauthorizedPage());
-            }
-            else
-            {
-                mView.setViewName(this.appConfig.getErrorResponsePage());
-            }
-        }
-        catch (final ServerManagementException smx)
-        {
-            ERROR_RECORDER.error(smx.getMessage(), smx);
-
-            mView.setViewName(this.appConfig.getErrorResponsePage());
-        }
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug("ModelAndView: {}", mView);
-        }
-
-        return mView;
-    }
-
     @RequestMapping(value = "/server/{serverGuid}", method = RequestMethod.GET)
     public final ModelAndView showServerDetail(@PathVariable("serverGuid") final String serverGuid)
     {
@@ -1507,22 +1371,33 @@ public class ServerManagementController
                 DEBUGGER.debug("ServerManagementResponse: {}", response);
             }
 
-            if (response.getRequestStatus() == CoreServicesStatus.SUCCESS)
+            switch (response.getRequestStatus())
             {
-                mView.addObject("pages", (int) Math.ceil(response.getEntryCount() * 1.0 / this.recordsPerPage));
-                mView.addObject("page", 1);
-                mView.addObject("searchTerms", server.getOperHostName());
-                mView.addObject(Constants.SEARCH_RESULTS, response.getServerList());
-                mView.addObject(Constants.COMMAND, new Server());
-                mView.setViewName(this.defaultPage);
-            }
-            else if (response.getRequestStatus() == CoreServicesStatus.UNAUTHORIZED)
-            {
-                mView.setViewName(this.appConfig.getUnauthorizedPage());
-            }
-            else
-            {
-                mView.setViewName(this.appConfig.getErrorResponsePage());
+				case FAILURE:
+					mView.addObject(Constants.ERROR_MESSAGE, this.messageNoServersFound);
+	                mView.addObject(Constants.COMMAND, new Server());
+	                mView.setViewName(this.defaultPage);
+
+					break;
+				case SUCCESS:
+	                mView.addObject("pages", (int) Math.ceil(response.getEntryCount() * 1.0 / this.recordsPerPage));
+	                mView.addObject("page", 1);
+	                mView.addObject("searchTerms", server.getOperHostName());
+	                mView.addObject(Constants.SEARCH_RESULTS, response.getServerList());
+	                mView.addObject(Constants.COMMAND, new Server());
+	                mView.setViewName(this.defaultPage);
+
+					break;
+				case UNAUTHORIZED:
+	                mView.setViewName(this.appConfig.getUnauthorizedPage());
+
+					break;
+				default:
+					mView.addObject(Constants.ERROR_MESSAGE, this.messageNoServersFound);
+	                mView.addObject(Constants.COMMAND, new Server());
+	                mView.setViewName(this.defaultPage);
+
+					break;
             }
         }
         catch (final ServerManagementException smx)
