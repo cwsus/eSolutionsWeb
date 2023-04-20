@@ -42,6 +42,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -2441,7 +2442,7 @@ public class UserManagementController
             DEBUGGER.debug("Value: {}", user);
         }
 
-        ModelAndView mView = new ModelAndView();
+        ModelAndView rView = new ModelAndView(new RedirectView());
 
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         final HttpServletRequest hRequest = requestAttributes.getRequest();
@@ -2496,10 +2497,10 @@ public class UserManagementController
         {
             ERROR_RECORDER.error("Errors: {}", bindResult.getAllErrors());
 
-            mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageValidationFailed());
-            mView.addObject(Constants.BIND_RESULT, bindResult.getAllErrors());
-            mView.addObject(Constants.COMMAND, user);
-            mView.setViewName(this.createUserPage);
+            rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageValidationFailed());
+            rView.addObject(Constants.BIND_RESULT, bindResult.getAllErrors());
+            rView.addObject(Constants.COMMAND, user);
+            rView.setViewName(this.createUserPage);
         }
         else
         {
@@ -2554,11 +2555,10 @@ public class UserManagementController
 	            switch (response.getRequestStatus())
 	            {
 					case FAILURE:
-						mView.addObject(Constants.COMMAND, new UserAccount());
-	                	mView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
-	                	mView.setViewName(this.addUserRedirect);
+						rView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
+	                	rView.setViewName(this.addUserRedirect);
 
-						break;
+	                	break;
 					case SUCCESS:
 						UserAccount builtAccount = response.getUserAccount();
 
@@ -2630,31 +2630,30 @@ public class UserManagementController
 		                    {
 		                        ERROR_RECORDER.error(mx.getMessage(), mx);
 		
-		                        mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageEmailSendFailed());
+		                        rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageEmailSendFailed());
 		                    }
 
-		                    mView.addObject(Constants.COMMAND, new UserAccount());
-		                    mView.addObject(Constants.RESPONSE_MESSAGE, String.format(this.messageAddUserSuccess, newUser.getUsername()));
-		                    mView.setViewName(this.createUserPage);
+		                    rView.addObject(Constants.RESPONSE_MESSAGE, String.format(this.messageAddUserSuccess, newUser.getUsername()));
+		                    rView.setViewName(this.addUserRedirect);
 		                }
 		                else
 		                {
 		                    // some failure occurred
-		                	mView.addObject(Constants.COMMAND, new UserAccount());
-		                	mView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
-		                	mView.setViewName(this.appConfig.getErrorResponsePage());
+		                	rView.addObject(Constants.COMMAND, new UserAccount());
+		                	rView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
+		                	rView.setViewName(this.addUserRedirect);
 		                }
 
 						break;
 					case UNAUTHORIZED:
-						mView.setViewName(this.appConfig.getUnauthorizedPage());
+						rView.setViewName(this.appConfig.getUnauthorizedPage());
 
 						break;
 					default:
 	                    // some failure occurred
-						mView.addObject(Constants.COMMAND, new UserAccount());
-	                	mView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
-	                	mView.setViewName(this.addUserRedirect);
+						rView.addObject(Constants.COMMAND, new UserAccount());
+	                	rView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
+	                	rView.setViewName(this.addUserRedirect);
 
 						break;
 	            }
@@ -2663,15 +2662,15 @@ public class UserManagementController
 	        {
 	            ERROR_RECORDER.error(acx.getMessage(), acx);
 	
-	            mView.setViewName(this.appConfig.getErrorResponsePage());
+	            rView.setViewName(this.appConfig.getErrorResponsePage());
 	        }
         }
 
         if (DEBUG)
         {
-            DEBUGGER.debug("ModelAndView: {}", mView);
+            DEBUGGER.debug("ModelAndView: {}", rView);
         }
 
-        return mView;
+        return rView;
     }
 }

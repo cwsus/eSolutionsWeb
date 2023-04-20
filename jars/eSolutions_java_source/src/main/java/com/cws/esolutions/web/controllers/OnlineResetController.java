@@ -40,6 +40,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,11 +53,10 @@ import com.cws.esolutions.security.dto.UserAccount;
 import com.cws.esolutions.web.ApplicationServiceBean;
 import com.cws.esolutions.web.validators.PasswordValidator;
 import com.cws.esolutions.web.validators.OnlineResetValidator;
-import com.cws.esolutions.security.enums.SecurityRequestStatus;
+import com.cws.esolutions.security.processors.dto.RequestHostInfo;
 import com.cws.esolutions.security.processors.dto.AccountChangeData;
 import com.cws.esolutions.security.processors.enums.ResetRequestType;
 import com.cws.esolutions.security.processors.dto.AuthenticationData;
-import com.cws.esolutions.security.processors.dto.RequestHostInfo;
 import com.cws.esolutions.security.processors.dto.AccountResetRequest;
 import com.cws.esolutions.security.processors.dto.AccountSearchRequest;
 import com.cws.esolutions.security.processors.dto.AccountResetResponse;
@@ -93,6 +93,7 @@ public class OnlineResetController
     private String messageRequestFailure = null;
     private String messageNoAccountFound = null;
     private String submitNewPasswordPage = null;
+    private String messageAccountDisabled = null;
     private String messageRequestComplete = null;
     private String messageAccountSuspended = null;
     private OnlineResetValidator validator = null;
@@ -237,6 +238,19 @@ public class OnlineResetController
         this.messageRequestFailure = value;
     }
 
+    public final void setMessageAccountDisabled(final String value)
+    {
+        final String methodName = OnlineResetController.CNAME + "#setMessageAccountDisabled(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.messageAccountDisabled = value;
+    }
+    
     public final void setSubmitAnswersPage(final String value)
     {
         final String methodName = OnlineResetController.CNAME + "#setSubmitAnswersPage(final String value)";
@@ -504,6 +518,7 @@ public class OnlineResetController
         }
 
         ModelAndView mView = new ModelAndView();
+        ModelAndView rView = new ModelAndView(new RedirectView());
 
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         final HttpServletRequest hRequest = requestAttributes.getRequest();
@@ -589,38 +604,100 @@ public class OnlineResetController
                 DEBUGGER.debug("AccountResetResponse: {}", resetRes);
             }
 
-            if (resetRes.getRequestStatus() == SecurityRequestStatus.SUCCESS)
+            switch (resetRes.getRequestStatus())
             {
-                UserAccount userAccount = resetRes.getUserAccount();
+				case FAILURE:
+	                hSession.invalidate();
 
-                if (DEBUG)
-                {
-                    DEBUGGER.debug("UserAccount: {}", userAccount);
-                }
+	                mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
+	                mView.setViewName(this.appConfig.getLogonRedirect());
 
-                if (userAccount.isSuspended())
-                {
-                    // this account is suspended, we cant work on it
+					break;
+				case SUCCESS:
+					UserAccount userAccount = resetRes.getUserAccount();
+
+					if (DEBUG)
+					{
+						DEBUGGER.debug("UserAccount userAccount: {}", userAccount);
+					}
+
+					switch (userAccount.getStatus())
+					{
+						case DISABLED:
+		                    hSession.invalidate();
+
+		                    rView.addObject(Constants.ERROR_MESSAGE, this.messageAccountDisabled);
+		                    rView.setViewName(this.appConfig.getLogonRedirect());
+
+							return rView;
+						case EXPIRED:
+		                    hSession.invalidate();
+
+		                    rView.addObject(Constants.ERROR_MESSAGE, this.messageAccountExpired);
+		                    rView.setViewName(this.appConfig.getErrorResponsePage());
+
+							return rView;
+						case FAILURE:
+		                    hSession.invalidate();
+
+		                    rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
+		                    rView.setViewName(this.appConfig.getErrorResponsePage());
+
+							return rView;
+						case LOCKOUT:
+		                    hSession.invalidate();
+
+		                    rView.addObject(Constants.ERROR_MESSAGE, this.messageOlrSetup);
+		                    rView.setViewName(this.appConfig.getLogonRedirect());
+
+							return rView;
+						case OLRLOCKED:
+		                    hSession.invalidate();
+
+		                    rView.addObject(Constants.ERROR_MESSAGE, this.messageOlrLocked);
+		                    rView.setViewName(this.appConfig.getLogonRedirect());
+
+							return rView;
+						case OLRSETUP:
+		                    hSession.invalidate();
+
+		                    rView.addObject(Constants.ERROR_MESSAGE, this.messageOlrSetup);
+		                    rView.setViewName(this.appConfig.getLogonRedirect());
+
+							return rView;
+						case SUCCESS:
+		                	mView.addObject("guid", resetRes.getUserAccount().getGuid());
+		                	mView.addObject("username", resetRes.getUserAccount().getUsername());
+		                	mView.addObject(Constants.COMMAND, new AccountChangeData());
+
+		                    mView.setViewName(this.submitNewPasswordPage);
+
+							break;
+						case SUSPENDED:
+		                    hSession.invalidate();
+
+		                    rView.addObject(Constants.ERROR_MESSAGE, this.messageAccountSuspended);
+		                    rView.setViewName(this.appConfig.getLogonRedirect());
+
+							return rView;
+						default:
+							break;
+					}
+					break;
+				case UNAUTHORIZED:
                     hSession.invalidate();
 
-                    mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageUserNotLoggedIn());
-                    mView.setViewName(this.appConfig.getLogonRedirect());
-                }
-                else
-                {
-                	mView.addObject("guid", resetRes.getUserAccount().getGuid());
-                	mView.addObject("username", resetRes.getUserAccount().getUsername());
-                	mView.addObject(Constants.COMMAND, new AccountChangeData());
+                    rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountNotAuthorized());
+                    rView.setViewName(this.appConfig.getErrorResponsePage());
 
-                    mView.setViewName(this.submitNewPasswordPage);
-                }
-            }
-            else
-            {
-                // user not logged in, redirect
-                hSession.invalidate();
+					return rView;
+				default:
+                    hSession.invalidate();
 
-                mView.setViewName(this.appConfig.getLogonRedirect());
+                    rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
+                    rView.setViewName(this.appConfig.getErrorResponsePage());
+
+					return rView;
             }
         }
         catch (final AccountResetException arx)

@@ -186,6 +186,19 @@
 
     <security-constraint>
         <web-resource-collection>
+            <web-resource-name>Restricted Methods</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>TRACE</http-method>
+            <http-method>TRACK</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>OPTIONS</http-method>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
             <web-resource-name>Secure URLs</web-resource-name>
             <description>Enforce SSL</description>
             <url-pattern>/*</url-pattern>
