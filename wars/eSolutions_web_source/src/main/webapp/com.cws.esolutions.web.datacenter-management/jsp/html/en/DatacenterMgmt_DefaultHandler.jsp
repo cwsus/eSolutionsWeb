@@ -82,7 +82,7 @@
                 <form:input path="name" />
                 <form:errors path="name" cssClass="error" />
                 <br /><br />
-                <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
+                <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
                 <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
             </form:form>
         </p>
@@ -93,7 +93,7 @@
             <table id="searchResults">
                 <c:forEach var="result" items="${searchResults}">
                     <tr>
-                        <td><a href="${pageContext.request.contextPath}/ui/datacenter-management/${searchType}/${result.path}" title="${result.title}">${result.title}</a></td>
+                        <td><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/${searchType}/${result.path}' />" title="${result.title}">${result.title}</a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -111,7 +111,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/datacenter-management/search/terms/${searchTerms}/type/${searchType}page/${i}" title="{i}">${i}</a>
+                                        <a href="<c:url value='${pageContext.request.contextPath}/datacenter-management/search/terms/${searchTerms}/type/${searchType}page/${i}' />" title="${i}">${i}</a>
                                     </td>
                                 </c:otherwise>
                             </c:choose>
@@ -128,8 +128,8 @@
         <div id="content">
             <h1><spring:message code="svc.mgmt.header" /></h1>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/datacenter-management/list-datacenters" title="<spring:message code='datacenter.mgmt.list.datacenters' />"><spring:message code="svc.mgmt.list.datacenters" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/datacenter-management/add-datacenter" title="<spring:message code='datacenter.mgmt.add.datacenter' />"><spring:message code="svc.mgmt.add.datacenter" /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/list-datacenters' />" title="<spring:message code='datacenter.mgmt.list.datacenters' />"><spring:message code="datacenter.mgmt.list.datacenters" /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/add-datacenter' />" title="<spring:message code='datacenter.mgmt.add.datacenter' />"><spring:message code="datacenter.mgmt.add.datacenter" /></a></li>
             </ul>
         </div>
         <br class="clear" />

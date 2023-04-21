@@ -92,7 +92,7 @@
                     <tbody>
                         <c:forEach var="user" items="${userList}">
                             <tr>
-                                <td><a href="${pageContext.request.contextPath}/ui/user-management/view/account/${user.guid}" title="${user.username}">${user.username}</a></td>
+                                <td><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/view/account/${user.guid}' />" title="${user.username}">${user.username}</a></td>
                                 <td>${user.userRole}</td>
                                 <td>${user.lastLogin}</td>
                             </tr>
@@ -113,11 +113,11 @@
                                     <c:when test="${page eq i}">
                                         <td>${i}</td>
                                         <c:if test="${pageCount gt 10 and i eq 10}">
-                                            <td><a href="${pageContext.request.contextPath}/user-management/audit/account/${foundAccount.guid}/page/10" title="Next">Next</a></td>
+                                            <td><a href="<c:url value='${pageContext.request.contextPath}/user-management/audit/account/${foundAccount.guid}/page/10' />" title="Next">Next</a></td>
                                         </c:if>
                                     </c:when>
                                     <c:otherwise>
-                                        <td><a href="${pageContext.request.contextPath}/user-management/audit/account/${foundAccount.guid}/page/${i}" title="{i}">${i}</a></td>
+                                        <td><a href="<c:url value='${pageContext.request.contextPath}/user-management/audit/account/${foundAccount.guid}/page/${i}' />" title="${i}">${i}</a></td>
                                     </c:otherwise>
                                 </c:choose>
                             </c:forEach>
@@ -137,8 +137,8 @@
         <div id="content">
             <h1><spring:message code="user.mgmt.header" /></h1>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/user-management/default" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/user-management/add-user" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
             </ul>
         </div>
     <br class="clear" />

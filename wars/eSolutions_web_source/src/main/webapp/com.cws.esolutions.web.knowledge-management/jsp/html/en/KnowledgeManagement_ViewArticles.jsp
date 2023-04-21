@@ -64,16 +64,16 @@
                     <tr>
                         <c:choose>
                             <c:when test="${isApprovalFlow}">
-		                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/approve/${result.articleId}" title="${result.title}">${result.title}</a></td>
-		                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/approve/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
+		                        <td><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/article/approve/${result.articleId}' />" title="${result.title}">${result.title}</a></td>
+		                        <td><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/article/approve/${result.articleId}' />" title="${result.title}">${result.author.username}</a></td>
                             </c:when>
                             <c:when test="${isReviewFlow}">
-                                <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/review/${result.articleId}" title="${result.title}">${result.title}</a></td>
-                                <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/review/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
+                                <td><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/article/review/${result.articleId}' />" title="${result.title}">${result.title}</a></td>
+                                <td><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/article/review/${result.articleId}' />" title="${result.title}">${result.author.username}</a></td>
                             </c:when>                            
                             <c:otherwise>
-		                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.title}</a></td>
-		                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
+		                        <td><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}' />" title="${result.title}">${result.title}</a></td>
+		                        <td><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}' />" title="${result.title}">${result.author.username}</a></td>
                             </c:otherwise>
                         </c:choose>
                     </tr>
@@ -93,7 +93,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/knowledge-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a>
+                                        <a href="<c:url value='${pageContext.request.contextPath}/knowledge-management/search/terms/${searchTerms}/page/${i}' />" title="${i}">${i}</a>
                                     </td>
                                 </c:otherwise>
                             </c:choose>
@@ -109,12 +109,12 @@
 <div id="container">
     <div class="wrapper">
         <div id="content">
-            <h1><spring:message code="user.mgmt.header" /></h1>
+            <h1><spring:message code="knowledge.mgmt.header" /></h1>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/default" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/add-article" title="<spring:message code='knowledge.mgmt.add.article' />"><spring:message code='knowledge.mgmt.add.article' /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/add-article' />" title="<spring:message code='knowledge.mgmt.add.article' />"><spring:message code='knowledge.mgmt.add.article' /></a></li>
                 <c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
-                    <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/list-articles/pending-approval" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></li>
+                    <li><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/list-articles/pending-approval' />" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></li>
                 </c:if>
             </ul>
         </div>

@@ -76,15 +76,15 @@
             </tr>
             <tr>
                 <td><label><spring:message code="user.account.telephone" /></label></td>
-                <td><a href="tel:${sessionScope.userAccount.telephoneNumber}" title="${sessionScope.userAccount.telephoneNumber}">${sessionScope.userAccount.telephoneNumber}</a></td>
+                <td><a href="<c:url value='tel:${sessionScope.userAccount.telephoneNumber}' />" title="${sessionScope.userAccount.telephoneNumber}">${sessionScope.userAccount.telephoneNumber}</a></td>
             </tr>
             <tr>
                 <td><label><spring:message code="user.account.pager" /></label></td>
-                <td><a href="tel:${sessionScope.userAccount.pagerNumber}" title="${sessionScope.userAccount.pagerNumber}">${sessionScope.userAccount.pagerNumber}</a></td>
+                <td><a href="<c:url value='tel:${sessionScope.userAccount.pagerNumber}' />" title="${sessionScope.userAccount.pagerNumber}">${sessionScope.userAccount.pagerNumber}</a></td>
             </tr>
             <tr>
                 <td><label><spring:message code="user.account.email.addr" /></label></td>
-                <td><a href="mailto:${sessionScope.userAccount.emailAddr}" title="${sessionScope.userAccount.emailAddr}">${sessionScope.userAccount.emailAddr}</a></td>
+                <td><a href="<c:url value='mailto:${sessionScope.userAccount.emailAddr}' />" title="${sessionScope.userAccount.emailAddr}">${sessionScope.userAccount.emailAddr}</a></td>
             </tr>
         </table>
     </div>
@@ -95,10 +95,10 @@
         <div id="content">
             <h1><spring:message code="user.account.select.options" /></h1>
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/ui/user-account/email" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></li>
-				<li><a href="${pageContext.request.contextPath}/ui/user-account/contact" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
-				<li><a href="${pageContext.request.contextPath}/ui/user-account/password" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></li>
-				<li><a href="${pageContext.request.contextPath}/ui/user-account/security" title="<spring:message code='user.account.change.security.questions' />"><spring:message code="user.account.change.security.questions" /></a></li>
+				<li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/email' />" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></li>
+				<li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/contact' />" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
+				<li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/password' />" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></li>
+				<li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/security' />" title="<spring:message code='user.account.change.security.questions' />"><spring:message code="user.account.change.security.questions" /></a></li>
 			</ul>
         </div>
         <br class="clear" />

@@ -87,10 +87,7 @@
                 <td><label id="txtServerRegion"><spring:message code="server.mgmt.server.region" /></label></td>
                 <td>${server.serverRegion}</td>
                 <td><label id="txtServerDatacenter"><spring:message code="server.mgmt.server.datacenter" /></label></td>
-                <td>
-                    <a href="${pageContext.request.contextPath}/ui/service-management/datacenter/${server.datacenter.guid}"
-                        title="${server.datacenter.name}">${server.datacenter.name}</a>
-                </td>
+                <td><a href="<c:url value='${pageContext.request.contextPath}/ui/service-management/datacenter/${server.datacenter.guid}' />" title="${server.datacenter.name}">${server.datacenter.name}</a></td>
             </tr>
             <c:if test="${not empty fn:trim(server.virtualId)}">
                 <tr>
@@ -170,10 +167,7 @@
         <table>
             <tr>
                 <td><label id="txtServerEngineer"><spring:message code="server.mgmt.assigned.engineer" /></label></td>
-                <td>
-                    <a href="${pageContext.request.contextPath}/ui/user-management/view/account/${server.assignedEngineer.guid}"
-                        title="${server.assignedEngineer.username}">${server.assignedEngineer.username}</a>
-                </td>
+                <td><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/view/account/${server.assignedEngineer.guid}' />" title="${server.assignedEngineer.username}">${server.assignedEngineer.username}</a></td>
             </tr>
             <tr>
                 <td><label id="txtServerComments"><spring:message code="server.mgmt.server.comments" /></label></td>
@@ -188,8 +182,8 @@
         <div id="content">
             <h1><spring:message code="server.mgmt.header" /></h1>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/default" title="<spring:message code='theme.search.banner' />"><spring:message code='theme.search.banner' /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/add-server" title="<spring:message code='server.mgmt.add.server' />"><spring:message code="server.mgmt.add.server" /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code='theme.search.banner' /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/add-server' />" title="<spring:message code='server.mgmt.add.server' />"><spring:message code="server.mgmt.add.server" /></a></li>
             </ul>
         </div>
 
@@ -197,11 +191,11 @@
             <div class="holder">
                 <h2><spring:message code="server.mgmt.this.server" /></h2>
                 <ul>
-	                <li><a href="${pageContext.request.contextPath}/ui/system-check/netstat/server/${server.serverGuid}" title="<spring:message code='system.check.netstat' />"><spring:message code='system.check.netstat' /></a></li>
-	                <li><a href="${pageContext.request.contextPath}/ui/system-check/remote-date/server/${server.serverGuid}" title="<spring:message code='system.check.date' />"><spring:message code='system.check.date' /></a></li>
-	                <li><a href="${pageContext.request.contextPath}/ui/system-check/telnet/server/${server.serverGuid}" title="<spring:message code='system.check.telnet' />"><spring:message code='system.check.telnet' /></a></li>
-	                <li><a href="${pageContext.request.contextPath}/ui/server-management/install-software" title="<spring:message code='server.mgmt.install.software' />"><spring:message code="server.mgmt.install.software" /></a></li>
-	                <li><a href="${pageContext.request.contextPath}/ui/server-management/server-control" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
+	                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/system-check/netstat/server/${server.serverGuid}' />" title="<spring:message code='system.check.netstat' />"><spring:message code='system.check.netstat' /></a></li>
+	                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/system-check/remote-date/server/${server.serverGuid}' />" title="<spring:message code='system.check.date' />"><spring:message code='system.check.date' /></a></li>
+	                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/system-check/telnet/server/${server.serverGuid}' />" title="<spring:message code='system.check.telnet' />"><spring:message code='system.check.telnet' /></a></li>
+	                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/install-software' />" title="<spring:message code='server.mgmt.install.software' />"><spring:message code="server.mgmt.install.software" /></a></li>
+	                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/server-control' />" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
                 </ul>
             </div>
         </div>

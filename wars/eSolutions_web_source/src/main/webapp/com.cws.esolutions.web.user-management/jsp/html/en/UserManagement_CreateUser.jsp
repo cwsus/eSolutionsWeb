@@ -173,9 +173,9 @@
                  </tr>
             </table>
             <br class="clear" /><br class="clear" />
-            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
+            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
             <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-            <input type="button" name="cancel" value="<spring:message code='theme.button.cancel.text' />" id="cancel" class="submit" onclick="redirectOnCancel('/esolutions/ui/user-management/default');" />
+            <input type="button" name="cancel" value="<spring:message code='theme.button.cancel.text' />" id="cancel" class="submit" onclick="redirectOnCancel('${pageContext.request.contextPath}/ui/user-management/default');" />
         </form:form>
     </div>
 </div>
@@ -185,7 +185,7 @@
         <div id="content">
 		    <h1><spring:message code="user.mgmt.header" /></h1>
 		    <ul>
-		        <li><a href="${pageContext.request.contextPath}/ui/user-management/default" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
+		        <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
 		    </ul>
         </div>
         <br class="clear" />

@@ -43,7 +43,7 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<html xml:lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
 
     <head>
@@ -121,12 +121,12 @@
     			<c:if test="${not empty fn:trim(sessionScope.userAccount)}">
     				<div id="topnav">
     					<ul>
-    					    <li><a href="${pageContext.request.contextPath}/ui/datacenter-management/default" title="<spring:message code='theme.navbar.datacenter-mgmt' />"><spring:message code='theme.navbar.datacenter-mgmt' /></a></li>
-        					<li><a href="${pageContext.request.contextPath}/ui/dns-service/default" title="<spring:message code='theme.navbar.dns-services' />"><spring:message code='theme.navbar.dns-services' /></a></li>
-                            <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/default" title="<spring:message code='theme.navbar.knowledge' />"><spring:message code="theme.navbar.knowledge" /></a></li>
-                            <li><a href="${pageContext.request.contextPath}/ui/server-management/default" title="<spring:message code='theme.navbar.server-mgmt' />"><spring:message code='theme.navbar.server-mgmt' /></a></li>
+    					    <li><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/default' />" title="<spring:message code='theme.navbar.datacenter-mgmt' />"><spring:message code='theme.navbar.datacenter-mgmt' /></a></li>
+        					<li><a href="<c:url value='${pageContext.request.contextPath}/ui/dns-service/default' />" title="<spring:message code='theme.navbar.dns-services' />"><spring:message code='theme.navbar.dns-services' /></a></li>
+                            <li><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/default' />" title="<spring:message code='theme.navbar.knowledge' />"><spring:message code="theme.navbar.knowledge" /></a></li>
+                            <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/default' />" title="<spring:message code='theme.navbar.server-mgmt' />"><spring:message code='theme.navbar.server-mgmt' /></a></li>
                             <c:if test="${fn:trim(sessionScope.userAccount.userRole) eq SecurityUserRole.USER_ADMIN or fn:trim(sessionScope.userAccount.userRole) eq SecurityUserRole.SITE_ADMIN}">
-		                        <li class="last"><a href="${pageContext.request.contextPath}/ui/user-management/default" title="<spring:message code='theme.navbar.useradmin' />"><spring:message code='theme.navbar.useradmin' /></a></li>
+		                        <li class="last"><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/default' />" title="<spring:message code='theme.navbar.useradmin' />"><spring:message code='theme.navbar.useradmin' /></a></li>
 	                        </c:if>
         				</ul>
     				</div>

@@ -109,7 +109,7 @@
                 </tr>
 		    </table>
             <br class="clear" /><br class="clear" />
-            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
+            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
 		    <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
 		</form:form>
 
@@ -120,13 +120,13 @@
 	        <p>
 	            <c:choose>
 	                <c:when test="${not empty dnsEntry}">
-	                        <spring:message code="dns.service.hostname" /> <a href="${dnsEntry.recordName}" title="${dnsEntry.recordName}">${dnsEntry.recordName}</a><br />
+	                        <spring:message code="dns.service.hostname" /> <a href="<c:url value='${dnsEntry.recordName}' />" title="${dnsEntry.recordName}">${dnsEntry.recordName}</a><br />
 	                        <spring:message code="dns.lookup.record.type" /> ${dnsEntry.recordType}<br />
 	                        <spring:message code="dns.lookup.record.address" /> ${dnsEntry.recordAddress}<br />
 	                </c:when>
 	                <c:when test="${not empty dnsEntries}">
 	                    <c:forEach var="dnsEntry" items="${dnsEntries}">
-	                        <spring:message code="dns.service.hostname" /> <a href="${dnsEntry.recordName}" title="${dnsEntry.recordName}">${dnsEntry.recordName}</a><br />
+	                        <spring:message code="dns.service.hostname" /> <a href="<c:url value='${dnsEntry.recordName}' />" title="${dnsEntry.recordName}">${dnsEntry.recordName}</a><br />
 	                        <spring:message code="dns.lookup.record.type" /> ${dnsEntry.recordType}<br />
 	                        <spring:message code="dns.lookup.record.address" /> ${dnsEntry.recordAddress}<br />
 	                        <br />

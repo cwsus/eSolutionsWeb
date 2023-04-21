@@ -36,12 +36,6 @@
 <script type="text/javascript">
     function validateForm(theForm)
     {
-		serverTypeElement = document.getElementById('serverType');
-		serverStatusElement = document.getElementById('serverStatus');
-		domainNameElement = document.getElementById('domainName');
-		datacenterElement = document.getElementById('datacenter');
-		networkPartitionElement = document.getElementById('networkPartition');
-		
 		if (theForm.osName.value == '')
 		{
 		    clearText(theForm);
@@ -69,15 +63,6 @@
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('serialNumber').focus();
 		}
-		else if (theForm.serialNumber.value == '')
-		{
-		    clearText(theForm);
-		
-		    document.getElementById('validationError').innerHTML = 'A serial number must be provided.';
-		    document.getElementById('serialNumber').style.color = '#FF0000';
-		    document.getElementById('execute').disabled = false;
-		    document.getElementById('serialNumber').focus();
-		}
 		else if (theForm.cpuType.value == '')
 		{
 		    clearText(theForm);
@@ -87,7 +72,7 @@
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('cpuType').focus();
 		}
-		else if ((theForm.cpuCount.value == '')) || (!(typeof theform.cpuCount.value == 'number')))
+		else if ((theForm.cpuCount.value == '') || (!(typeof theForm.cpuCount.value == 'number')))
 		{
 		    clearText(theForm);
 		
@@ -96,7 +81,7 @@
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('cpuCount').focus();
 		}
-		else if ((theForm.installedMemory.value == '')) || (!(typeof theform.installedMemory.value == 'number')))
+		else if ((theForm.installedMemory.value == '') || (!(typeof theForm.installedMemory.value == 'number')))
 		{
 		    clearText(theForm);
 		
@@ -109,7 +94,7 @@
 		{
 		    clearText(theForm);
 		
-		    document.getElementById('validationError').innerHTML = 'The server's rack location must be provided';
+		    document.getElementById('validationError').innerHTML = 'The server rack location must be provided';
 		    document.getElementById('serverRack').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('serverRack').focus();
@@ -118,7 +103,7 @@
 		{
 		    clearText(theForm);
 		
-		    document.getElementById('validationError').innerHTML = 'The server's rack position must be provided';
+		    document.getElementById('validationError').innerHTML = 'The server rack position must be provided';
 		    document.getElementById('rackPosition').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('rackPosition').focus();
@@ -143,6 +128,12 @@
 		}
 		else
 		{
+            serverTypeElement = document.getElementById('serverType');
+            serverStatusElement = document.getElementById('serverStatus');
+            domainNameElement = document.getElementById('domainName');
+            datacenterElement = document.getElementById('datacenter');
+            networkPartitionElement = document.getElementById('networkPartition');
+
 		    if ((serverTypeElement == '') || (serverTypeElement.text == 'Select....') || (serverTypeElement.text == '------'))
 		    {
 		        clearText(theForm);
@@ -232,7 +223,7 @@
                             <form:errors path="osName" cssClass="error" />
                         </td>
                         <td>
-	                        <form:select path="serverType" onchange="showOptions(this);">
+	                        <form:select path="serverType">
 	                            <option><spring:message code="theme.option.select" /></option>
 	                            <option><spring:message code="theme.option.spacer" /></option>
 	                            <form:options items="${serverTypes}" />
@@ -456,9 +447,9 @@
                 </tbody>
             </table>
             <br /><br />
-            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
+            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
             <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-            <input type="button" name="cancel" value="<spring:message code='theme.button.cancel.text' />" id="cancel" class="submit" onclick="redirectOnCancel('/esolutions/ui/server-management/default');" />
+            <input type="button" name="cancel" value="<spring:message code='theme.button.cancel.text' />" id="cancel" class="submit" onclick="redirectOnCancel('${pageContext.request.contextPath}/ui/server-management/default');" />
         </form:form>
     </div>
 </div>
@@ -468,10 +459,10 @@
         <div id="content">
             <h1><spring:message code="server.mgmt.header" /></h1>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/default" title="<spring:message code='theme.search.banner' />"><spring:message code='theme.search.banner' /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/service-consoles" title="<spring:message code='server.mgmt.service.consoles' />"><spring:message code='server.mgmt.service.consoles' /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/install-software" title="<spring:message code='server.mgmt.install.software.header' />"><spring:message code="server.mgmt.install.software.header" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/server-control" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code='theme.search.banner' /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/service-consoles' />" title="<spring:message code='server.mgmt.service.consoles' />"><spring:message code='server.mgmt.service.consoles' /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/install-software' />" title="<spring:message code='server.mgmt.install.software.header' />"><spring:message code="server.mgmt.install.software.header" /></a></li>
+                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/server-control' />" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
             </ul>
         </div>
         <br class="clear" />
