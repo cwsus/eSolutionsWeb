@@ -1257,7 +1257,6 @@ public class OnlineResetController
         if (DEBUG)
         {
             DEBUGGER.debug(methodName);
-            DEBUGGER.debug("AccountChangeData: {}", request);
         }
 
         ModelAndView mView = new ModelAndView();

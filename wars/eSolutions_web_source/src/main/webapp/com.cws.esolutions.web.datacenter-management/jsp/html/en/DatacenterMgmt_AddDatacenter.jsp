@@ -122,7 +122,7 @@
         <div id="holder">
             <h1><spring:message code="datacenter.mgmt.header" /></h1>
             <ul>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/list-datacenters' />" title="<spring:message code='datacenter.mgmt.list.datacenters' />"><spring:message code="datacenter.mgmt.list.datacenters" /></a></li>
+                <li><a href="<c:url value='/ui/datacenter-management/list-datacenters' />" title="<spring:message code='datacenter.mgmt.list.datacenters' />"><spring:message code="datacenter.mgmt.list.datacenters" /></a></li>
             </ul>
         </div>
         <br class="clear" />

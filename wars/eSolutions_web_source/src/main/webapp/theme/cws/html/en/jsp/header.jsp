@@ -121,12 +121,12 @@
     			<c:if test="${not empty fn:trim(sessionScope.userAccount)}">
     				<div id="topnav">
     					<ul>
-    					    <li><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/default' />" title="<spring:message code='theme.navbar.datacenter-mgmt' />"><spring:message code='theme.navbar.datacenter-mgmt' /></a></li>
-        					<li><a href="<c:url value='${pageContext.request.contextPath}/ui/dns-service/default' />" title="<spring:message code='theme.navbar.dns-services' />"><spring:message code='theme.navbar.dns-services' /></a></li>
-                            <li><a href="<c:url value='${pageContext.request.contextPath}/ui/knowledge-management/default' />" title="<spring:message code='theme.navbar.knowledge' />"><spring:message code="theme.navbar.knowledge" /></a></li>
-                            <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/default' />" title="<spring:message code='theme.navbar.server-mgmt' />"><spring:message code='theme.navbar.server-mgmt' /></a></li>
+    					    <li><a href="<c:url value='/ui/datacenter-management/default' />" title="<spring:message code='theme.navbar.datacenter-mgmt' />"><spring:message code='theme.navbar.datacenter-mgmt' /></a></li>
+        					<li><a href="<c:url value='/ui/dns-service/default' />" title="<spring:message code='theme.navbar.dns-services' />"><spring:message code='theme.navbar.dns-services' /></a></li>
+                            <li><a href="<c:url value='/ui/knowledge-management/default' />" title="<spring:message code='theme.navbar.knowledge' />"><spring:message code="theme.navbar.knowledge" /></a></li>
+                            <li><a href="<c:url value='/ui/server-management/default' />" title="<spring:message code='theme.navbar.server-mgmt' />"><spring:message code='theme.navbar.server-mgmt' /></a></li>
                             <c:if test="${fn:trim(sessionScope.userAccount.userRole) eq SecurityUserRole.USER_ADMIN or fn:trim(sessionScope.userAccount.userRole) eq SecurityUserRole.SITE_ADMIN}">
-		                        <li class="last"><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/default' />" title="<spring:message code='theme.navbar.useradmin' />"><spring:message code='theme.navbar.useradmin' /></a></li>
+		                        <li class="last"><a href="<c:url value='/ui/user-management/default' />" title="<spring:message code='theme.navbar.useradmin' />"><spring:message code='theme.navbar.useradmin' /></a></li>
 	                        </c:if>
         				</ul>
     				</div>

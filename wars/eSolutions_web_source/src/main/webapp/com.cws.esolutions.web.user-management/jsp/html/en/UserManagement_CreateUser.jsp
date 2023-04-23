@@ -185,7 +185,7 @@
         <div id="content">
 		    <h1><spring:message code="user.mgmt.header" /></h1>
 		    <ul>
-		        <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
+		        <li><a href="<c:url value='/ui/user-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
 		    </ul>
         </div>
         <br class="clear" />

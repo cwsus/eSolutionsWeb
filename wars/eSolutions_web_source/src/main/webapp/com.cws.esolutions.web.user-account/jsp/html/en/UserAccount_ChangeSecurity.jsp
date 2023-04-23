@@ -199,9 +199,9 @@
         <div id="content">
             <h1><spring:message code="user.account.update.security" /></h1>
             <ul>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/email' />" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/contact' />" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/password' />" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/email' />" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/contact' />" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/password' />" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></li>
             </ul>
         </div>
         <br class="clear" />

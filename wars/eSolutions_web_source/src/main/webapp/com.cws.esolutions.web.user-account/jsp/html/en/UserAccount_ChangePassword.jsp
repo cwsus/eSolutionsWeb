@@ -118,7 +118,6 @@
         <h1><spring:message code="user.account.update.password" /></h1>
         <form:form name="submitPasswordChange" id="submitPasswordChange" action="${pageContext.request.contextPath}/ui/user-account/password" method="POST">
             <form:hidden path="isReset" value="${command.isReset}" />
-            <form:hidden path="resetKey" value="${param.resetKey}" />
 
             <table>
                 <tr>
@@ -156,9 +155,9 @@
         <div id="content">
             <h1><spring:message code="user.account.update.security" /></h1>
             <ul>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/email' />" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/contact' />" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/security' />" title="<spring:message code='user.account.change.security.questions' />"><spring:message code="user.account.change.security.questions" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/email' />" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/contact' />" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/security' />" title="<spring:message code='user.account.change.security.questions' />"><spring:message code="user.account.change.security.questions" /></a></li>
             </ul>
         </div>
         <br class="clear" />

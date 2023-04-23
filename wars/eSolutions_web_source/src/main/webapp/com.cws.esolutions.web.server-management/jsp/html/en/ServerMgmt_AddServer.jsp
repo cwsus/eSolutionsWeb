@@ -1,4 +1,4 @@
-    <%--
+<%--
 /*
  * Copyright (c) 2009 - 2020 CaspersBox Web Services
  * 
@@ -36,10 +36,12 @@
 <script type="text/javascript">
     function validateForm(theForm)
     {
+        var regex = /^[0-9]+$/;
+
 		if (theForm.osName.value == '')
 		{
 		    clearText(theForm);
-		
+
 		    document.getElementById('validationError').innerHTML = 'An OS name must be provided.';
 		    document.getElementById('txtOsName').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
@@ -50,7 +52,7 @@
 		    clearText(theForm);
 		
 		    document.getElementById('validationError').innerHTML = 'A server model must be provided.';
-		    document.getElementById('serverModel').style.color = '#FF0000';
+		    document.getElementById('txtServerModel').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('serverModel').focus();
 		}
@@ -59,7 +61,7 @@
 		    clearText(theForm);
 		
 		    document.getElementById('validationError').innerHTML = 'A serial number must be provided.';
-		    document.getElementById('serialNumber').style.color = '#FF0000';
+		    document.getElementById('txtSerialNumber').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('serialNumber').focus();
 		}
@@ -68,25 +70,25 @@
 		    clearText(theForm);
 		
 		    document.getElementById('validationError').innerHTML = 'A CPU type must be provided.';
-		    document.getElementById('cpuType').style.color = '#FF0000';
+		    document.getElementById('txtCpuType').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('cpuType').focus();
 		}
-		else if ((theForm.cpuCount.value == '') || (!(typeof theForm.cpuCount.value == 'number')))
+		else if ((theForm.cpuCount.value == '') || (!(theForm.cpuCount.value.match(regex))))
 		{
 		    clearText(theForm);
 		
 		    document.getElementById('validationError').innerHTML = 'A CPU count must be provided.';
-		    document.getElementById('cpuCount').style.color = '#FF0000';
+		    document.getElementById('txtCpuCount').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('cpuCount').focus();
 		}
-		else if ((theForm.installedMemory.value == '') || (!(typeof theForm.installedMemory.value == 'number')))
+		else if ((theForm.installedMemory.value == '') || (!(theForm.installedMemory.value.match(regex))))
 		{
 		    clearText(theForm);
 		
-		    document.getElementById('validationError').innerHTML = 'A CPU count must be provided.';
-		    document.getElementById('installedMemory').style.color = '#FF0000';
+		    document.getElementById('validationError').innerHTML = 'The installed memory count must be provided.';
+		    document.getElementById('txtInstalledMemory').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('installedMemory').focus();
 		}
@@ -95,7 +97,7 @@
 		    clearText(theForm);
 		
 		    document.getElementById('validationError').innerHTML = 'The server rack location must be provided';
-		    document.getElementById('serverRack').style.color = '#FF0000';
+		    document.getElementById('txtServerRack').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('serverRack').focus();
 		}
@@ -104,7 +106,7 @@
 		    clearText(theForm);
 		
 		    document.getElementById('validationError').innerHTML = 'The server rack position must be provided';
-		    document.getElementById('rackPosition').style.color = '#FF0000';
+		    document.getElementById('txtRackPosition').style.color = '#FF0000';
 		    document.getElementById('execute').disabled = false;
 		    document.getElementById('rackPosition').focus();
 		}
@@ -131,7 +133,7 @@
             serverTypeElement = document.getElementById('serverType');
             serverStatusElement = document.getElementById('serverStatus');
             domainNameElement = document.getElementById('domainName');
-            datacenterElement = document.getElementById('datacenter');
+            datacenterElement = document.getElementById('datacenter.guid');
             networkPartitionElement = document.getElementById('networkPartition');
 
 		    if ((serverTypeElement == '') || (serverTypeElement.text == 'Select....') || (serverTypeElement.text == '------'))
@@ -139,7 +141,7 @@
 		        clearText(theForm);
 		
 		        document.getElementById('validationError').innerHTML = 'A server type must be provided.';
-		        document.getElementById('serverType').style.color = '#FF0000';
+		        document.getElementById('txtServerType').style.color = '#FF0000';
 		        document.getElementById('execute').disabled = false;
 		        document.getElementById('serverType').focus();
 		    }
@@ -147,8 +149,8 @@
 		    {
 		        clearText(theForm);
 		
-		        document.getElementById('validationError').innerHTML = 'A server type must be provided.';
-		        document.getElementById('serverStatus').style.color = '#FF0000';
+		        document.getElementById('validationError').innerHTML = 'A server status must be provided.';
+		        document.getElementById('txtServerStatus').style.color = '#FF0000';
 		        document.getElementById('execute').disabled = false;
 		        document.getElementById('serverStatus').focus();
 		    }
@@ -156,8 +158,8 @@
 		    {
 		        clearText(theForm);
 		
-		        document.getElementById('validationError').innerHTML = 'A server type must be provided.';
-		        document.getElementById('domainName').style.color = '#FF0000';
+		        document.getElementById('validationError').innerHTML = 'A domain name must be selected.';
+		        document.getElementById('txtDomainName').style.color = '#FF0000';
 		        document.getElementById('execute').disabled = false;
 		        document.getElementById('domainName').focus();
 		    }
@@ -165,8 +167,8 @@
 		    {
 		        clearText(theForm);
 		
-		        document.getElementById('validationError').innerHTML = 'A server type must be provided.';
-		        document.getElementById('datacenter').style.color = '#FF0000';
+		        document.getElementById('validationError').innerHTML = 'Please select a datacenter.';
+		        document.getElementById('txtDatacenter').style.color = '#FF0000';
 		        document.getElementById('execute').disabled = false;
 		        document.getElementById('datacenter').focus();
 		    }
@@ -210,10 +212,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th><label><spring:message code="server.mgmt.os.name" /></label></th>
-                        <th><label><spring:message code="server.mgmt.server.type" /></label></th>
-                        <th><label><spring:message code="server.mgmt.server.status" /></label></th>
-                        <th><label><spring:message code="server.mgmt.domain.name" /></label></th>
+                        <th><label id="txtOsName"><spring:message code="server.mgmt.os.name" /></label></th>
+                        <th><label id="txtServerType"><spring:message code="server.mgmt.server.type" /></label></th>
+                        <th><label id="txtServerStatus"><spring:message code="server.mgmt.server.status" /></label></th>
+                        <th><label id="txtDomainName"><spring:message code="server.mgmt.domain.name" /></label></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -255,11 +257,11 @@
             <table>
                 <thead>
                     <tr>
-                        <th><label><spring:message code="server.mgmt.server.region" /></label></th>
-                        <th><label><spring:message code="server.mgmt.server.datacenter" /></label></th>
-                        <th><label><spring:message code="server.mgmt.network.partition" /></label></th>
-                        <th><label><spring:message code="server.mgmt.server.rack" /></label></th>
-                        <th><label><spring:message code="server.mgmt.rack.position" /></label></th>
+                        <th><label id="txtServerRegion"><spring:message code="server.mgmt.server.region" /></label></th>
+                        <th><label id="txtDatacenter"><spring:message code="server.mgmt.server.datacenter" /></label></th>
+                        <th><label id="txtNetworkPartition"><spring:message code="server.mgmt.network.partition" /></label></th>
+                        <th><label id="txtServerRack"><spring:message code="server.mgmt.server.rack" /></label></th>
+                        <th><label id="txtRackPosition"><spring:message code="server.mgmt.rack.position" /></label></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -273,14 +275,14 @@
 	                        <form:errors path="serverRegion" cssClass="error" />
 	                    </td>
 	                    <td>
-	                        <form:select path="datacenter">
+	                        <form:select path="datacenter.guid">
 	                            <option><spring:message code="theme.option.select" /></option>
 	                            <option><spring:message code="theme.option.spacer" /></option>
 	                            <c:forEach var="dcObject" items="${datacenters}">
 	                                <form:option value="${dcObject.guid}" label="${dcObject.name}"/>
 	                            </c:forEach>
 	                        </form:select>
-	                        <form:errors path="datacenter" cssClass="error" />
+	                        <form:errors path="datacenter.guid" cssClass="error" />
 	                    </td>
 	                    <td>
 	                        <form:select path="networkPartition">
@@ -307,11 +309,11 @@
             <table>
                 <thead>
                     <tr>
-                        <th><label><spring:message code="server.mgmt.server.model" /></label></th>
-                        <th><label><spring:message code="server.mgmt.serial.number" /></label></th>
-                        <th><label><spring:message code="server.mgmt.cpu.type" /></label></th>
-                        <th><label><spring:message code="server.mgmt.cpu.count" /></label></th>
-                        <th><label><spring:message code="server.mgmt.installed.memory" /></label></th>
+                        <th><label id="txtServerModel"><spring:message code="server.mgmt.server.model" /></label></th>
+                        <th><label id="txtSerialNumber"><spring:message code="server.mgmt.serial.number" /></label></th>
+                        <th><label id="txtCpuType"><spring:message code="server.mgmt.cpu.type" /></label></th>
+                        <th><label id="txtCpuCount"><spring:message code="server.mgmt.cpu.count" /></label></th>
+                        <th><label id="txtInstalledMemory"><spring:message code="server.mgmt.installed.memory" /></label></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -459,10 +461,10 @@
         <div id="content">
             <h1><spring:message code="server.mgmt.header" /></h1>
             <ul>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code='theme.search.banner' /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/service-consoles' />" title="<spring:message code='server.mgmt.service.consoles' />"><spring:message code='server.mgmt.service.consoles' /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/install-software' />" title="<spring:message code='server.mgmt.install.software.header' />"><spring:message code="server.mgmt.install.software.header" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/server-management/server-control' />" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
+                <li><a href="<c:url value='/ui/server-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code='theme.search.banner' /></a></li>
+                <li><a href="<c:url value='/ui/server-management/service-consoles' />" title="<spring:message code='server.mgmt.service.consoles' />"><spring:message code='server.mgmt.service.consoles' /></a></li>
+                <li><a href="<c:url value='/ui/server-management/install-software' />" title="<spring:message code='server.mgmt.install.software.header' />"><spring:message code="server.mgmt.install.software.header" /></a></li>
+                <li><a href="<c:url value='/ui/server-management/server-control' />" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
             </ul>
         </div>
         <br class="clear" />

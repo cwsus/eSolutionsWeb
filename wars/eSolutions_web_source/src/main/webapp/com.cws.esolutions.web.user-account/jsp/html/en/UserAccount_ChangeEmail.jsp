@@ -129,9 +129,9 @@
         <div id="content">
             <h1><spring:message code="user.account.update.security" /></h1>
             <ul>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/contact' />" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/password' />" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-account/security' />" title="<spring:message code='user.account.change.security.questions' />"><spring:message code="user.account.change.security.questions" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/contact' />" title="<spring:message code='user.account.change.contact' />"><spring:message code="user.account.change.contact" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/password' />" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></li>
+                <li><a href="<c:url value='/ui/user-account/security' />" title="<spring:message code='user.account.change.security.questions' />"><spring:message code="user.account.change.security.questions" /></a></li>
             </ul>
         </div>
         <br class="clear" />

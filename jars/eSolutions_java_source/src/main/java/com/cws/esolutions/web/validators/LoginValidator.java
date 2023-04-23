@@ -102,7 +102,6 @@ public class LoginValidator implements Validator
         if (DEBUG)
         {
             DEBUGGER.debug(methodName);
-            DEBUGGER.debug("errors: {}", errors);
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", this.messageLoginUserRequired);

@@ -394,7 +394,6 @@ public class ServerValidator implements Validator
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cpuType", this.messageCpuTypeRequired);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "installedMemory", this.messageInstalledMemoryRequired);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "domainName", this.messageDomainNameRequired);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "datacenter", this.messageDatacenterRequired);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "serverModel", this.messageServerModelRequired);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "serialNumber", this.messageSerialNumberRequired);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "operHostName", this.messageOperHostnameRequired);
@@ -453,11 +452,7 @@ public class ServerValidator implements Validator
             {
                 errors.reject("nasIpAddress", this.messageServerAddressInvalid);
             }
-            else if ((request.getServerType() == ServerType.VIRTUALHOST) || (request.getServerType() == ServerType.DMGRSERVER) && (StringUtils.isEmpty(request.getMgrUrl())))
-            {
-                errors.reject("vboxManagerUrl", this.messageManagerUrlRequired);
-            }
-            else if ((request.getServerType() == ServerType.DMGRSERVER) && (request.getDmgrPort() == 0))
+            else if (request.getServerType() == ServerType.VIRTUALHOST)
             {
                 errors.reject("vboxManagerUrl", this.messageManagerUrlRequired);
             }

@@ -182,7 +182,7 @@
             <AppenderRef ref="web-debug-logger" />
         </Logger>
 
-        <Root level="DEBUG">
+        <Root level="INFO">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

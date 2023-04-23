@@ -84,7 +84,7 @@
                 <td><label><spring:message code="user.mgmt.user.name" /></label></td>
                 <td>${foundAccount.username}</td>
                 <c:if test="${sessionScope.userAccount.userRole eq 'USER_ADMIN' or sessionScope.userAccount.userRole eq 'SITE_ADMIN' or sessionScope.userAccount.userRole eq 'ADMIN'}">
-                    <td><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/reset/account/${foundAccount.guid}' />"title="<spring:message code='user.account.change.password' />"><spring:message code='user.account.change.password' /></a></td>
+                    <td><a href="<c:url value='/ui/user-management/reset/account/${foundAccount.guid}' />"title="<spring:message code='user.account.change.password' />"><spring:message code='user.account.change.password' /></a></td>
                 </c:if>
             </tr>
             <tr>
@@ -130,7 +130,7 @@
                         <td><spring:message code="theme.true" /></td>
                         <c:if test="${sessionScope.userAccount.userRole eq 'USER_ADMIN' or sessionScope.userAccount.userRole eq 'SITE_ADMIN' or sessionScope.userAccount.userRole eq 'ADMIN'}">
                             <td>
-                                <a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/unlock/account/${foundAccount.guid}' />"
+                                <a href="<c:url value='/ui/user-management/unlock/account/${foundAccount.guid}' />"
                                     title="<spring:message code='user.mgmt.unlock.account' />"><spring:message code='user.mgmt.unlock.account' /></a>
                             </td>
                         </c:if>
@@ -156,10 +156,10 @@
                 <c:if test="${sessionScope.userAccount.userRole eq 'USER_ADMIN' or sessionScope.userAccount.userRole eq 'SITE_ADMIN'}">
                     <c:choose>
                         <c:when test="${foundAccount.suspended eq 'true'}">
-                            <td><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/unsuspend/account/${foundAccount.guid}' />" title="<spring:message code='user.mgmt.unsuspend.account' />"><spring:message code='user.mgmt.unsuspend.account' /></a></td>
+                            <td><a href="<c:url value='/ui/user-management/unsuspend/account/${foundAccount.guid}' />" title="<spring:message code='user.mgmt.unsuspend.account' />"><spring:message code='user.mgmt.unsuspend.account' /></a></td>
                         </c:when>
                         <c:otherwise>
-                            <td><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/suspend/account/${foundAccount.guid}' />" title="<spring:message code='user.mgmt.suspend.account' />"><spring:message code='user.mgmt.suspend.account' /></a></td>
+                            <td><a href="<c:url value='/ui/user-management/suspend/account/${foundAccount.guid}' />" title="<spring:message code='user.mgmt.suspend.account' />"><spring:message code='user.mgmt.suspend.account' /></a></td>
                         </c:otherwise>
                     </c:choose>
                 </c:if>
@@ -173,8 +173,8 @@
         <div id="content">
             <h1><spring:message code="user.mgmt.header" /></h1>
             <ul>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
+                <li><a href="<c:url value='/ui/user-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
+                <li><a href="<c:url value='/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
             </ul>
         </div>
 
@@ -182,8 +182,8 @@
             <div class="holder">
                 <h2><spring:message code="user.mgmt.this.account" /></h2>
 	            <ul>
-                    <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/audit/account/${foundAccount.guid}' />" title="<spring:message code='user.mgmt.audit.user' />"><spring:message code='user.mgmt.audit.user' /></a></li>
-                    <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/disable/account/${foundAccount.guid}' />" title="<spring:message code='user.mgmt.remove.user' />"><spring:message code='user.mgmt.remove.user' /></a></li>
+                    <li><a href="<c:url value='/ui/user-management/audit/account/${foundAccount.guid}' />" title="<spring:message code='user.mgmt.audit.user' />"><spring:message code='user.mgmt.audit.user' /></a></li>
+                    <li><a href="<c:url value='/ui/user-management/disable/account/${foundAccount.guid}' />" title="<spring:message code='user.mgmt.remove.user' />"><spring:message code='user.mgmt.remove.user' /></a></li>
 	            </ul>
             </div>
         </div>

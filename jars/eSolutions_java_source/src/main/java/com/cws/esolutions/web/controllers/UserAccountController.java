@@ -752,7 +752,6 @@ public class UserAccountController
         if (DEBUG)
         {
             DEBUGGER.debug(methodName);
-            DEBUGGER.debug("UserChangeRequest: {}", changeReq);
         }
 
         AuthenticationData userSecurity = null;
@@ -828,11 +827,6 @@ public class UserAccountController
             userSecurity = new AuthenticationData();
             userSecurity.setPassword(changeReq.getCurrentPassword());
             userSecurity.setNewPassword(changeReq.getConfirmPassword());
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("AuthenticationData: {}", userSecurity);
-            }
 
             RequestHostInfo reqInfo = new RequestHostInfo();
             reqInfo.setHostAddress(hRequest.getRemoteAddr());
@@ -944,7 +938,6 @@ public class UserAccountController
         if (DEBUG)
         {
             DEBUGGER.debug(methodName);
-            DEBUGGER.debug("AccountChangeData: {}", changeReq);
         }
 
         ModelAndView mView = new ModelAndView();
@@ -1023,11 +1016,15 @@ public class UserAccountController
                 DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
             }
 
+            AuthenticationData authData = new AuthenticationData();
+            authData.setPassword(changeReq.getCurrentPassword());
+
             AccountChangeRequest request = new AccountChangeRequest();
             request.setHostInfo(reqInfo);
             request.setRequestor(userAccount);
             request.setUserAccount(userAccount);
             request.setChangeData(changeReq);
+            request.setUserSecurity(authData);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setApplicationName(this.appConfig.getApplicationName());
             request.setServiceId(this.serviceId);
@@ -1169,11 +1166,6 @@ public class UserAccountController
 
             AuthenticationData userSecurity = new AuthenticationData();
             userSecurity.setPassword(changeReq.getCurrentPassword());
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("AuthenticationData: {}", userSecurity);
-            }
 
             UserAccount modAccount = userAccount;
             modAccount.setEmailAddr(changeReq.getEmailAddr());
@@ -1332,11 +1324,6 @@ public class UserAccountController
 
             AuthenticationData userSecurity = new AuthenticationData();
             userSecurity.setPassword(changeReq.getCurrentPassword());
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("AuthenticationData: {}", userSecurity);
-            }
 
             UserAccount modAccount = userAccount;
             modAccount.setPagerNumber(changeReq.getPagerNumber());

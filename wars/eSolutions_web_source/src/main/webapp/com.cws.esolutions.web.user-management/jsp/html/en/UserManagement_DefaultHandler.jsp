@@ -100,7 +100,7 @@
                 </tr>
                 <c:forEach var="userResult" items="${requestScope.searchResults}">
                     <tr>
-                        <td><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/view/account/${userResult.guid}' />" title="${userResult.username}">${userResult.username}</a></td>
+                        <td><a href="<c:url value='/ui/user-management/view/account/${userResult.guid}' />" title="${userResult.username}">${userResult.username}</a></td>
                         <td>${userResult.displayName}</td>
                     </tr>
                 </c:forEach>
@@ -118,7 +118,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <td>
-                                        <a href="<c:url value='${pageContext.request.contextPath}/user-management/search/terms/${searchTerms}/type/${searchType}/page/${i}' />" title="${i}">${i}</a>
+                                        <a href="<c:url value='/user-management/search/terms/${searchTerms}/type/${searchType}/page/${i}' />" title="${i}">${i}</a>
                                     </td>
                                 </c:otherwise>
                             </c:choose>
@@ -135,8 +135,8 @@
         <div id="content">
             <h1><spring:message code="user.mgmt.header" /></h1>
             <ul>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/user-management/list-users' />" title="<spring:message code='user.mgmt.list.users' />"><spring:message code="user.mgmt.list.users" /></a></li>
+                <li><a href="<c:url value='/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
+                <li><a href="<c:url value='/ui/user-management/list-users' />" title="<spring:message code='user.mgmt.list.users' />"><spring:message code="user.mgmt.list.users" /></a></li>
             </ul>
         </div>
         <br class="clear" />

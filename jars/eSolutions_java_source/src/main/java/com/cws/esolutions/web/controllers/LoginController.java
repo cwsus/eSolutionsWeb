@@ -363,9 +363,6 @@ public class LoginController
         if (DEBUG)
         {
             DEBUGGER.debug(methodName);
-            DEBUGGER.debug("AuthenticationData: {}", authData);
-            DEBUGGER.debug("Model: {}", model);
-            DEBUGGER.debug("RedirectAttributes: {}", redirectAttributes);
         }
 
         ModelAndView mView = new ModelAndView();

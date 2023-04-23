@@ -93,7 +93,7 @@
             <table id="searchResults">
                 <c:forEach var="result" items="${searchResults}">
                     <tr>
-                        <td><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/${searchType}/${result.path}' />" title="${result.title}">${result.title}</a></td>
+                        <td><a href="<c:url value='/ui/datacenter-management/${result.guid}' />" title="${result.name}">${result.name}</a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -111,7 +111,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <td>
-                                        <a href="<c:url value='${pageContext.request.contextPath}/datacenter-management/search/terms/${searchTerms}/type/${searchType}page/${i}' />" title="${i}">${i}</a>
+                                        <a href="<c:url value='/datacenter-management/search/terms/${searchTerms}/type/${searchType}page/${i}' />" title="${i}">${i}</a>
                                     </td>
                                 </c:otherwise>
                             </c:choose>
@@ -126,10 +126,10 @@
 <div id="container">
     <div class="wrapper">
         <div id="content">
-            <h1><spring:message code="svc.mgmt.header" /></h1>
+            <h1><spring:message code="datacenter.mgmt.header" /></h1>
             <ul>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/list-datacenters' />" title="<spring:message code='datacenter.mgmt.list.datacenters' />"><spring:message code="datacenter.mgmt.list.datacenters" /></a></li>
-                <li><a href="<c:url value='${pageContext.request.contextPath}/ui/datacenter-management/add-datacenter' />" title="<spring:message code='datacenter.mgmt.add.datacenter' />"><spring:message code="datacenter.mgmt.add.datacenter" /></a></li>
+                <li><a href="<c:url value='/ui/datacenter-management/list-datacenters' />" title="<spring:message code='datacenter.mgmt.list.datacenters' />"><spring:message code="datacenter.mgmt.list.datacenters" /></a></li>
+                <li><a href="<c:url value='/ui/datacenter-management/add-datacenter' />" title="<spring:message code='datacenter.mgmt.add.datacenter' />"><spring:message code="datacenter.mgmt.add.datacenter" /></a></li>
             </ul>
         </div>
         <br class="clear" />

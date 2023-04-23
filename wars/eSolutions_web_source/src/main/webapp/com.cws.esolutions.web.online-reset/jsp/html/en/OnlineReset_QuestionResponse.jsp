@@ -137,7 +137,7 @@
         <div id="holder">
 	        <h1><spring:message code="login.user.forgot.info" /></h1>
 	        <ul>
-	            <li><a href="<c:url value='${pageContext.request.contextPath}/ui/app/help/forgot-questions' />" title="<spring:message code='olr.forgot.questions' />"><spring:message code="olr.forgot.questions" /></a></li>
+	            <li><a href="<c:url value='/ui/app/help/forgot-questions' />" title="<spring:message code='olr.forgot.questions' />"><spring:message code="olr.forgot.questions" /></a></li>
 	        </ul>
         </div>
         <br class="clear" />

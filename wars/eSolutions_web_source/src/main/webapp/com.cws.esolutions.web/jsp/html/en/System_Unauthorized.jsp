@@ -60,7 +60,7 @@
 	    <c:choose>
 	        <c:when test="${empty fn:trim(sessionScope.userAccount) or empty fn:trim(sessionScope.userAccount.status)}">
 	            <p>
-	                <a href="<c:url value='${pageContext.request.contextPath}/ui/login/default' />" title="<spring:message code='theme.navbar.login' />">
+	                <a href="<c:url value='/ui/login/default' />" title="<spring:message code='theme.navbar.login' />">
 	                    <spring:message code="theme.click.continue" /></a>
 	            </p>
 	        </c:when>
@@ -68,13 +68,13 @@
 	            <c:choose>
 	                <c:when test="${sessionScope.userAccount.status == 'SUCCESS'}">
 	                    <p>
-	                        <a href="<c:url value='${pageContext.request.contextPath}/ui/common/default' />" title="<spring:message code='theme.navbar.home' />">
+	                        <a href="<c:url value='/ui/common/default' />" title="<spring:message code='theme.navbar.home' />">
 	                            <spring:message code="theme.click.continue" /></a>
 	                    </p>
 	                </c:when>
 	                <c:otherwise>
 	                    <p>
-	                        <a href="<c:url value='${pageContext.request.contextPath}/ui/login/default' />" title="<spring:message code='theme.navbar.login' />">
+	                        <a href="<c:url value='/ui/login/default' />" title="<spring:message code='theme.navbar.login' />">
 	                            <spring:message code="theme.click.continue" /></a>
 	                    </p>
 	                </c:otherwise>

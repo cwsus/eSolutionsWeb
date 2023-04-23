@@ -121,11 +121,6 @@ public class OnlineResetValidator implements Validator
 
         AccountChangeData request = (AccountChangeData) target;
 
-        if (DEBUG)
-        {
-            DEBUGGER.debug("UserChangeRequest: {}", request);
-        }
-
         switch (request.getResetType())
         {
             case USERNAME:

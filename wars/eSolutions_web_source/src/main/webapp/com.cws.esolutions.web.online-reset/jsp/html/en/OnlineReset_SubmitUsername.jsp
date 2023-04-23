@@ -101,7 +101,7 @@
         <div id="holder">
 	        <h1><spring:message code="login.user.forgot.info" /></h1>
 	        <ul>
-	            <li><a href="<c:url value='${pageContext.request.contextPath}/ui/online-reset/forgot-username' />" title="<spring:message code='login.user.forgot_uid' />"><spring:message code="login.user.forgot_uid" /></a></li>
+	            <li><a href="<c:url value='/ui/online-reset/forgot-username' />" title="<spring:message code='login.user.forgot_uid' />"><spring:message code="login.user.forgot_uid" /></a></li>
 	        </ul>
         </div>
         <br class="clear" />
