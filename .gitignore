@@ -1,2 +1,6 @@
+**/.idea/
 **/.factorypath
-**/.idea
+**/.classpath
+**/.settings
+**/.project
+**/target
