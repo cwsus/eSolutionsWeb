@@ -47,4 +47,9 @@ public class Constants
     public static final String RESPONSE_MESSAGE = "responseMessage"; // returned from controllers
     public static final String MESSAGE_RESPONSE = "messageResponse"; // returned from the getResponse() method on DTO objects from esol core
     public static final String LINE_BREAK = System.getProperty("line.separator");
+
+	private Constants()
+	{
+		super();
+	}
 }

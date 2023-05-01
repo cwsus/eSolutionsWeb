@@ -90,7 +90,7 @@ public class UserAccountController
     private String messageSecurityChangeFailure = null;
     private String messagePasswordChangeFailure = null;
     private SecurityResponseValidator securityValidator = null;
-    
+
     private static final String CNAME = UserAccountController.class.getName();
 
     private static final Logger DEBUGGER = LogManager.getLogger(Constants.DEBUGGER);

@@ -164,13 +164,11 @@ public class PasswordValidator implements Validator
 
         if (!(changeReq.isReset()))
         {
-        	DEBUGGER.debug("current mismatch");
             ValidationUtils.rejectIfEmptyOrWhitespace(errors, "currentPassword", this.messageCurrentPasswordRequired);
         }
 
         if ((changeReq.getNewPassword().length < this.passwordMinLength) || (changeReq.getNewPassword().length > this.passwordMaxLength))
         {
-        	DEBUGGER.debug("length mismatch");
         	errors.reject("newPassword", this.messagePasswordSizeRequirement);
         }
 
