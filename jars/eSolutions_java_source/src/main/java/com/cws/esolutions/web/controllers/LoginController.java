@@ -526,6 +526,7 @@ public class LoginController
 	                    		userAccount.setSessionId(hSession.getId());
 	                        	hSession.setAttribute(Constants.USER_ACCOUNT, userAccount);
 
+	                        	rView.addObject("isReset", "true");
 	                			rView.addObject(Constants.RESPONSE_MESSAGE, this.appConfig.getMessagePasswordExpired());
 	                			rView.setViewName(this.appConfig.getExpiredRedirect());
 
