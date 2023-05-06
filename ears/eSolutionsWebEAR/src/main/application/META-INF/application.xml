@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd" version="7">
+	<application-name>eSolutionsWeb</application-name>
+  	<description>EAR file for eSolutions_web_source</description>
+  	<display-name>eSolutionsWeb</display-name>
+  	<initialize-in-order>true</initialize-in-order>
+  	<module id="eSolutions.eSolutions_web_source">
+    	<web>
+      		<web-uri>eSolutions-eSolutions_web_source-1.0-SNAPSHOT.war</web-uri>
+      		<context-root>/wps/esolutions</context-root>
+    	</web>
+  	</module>
+</application>

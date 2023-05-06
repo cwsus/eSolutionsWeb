@@ -25,10 +25,6 @@
     <distributable />
 
     <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:eSolutions/eSolutions-application.xml</param-value>
-    </context-param>
-    <context-param>
         <param-name>eSolutionsCoreConfig</param-name>
         <param-value>eSolutionsCore/config/ServiceConfig.xml</param-value>
     </context-param>
@@ -44,54 +40,6 @@
         <param-name>SecurityServiceLogger</param-name>
         <param-value>SecurityService/logging/logging.xml</param-value>
     </context-param>
-    <context-param>
-        <param-name>defaultHtmlEscape</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
-        <param-value>en</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
-        <param-value>en</param-value>
-    </context-param>
-
-    <listener> 
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
-    </listener>
-
-    <filter id="SpringEncodingFilter">
-        <description>Spring Encoding Filter</description>
-        <display-name>SpringEncodingFilter</display-name>
-        <filter-name>encoding-filter</filter-name>
-        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-
-    <filter-mapping id="SpringEncodingFilter_mapping">
-        <filter-name>encoding-filter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <servlet id="eSolutions_servlet">
-        <display-name>eSolutions</display-name>
-        <servlet-name>eSolutions</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:eSolutions/eSolutions-servlet.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    
-    <servlet-mapping id="eSolutions_mapping">
-        <servlet-name>eSolutions</servlet-name>
-        <url-pattern>/ui/*</url-pattern>
-    </servlet-mapping>
 
 	<env-entry>
   		<description>webURL</description>

@@ -1,0 +1,14 @@
+{ localizationPackageName:'com.ibm.bundles', localizationBundleName:'Shelf', identifier:'label', items: [
+	{'label':'change_layout_TopCol2Col','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/TopColumn2ColumnUnequal/','id':'TopColumn2ColumnUnequal','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/TopColumn2ColumnUnequal/icon.zip','help':''},
+	{'label':'change_layout_TopCol3Col','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/TopColumn3ColumnCenter/','id':'TopColumn3ColumnCenter','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/TopColumn3ColumnCenter/icon.zip','help':''},
+	{'label':'change_layout_col1','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/1Column/','id':'1Column','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/1Column/icon.zip','help':''},
+	{'label':'change_layout_col2Equal','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/2ColumnEqual/','id':'2ColumnEqual','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/2ColumnEqual/icon.zip','help':''},
+	{'label':'change_layout_col2Right','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/2ColumnRight/','id':'2ColumnRight','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/2ColumnRight/icon.zip','help':''},
+	{'label':'change_layout_col2Left','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/2ColumnLeft/','id':'2ColumnLeft','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/2ColumnLeft/icon.zip','help':''},
+	{'label':'change_layout_col3Center','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/3ColumnCenter/','id':'3ColumnCenter','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/3ColumnCenter/icon.zip','help':''},
+	{'label':'change_layout_col3Equal','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/3ColumnEqual/','id':'3ColumnEqual','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/3ColumnEqual/icon.zip','help':''},
+	{'label':'change_layout_2Row','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/2Row/','id':'2Row','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/2Row/icon.zip','help':''},
+	{'label':'change_layout_1Row2Col','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/1Row2ColumnUnequal/','id':'1Row2ColumnUnequal','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/1Row2ColumnUnequal/icon.zip','help':''},
+	{'label':'change_layout_1Row3Col','url':ibmCfg.themeConfig.themeWebDAVBaseURI+'layout-templates/1Row3ColumnEqual/','id':'1Row3ColumnEqual','thumbnail':'dav:fs-type1/themes/Portal8.5/layout-templates/1Row3ColumnEqual/icon.zip','help':''}
+	] 
+}

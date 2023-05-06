@@ -1,0 +1,292 @@
+{
+	"moduleIDs": [
+		"dch_module",
+		"getting_started_module",
+		"wp_dynamicContentSpots_eSolutions",
+		"wp_dynamicContentSpots_85",
+		"wp_toolbar_host_view",
+		"wp_one_ui",
+		"wp_portlet_css",
+		"wp_client_ext",
+		"wp_status_bar",
+		"wp_theme_menus",
+		"wp_theme_skin_region",
+		"wp_high_contrast",
+		"wp_layout_windowstates",
+		"wp_portal",
+		"wp_analytics_aggregator",
+		"wp_oob_sample_styles",
+		"wp_ic4_wai_resources",
+		"wp_worklight_ext",
+		"wp_sametime_proxy"
+	],
+	"deferredModuleIDs": [
+		"wp_theme_portal_edit_85",
+		"wp_toolbar_host_edit",
+		"wp_analytics_tags",
+		"wp_contextmenu_live_object",
+		"wp_content_targeting_cam",
+		"wcm_inplaceEdit",
+		"wp_skin_cam"
+	],
+	"titles": [
+		{
+			"value":"ملف بيانات تعريف Content Hub",
+			"lang":"ar"
+		},
+		{
+			"value":"Perfil del Content Hub",
+			"lang":"ca"
+		},
+		{
+			"value":"Profil Content Hub",
+			"lang":"cs"
+		},
+		{
+			"value":"Content Hub-profil",
+			"lang":"da"
+		},
+		{
+			"value":"Content Hub-Profil",
+			"lang":"de"
+		},
+		{
+			"value":"Προφίλ Content Hub",
+			"lang":"el"
+		},
+		{
+			"value":"Content Hub Profile",
+			"lang":"en"
+		},
+		{
+			"value":"Perfil de Content Hub",
+			"lang":"es"
+		},
+		{
+			"value":"Content Hub -palvelun profiili",
+			"lang":"fi"
+		},
+		{
+			"value":"Profil Content Hub",
+			"lang":"fr"
+		},
+		{
+			"value":"פרופיל מרכז התוכן",
+			"lang":"he"
+		},
+		{
+			"value":"Content Hub profil",
+			"lang":"hr"
+		},
+		{
+			"value":"Content Hub profil",
+			"lang":"hu"
+		},
+		{
+			"value":"Profilo hub del contenuto",
+			"lang":"it"
+		},
+		{
+			"value":"Content Hub プロファイル",
+			"lang":"ja"
+		},
+		{
+			"value":"Мазмұнның хаб профильі",
+			"lang":"kk"
+		},
+		{
+			"value":"Content Hub 프로파일",
+			"lang":"ko"
+		},
+		{
+			"value":"Content Hub-profiel",
+			"lang":"nl"
+		},
+		{
+			"value":"Content Hub-profil",
+			"lang":"no"
+		},
+		{
+			"value":"Profil produktu Content Hub",
+			"lang":"pl"
+		},
+		{
+			"value":"Perfil do hub de conteúdo",
+			"lang":"pt"
+		},
+		{
+			"value":"Perfil do Content Hub",
+			"lang":"pt_BR"
+		},
+		{
+			"value":"Profil Content Hub",
+			"lang":"ro"
+		},
+		{
+			"value":"Профайл Content Hub",
+			"lang":"ru"
+		},
+		{
+			"value":"Profil Content Hub",
+			"lang":"sk"
+		},
+		{
+			"value":"Profil Content Hub",
+			"lang":"sl"
+		},
+		{
+			"value":"Innehållshubbsprofil",
+			"lang":"sv"
+		},
+		{
+			"value":"Content Hub Profile",
+			"lang":"th"
+		},
+		{
+			"value":"Content Hub Profili",
+			"lang":"tr"
+		},
+		{
+			"value":"Профайл центру матеріалів",
+			"lang":"uk"
+		},
+		{
+			"value":"Content Hub 概要文件",
+			"lang":"zh"
+		},
+		{
+			"value":"內容中心設定檔",
+			"lang":"zh_TW"
+		}
+	],
+	"descriptions": [
+		{
+			"value":"يتضمن ملف بيانات التعريف هذا وحدات البرامج المطلوبة للتكامل مع IBM Watson Content Hub المبني على أساس وحدة شارات التعليم المجمعة.",
+			"lang":"ar"
+		},
+		{
+			"value":"Aquest perfil conté els mòduls necessaris per a la integració amb l'IBM Watson Content Hub en el núvol.",
+			"lang":"ca"
+		},
+		{
+			"value":"Tento profil obsahuje moduly nezbytné pro integraci s produktem IBM Watson Content Hub založeným na cloudu.",
+			"lang":"cs"
+		},
+		{
+			"value":"Profilen indeholder de moduler, der kræves til integration med den skybaserede IBM Watson Content Hub.",
+			"lang":"da"
+		},
+		{
+			"value":"Dieses Profil enthält die Module, die für die Integration mit dem cloudbasierten IBM Watson Content Hub erforderlich sind.",
+			"lang":"de"
+		},
+		{
+			"value":"Αυτό το προφίλ περιλαμβάνει τις λειτουργικές μονάδες που είναι απαραίτητες για την ενοποίηση με το βασιζόμενο στο cloud IBM Watson Content Hub.",
+			"lang":"el"
+		},
+		{
+			"value":"This profile contains the modules required for integration with the cloud-based IBM Watson Content Hub.",
+			"lang":"en"
+		},
+		{
+			"value":"Este perfil contiene los módulos necesarios para la integración con el IBM Watson Content Hub basado en nube.",
+			"lang":"es"
+		},
+		{
+			"value":"Profiili sisältää moduulit, joita tarvitaan integrointiin pilviperustaisen IBM Watson Content Hub -palvelun kanssa.",
+			"lang":"fi"
+		},
+		{
+			"value":"Ce profil contient les modules requis pour l'intégration au concentrateur IBM Watson Content Hub reposant sur le cloud.",
+			"lang":"fr"
+		},
+		{
+			"value":"פרופיל זה מכיל את המודולים הדרושים לשילוב עם מרכז התוכן מבוסס-הענן של IBM Watson.‏",
+			"lang":"he"
+		},
+		{
+			"value":"Ovaj profil sadrži module potrebne za integraciju s cloud baziranim IBM Watson Content Hubom.",
+			"lang":"hr"
+		},
+		{
+			"value":"Ez a profil tartalmazza azokat a modulokat, amelyekre a felhő alapú IBM Watson Content Hub integrációjához szükség van.",
+			"lang":"hu"
+		},
+		{
+			"value":"Questo profilo contiene i moduli richiesti per l'integrazione con IBM Watson Content Hub basato sul cloud.",
+			"lang":"it"
+		},
+		{
+			"value":"このプロファイルは、クラウド・ベースの IBM Watson Content Hub との統合に必要なモジュールを含みます。",
+			"lang":"ja"
+		},
+		{
+			"value":"Бұл профиль бұлт-негізделген IBM Watson мазмұн хабы бар біріктірілімі үшін сұралған модулдерді қамтиды.",
+			"lang":"kk"
+		},
+		{
+			"value":"이 프로파일에는 클라우드 기반 IBM Watson Content Hub와의 통합에 필요한 모듈이 포함되어 있습니다.",
+			"lang":"ko"
+		},
+		{
+			"value":"Dit profiel bevat de modules die vereist zijn voor integratie met de in de cloud werkende IBM Watson Content Hub.",
+			"lang":"nl"
+		},
+		{
+			"value":"Denne profilen inneholder modulene som er nødvendige for integreringen med den nettskybaserte IBM Watson Content Hub.",
+			"lang":"no"
+		},
+		{
+			"value":"Ten profil zawiera moduły, które są wymagane na potrzeby integracji z produktem IBM Watson Content Hub działającym w chmurze.",
+			"lang":"pl"
+		},
+		{
+			"value":"Este perfil contém os módulos necessários para a integração com o IBM Watson Content Hub baseado na cloud.",
+			"lang":"pt"
+		},
+		{
+			"value":"Este perfil contém os módulos necessários para a integração com o IBM Watson Content Hub baseado na nuvem.",
+			"lang":"pt_BR"
+		},
+		{
+			"value":"Acest profil conţine modulele necesare pentru integrarea cu IBM Watson Content Hub bazat pe cloud.",
+			"lang":"ro"
+		},
+		{
+			"value":"Этот профайл содержит модули, необходимые для интеграции с облачным решением IBM Watson Content Hub.",
+			"lang":"ru"
+		},
+		{
+			"value":"Tento profil obsahuje moduly vyžadované pre integráciu s produktom IBM Watson Content Hub založeným na cloude.",
+			"lang":"sk"
+		},
+		{
+			"value":"Ta profil vsebuje module, potrebne za integracijo s središčem IBM Watson Content Hub v oblaku.",
+			"lang":"sl"
+		},
+		{
+			"value":"Profilen innehåller moduler som kräver integrering med den molnbaserade IBM Watson Content Hub.",
+			"lang":"sv"
+		},
+		{
+			"value":"โปรไฟล์นี้ประกอบด้วยโมดูลที่จำเป็นสำหรับการรวมกับ IBM Watson Content Hub แบบคลาวด์",
+			"lang":"th"
+		},
+		{
+			"value":"Bu profil, bulut tabanlı IBM Watson Content Hub ile bütünleşmek için gereken modülleri sağlar.",
+			"lang":"tr"
+		},
+		{
+			"value":"Цей профайл містить модулі, необхідні для інтеграції з хмаровою службою IBM Watson Content Hub.",
+			"lang":"uk"
+		},
+		{
+			"value":"此概要文件包含与基于云的 IBM Watson Content Hub 进行集成所需的模块。",
+			"lang":"zh"
+		},
+		{
+			"value":"此設定檔包含與雲端型「IBM Watson Content Hub」整合所需的模組。",
+			"lang":"zh_TW"
+		}
+	]
+}

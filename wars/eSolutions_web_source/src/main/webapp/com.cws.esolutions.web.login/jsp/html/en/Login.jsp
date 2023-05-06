@@ -71,40 +71,27 @@
 	    <c:if test="${not empty fn:trim(errorResponse)}">
 	        <p id="error">${errorResponse}</p>
 	    </c:if>
-	    <c:if test="${not empty fn:trim(responseMessage)}">
-	        <p id="info"><spring:message code="${responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorMessage)}">
-	        <p id="error"><spring:message code="${errorMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.responseMessage)}">
-        	<p id="info"><spring:message code="${param.responseMessage}" /></p>
-    	</c:if>
-	    <c:if test="${not empty fn:trim(param.errorMessage)}">
-    	    <p id="error"><spring:message code="${param.errorMessage}" /></p>
-	    </c:if>
 
-        <h1><spring:message code="login.user.combined.message" /></h1>
-        <form:form id="submitCombinedLogin" name="submitCombinedLogin" action="${pageContext.request.contextPath}/ui/auth/submit" method="post">
+		<!-- TODO -->
+        <h1>Login</h1>
+        <form id="submitCombinedLogin" name="submitCombinedLogin" action="${pageContext.request.contextPath}/ui/auth/submit" method="post">
             <table>
                 <tr>
-                    <td><label id="txtUsername"><spring:message code="login.user.name" /></label></td>
+                    <td><label id="txtUsername">Username:</label></td>
                     <td>
-                        <form:input path="username" />
-                        <form:errors path="username" cssClass="error" />
+                        <input type="text" id="username" name="username" />
                     </td>
-                    <td><a href="<c:url value='/ui/online-reset/forgot-username' />" title="<spring:message code='login.user.forgot_uid' />"><spring:message code="login.user.forgot_uid" /></a></td>
+                    <td><a href="<c:url value='/ui/online-reset/forgot-username' />" title="<spring:message code='login.user.forgot_uid' />">Forgot Username?</a></td>
                 </tr>
                 <tr>
-                    <td><label id="txtPassword"><spring:message code="login.user.pwd" /></label></td>
+                    <td><label id="txtPassword">Password:</label></td>
                     <td>
-                        <form:password path="password" />
-                        <form:errors path="password" cssClass="error" />
+                    	<input type="password" id="password" name="password" />
                     </td>
-                    <td><a href="<c:url value='/ui/online-reset/forgot-password' />" title="<spring:message code='login.user.forgot_pwd' />"><spring:message code="login.user.forgot_pwd" /></a></td>
+                    <td><a href="<c:url value='/ui/online-reset/forgot-password' />" title="<spring:message code='login.user.forgot_pwd' />">Forgot Password?</a></td>
             </table>
             <br class="clear" /><br class="clear" />
             <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
-        </form:form>
+        </form>
 	</div>
 </div>

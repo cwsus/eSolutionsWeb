@@ -29,55 +29,46 @@ package com.cws.esolutions.web;
 import java.lang.reflect.Field;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
-import com.cws.esolutions.web.validators.EmailAddressValidator;
-import com.cws.esolutions.web.validators.WebMessageValidator;
 /**
  * @author cws-khuntly
  * @version 1.0
  */
-@Component
 public class ApplicationServiceBean
 {
-	@Autowired private String homePage = null;
-	@Autowired private String dateFormat = null;
-	@Autowired private String olrRedirect = null;
-	@Autowired private String fileEncoding = null;
-	@Autowired private String homeRedirect = null;
-	@Autowired private String emailAddress = null;
-	@Autowired private String logonRedirect = null;
-	@Autowired private String applicationId = null;
-	@Autowired private String expiredRedirect = null;
-	@Autowired private String applicationName = null;
-	@Autowired private String unavailablePage = null;
-	@Autowired private String messageOlrSetup = null;
-	@Autowired private String passwordMinLength = "8";
-	@Autowired private String unauthorizedPage = null;
-	@Autowired private String contactAdminsPage = null;
-	@Autowired private String errorResponsePage = null;
-	@Autowired private String searchRequestPage = null;
-	@Autowired private String passwordMaxLength = "128";
-	@Autowired private String themeMessageSource = null;
-	@Autowired private String requestCompletePage = null;
-	@Autowired private String messageAccountLocked = null;
-	@Autowired private String contactAdminsRedirect = null;
-	@Autowired private String messageNoSearchResults = null;
-	@Autowired private String messageEmailSendFailed = null;
-	@Autowired private String messageRequestCanceled = null;
-	@Autowired private String messagePasswordExpired = null;
-	@Autowired private String messageUserNotLoggedIn = null;
-	@Autowired private String messageValidationFailed = null;
-	@Autowired private String messageEmailSentSuccess = null;
-	@Autowired private String messageAccountSuspended = null;
-	@Autowired @Qualifier("webURL") private String webURL = null;
-	@Autowired private String messageAccountNotAuthorized = null;
-	@Autowired private EmailAddressValidator emailValidator = null;
-	@Autowired private WebMessageValidator messageValidator = null;
-	@Autowired private String messageRequestProcessingFailure = null;
-	@Autowired private String messagePasswordLengthCheckFailed = null;
+	private String webURL = null;
+	private String homePage = null;
+	private String dateFormat = null;
+	private String olrRedirect = null;
+	private String fileEncoding = null;
+	private String homeRedirect = null;
+	private String emailAddress = null;
+	private String logonRedirect = null;
+	private String applicationId = null;
+	private String expiredRedirect = null;
+	private String applicationName = null;
+	private String unavailablePage = null;
+	private String messageOlrSetup = null;
+	private String passwordMinLength = "8";
+	private String unauthorizedPage = null;
+	private String contactAdminsPage = null;
+	private String errorResponsePage = null;
+	private String searchRequestPage = null;
+	private String passwordMaxLength = "128";
+	private String themeMessageSource = null;
+	private String requestCompletePage = null;
+	private String messageAccountLocked = null;
+	private String contactAdminsRedirect = null;
+	private String messageNoSearchResults = null;
+	private String messageEmailSendFailed = null;
+	private String messageRequestCanceled = null;
+	private String messagePasswordExpired = null;
+	private String messageUserNotLoggedIn = null;
+	private String messageValidationFailed = null;
+	private String messageEmailSentSuccess = null;
+	private String messageAccountSuspended = null;
+	private String messageAccountNotAuthorized = null;
+	private String messageRequestProcessingFailure = null;
+	private String messagePasswordLengthCheckFailed = null;
 
     private static final String CNAME = ApplicationServiceBean.class.getName();
 
@@ -435,19 +426,6 @@ public class ApplicationServiceBean
         this.messageEmailSentSuccess = value;
     }
 
-    public final void setMessageValidator(final WebMessageValidator value)
-    {
-        final String methodName = ApplicationServiceBean.CNAME + "#setMessageValidator(final WebMessageValidator value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.messageValidator = value;
-    }
-
     public final void setThemeMessageSource(final String value)
     {
         final String methodName = ApplicationServiceBean.CNAME + "#setThemeMessageSource(final String value)";
@@ -472,19 +450,6 @@ public class ApplicationServiceBean
         }
 
         this.expiredRedirect = value;
-    }
-
-    public final void setEmailValidator(final EmailAddressValidator value)
-    {
-        final String methodName = ApplicationServiceBean.CNAME + "#getEmailValidator(final EmailAddressValidator value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.emailValidator = value;
     }
 
     public final void setMessageAccountSuspended(final String value)
@@ -890,19 +855,6 @@ public class ApplicationServiceBean
         return this.messageEmailSentSuccess;
     }
 
-    public final WebMessageValidator getMessageValidator()
-    {
-        final String methodName = ApplicationServiceBean.CNAME + "#getMessageValidator(final WebMessageValidator value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", this.messageValidator);
-        }
-
-        return this.messageValidator ;
-    }
-
     public final String getThemeMessageSource()
     {
         final String methodName = ApplicationServiceBean.CNAME + "#getThemeMessageSource()";
@@ -927,19 +879,6 @@ public class ApplicationServiceBean
         }
 
         return this.contactAdminsRedirect;
-    }
-
-    public final EmailAddressValidator getEmailValidator()
-    {
-        final String methodName = ApplicationServiceBean.CNAME + "#getEmailValidator()";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", this.emailValidator);
-        }
-
-        return this.emailValidator;
     }
 
     public final String getExpiredRedirect()

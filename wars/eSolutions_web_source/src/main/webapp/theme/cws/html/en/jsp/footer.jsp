@@ -35,21 +35,21 @@
 		<div id="footer">
 			<div class="wrapper">
 				<c:if test="${not empty fn:trim(sessionScope.userAccount)}">
-				    <spring:message code="theme.welcome.message" arguments="${sessionScope.userAccount.username}; ${sessionScope.userAccount.lastLogin}" argumentSeparator=";" /><br /><br />
-                    <a href="<c:url value='/ui/common/default' />" title="<spring:message code='theme.navbar.homepage' />"><spring:message code='theme.navbar.homepage' /></a> |
-					<a href="<c:url value='/ui/auth/logout' />" title="<spring:message code='theme.navbar.logoff' />"><spring:message code='theme.navbar.logoff' /></a> |
-					<a href="<c:url value='/ui/user-account/default' />" title="<spring:message code='theme.navbar.myaccount' />"><spring:message code="theme.navbar.myaccount" /></a> |
-                    <a href="<c:url value='/ui/common/contact' />" title="<spring:message code='theme.contact.us' />"><spring:message code='theme.contact.us' /></a>
+				    Welcome1<br /><br />
+                    <a href="<c:url value='/ui/common/default' />" title="<spring:message code='theme.navbar.homepage' />">Homepage</a> |
+					<a href="<c:url value='/ui/auth/logout' />" title="<spring:message code='theme.navbar.logoff' />">Logoff</a> |
+					<a href="<c:url value='/ui/user-account/default' />" title="<spring:message code='theme.navbar.myaccount' />">My Account</a> |
+                    <a href="<c:url value='/ui/common/contact' />" title="<spring:message code='theme.contact.us' />">Contact Us</a>
 				</c:if>
 				<br class="clear" />
 			</div>
 
 			<div id="copyright">
 		  		<div class="wrapper">
-		            &copy; <spring:message code="theme.footer.copyright" />
+		            &copy; CWS
 		            <br class="clear" />
-		            <strong><spring:message code="theme.footer.more.info" /></strong><a href="<c:url value='http://www.caspersbox.com/cws/ui/home/default' />"
-		                title="<spring:message code="theme.footer.homepage" />" target="_blank"><spring:message code="theme.footer.homepage" /></a><br />
+		            <strong>More Info:</strong><a href="<c:url value='http://www.caspersbox.com/cws/ui/home/default' />"
+		                title="CaspersBox Web Services" target="_blank">Homepage</a><br />
 				    <br class="clear" />
 				</div>
 			</div>

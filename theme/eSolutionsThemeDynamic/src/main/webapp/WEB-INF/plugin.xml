@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="eSolutionsTheme" name="eSolutionsTheme" provider-name="CWSNA" version="1.0.0">
+    <extension id="wp_dynamicContentSpots_eSolutionsTheme" point="com.ibm.portal.resourceaggregator.module">
+        <module id="wp_dynamicContentSpots_eSolutionsTheme">
+        	<title lang="en" value="Dynamic Content Spots for the eSolutions Theme"/>
+            <description lang="en" value="Defines all dynamic content spots for the 8.5 Theme. This allows to easily overlay any dynamic content spot through other modules."/>
+            <contribution type="dyn-cs">
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_footer">
+                    <uri value="res:{war:context-root}/themes/html/dynamicSpots/footer.jsp"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_crumbTrail">
+                    <uri value="mvc:res:{war:context-root}/themes/html/dynamicSpots/crumbTrail.jsp,smartphone@"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_topNav">
+                    <uri value="mvc:smartphone/tablet@res:{war:context-root}/themes/html/dynamicSpots/navigation.jsp?type=top"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_primaryNav">
+                    <uri value="mvc:res:{war:context-root}/themes/html/dynamicSpots/navigation.jsp?type=primary,smartphone@,tablet@"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_secondaryNav">
+                    <uri value="mvc:res:{war:context-root}/themes/html/dynamicSpots/navigation.jsp?type=secondary,smartphone@,tablet@"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_sideNav">
+                    <uri value="mvc:res:{war:context-root}/themes/html/dynamicSpots/sideNavigation.jsp?startLevel=2,smartphone@,tablet@"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_mobileNav">
+                    <uri value="mvc:smartphone/tablet@res:{war:context-root}/themes/html/dynamicSpots/lazyMobileNavigation.jsp?context={war:context-root}"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_mobileNav_static">
+                    <uri value="mvc:smartphone/tablet@res:{war:context-root}/themes/html/dynamicSpots/mobileNavigation.jsp"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_commonActions">
+                    <uri value="res:{war:context-root}/themes/html/dynamicSpots/commonActions.jsp"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_layout">
+                    <uri value="lm:template"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_toolbar">
+					<uri value="mc:wp_toolbar85@mvc:dyn-cs%3Aid%3A85toolbar%2Csmartphone%40%2Ctablet%40"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_head">
+                    <uri value="res:{war:context-root}/themes/html/dynamicSpots/head.jsp"/>
+                </sub-contribution>
+                <sub-contribution type="markup" ref-id="eSolutionsTheme_status">
+                    <uri value="mc:wp_status_bar@res:{war:context-root}/themes/html/dynamicSpots/status.jsp"/>
+                </sub-contribution>
+            </contribution>
+        </module>
+    </extension>
+</plugin>

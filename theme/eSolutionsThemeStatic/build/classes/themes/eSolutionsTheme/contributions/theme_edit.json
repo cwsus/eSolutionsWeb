@@ -1,0 +1,294 @@
+{
+	"modules": [
+		{
+			"id":"wp_theme_portal_edit_85",
+			"contributions": [
+				{
+					"type":"head",
+					"sub-contributions": [
+						{
+							"type":"css",
+							"uris": [
+								{
+									"value":"/css/default/default_edit.css"
+								},
+								{
+									"value":"/css/default/default_editRTL.css",
+									"type":"rtl"
+								},
+								{
+									"value":"/css/default/default_editRTL.css.uncompressed.css",
+									"type":"rtl,debug"
+								},
+								{
+									"value":"/css/default/default_edit.css.uncompressed.css",
+									"type":"debug"
+								}
+							]
+						}
+					]
+				}
+			],
+			"titles": [
+				{
+					"value":"الرئيسي (النسق الرئيسي 8.5) في نمط التحرير",
+					"lang":"ar"
+				},
+				{
+					"value":"Principal (Tema 8.5) en mode d'edició",
+					"lang":"ca"
+				},
+				{
+					"value":"Hlavní (motiv 8.5) v režimu úprav",
+					"lang":"cs"
+				},
+				{
+					"value":"Overordnet (8.5-tema) i redigeringstilstand",
+					"lang":"da"
+				},
+				{
+					"value":"Hauptmenü (8.5-Motiv) im Bearbeitungsmodus",
+					"lang":"de"
+				},
+				{
+					"value":"Κύριο (Θέμα 8.5) σε κατάσταση τροποποίησης",
+					"lang":"el"
+				},
+				{
+					"value":"Main (8.5 Theme) in edit mode",
+					"lang":"en"
+				},
+				{
+					"value":"Principal (Tema 8.5) en modalidad de edición",
+					"lang":"es"
+				},
+				{
+					"value":"Pääobjekti (8.5-teema) muokkaustilassa",
+					"lang":"fi"
+				},
+				{
+					"value":"Principal (thème 8.5) en mode édition",
+					"lang":"fr"
+				},
+				{
+					"value":"ראשי (ערכה 8.5) במצב עריכה",
+					"lang":"he"
+				},
+				{
+					"value":"Glavni (8.5 tema) u načinu uređivanja",
+					"lang":"hr"
+				},
+				{
+					"value":"Fő (8.5 téma) szerkesztési módban",
+					"lang":"hu"
+				},
+				{
+					"value":"Principale (tema 8.5) in modalità di modifica",
+					"lang":"it"
+				},
+				{
+					"value":"編集モードのメイン (8.5 テーマ)",
+					"lang":"ja"
+				},
+				{
+					"value":"Өңдеу режиміндегі негізгі (8.5 Тақырып)",
+					"lang":"kk"
+				},
+				{
+					"value":"편집 모드의 기본(8.5 테마)",
+					"lang":"ko"
+				},
+				{
+					"value":"Hoofd (8.5-thema) in bewerkingsmodus",
+					"lang":"nl"
+				},
+				{
+					"value":"Main (8.5 Theme) i redigeringsmodus",
+					"lang":"no"
+				},
+				{
+					"value":"Główny (kompozycja w wersji 8.5) w trybie edycji",
+					"lang":"pl"
+				},
+				{
+					"value":"Principal (Tema 8.5) no modo de edição",
+					"lang":"pt"
+				},
+				{
+					"value":"Principal (Tema 8.5) no modo de edição",
+					"lang":"pt_BR"
+				},
+				{
+					"value":"Principal (Tema 8.5) în modul de editare",
+					"lang":"ro"
+				},
+				{
+					"value":"Основной модуль (тема 8.5) в режиме редактирования",
+					"lang":"ru"
+				},
+				{
+					"value":"Hlavná (téma 8.5) v režime úpravy",
+					"lang":"sk"
+				},
+				{
+					"value":"Glavno (tema 8.5) v načinu za urejanje",
+					"lang":"sl"
+				},
+				{
+					"value":"Main (8.5 Theme) i redigeringsläge",
+					"lang":"sv"
+				},
+				{
+					"value":"Main (8.5 Theme) ในโหมดแก้ไข",
+					"lang":"th"
+				},
+				{
+					"value":"Düzenleme Kipinde Ana (8.5 Teması)",
+					"lang":"tr"
+				},
+				{
+					"value":"Голова (тема 8.5) у режимі редагування",
+					"lang":"uk"
+				},
+				{
+					"value":"处于编辑方式的主要（8.5 主题）",
+					"lang":"zh"
+				},
+				{
+					"value":"編輯模式中的主要（8.5 佈景主題）",
+					"lang":"zh_TW"
+				}
+			],
+			"descriptions": [
+				{
+					"value":"يتيح مصادر النسق الرئيسيالخاصة مثل أنماط css في نمط التحرير.",
+					"lang":"ar"
+				},
+				{
+					"value":"Proporciona recursos específics de tema com ara estils css en mode d'edició.",
+					"lang":"ca"
+				},
+				{
+					"value":"Poskytuje prostředky specifické pro motiv, jako např. styly css, v režimu úprav.",
+					"lang":"cs"
+				},
+				{
+					"value":"Leverer temaspecifikke ressourcer som f.eks. CSS-typografier i redigeringstilstand.",
+					"lang":"da"
+				},
+				{
+					"value":"Stellt motivspezifische Ressourcen wie CSS-Stile im Bearbeitungsmodus zur Verfügung.",
+					"lang":"de"
+				},
+				{
+					"value":"Παρέχει τους πόρους για το θέμα, όπως π.χ. αρχεία στυλ CSS σε κατάσταση τροποποίησης.",
+					"lang":"el"
+				},
+				{
+					"value":"Provides theme specific resources such as css styles in edit mode.",
+					"lang":"en"
+				},
+				{
+					"value":"Proporciona recursos específicos del tema, como por ejemplo estilos css en modalidad de edición.",
+					"lang":"es"
+				},
+				{
+					"value":"Tarjoaa teemakohtaiset resurssit, kuten CSS-tyylitiedostot muokkaustilassa.",
+					"lang":"fi"
+				},
+				{
+					"value":"Fournit des ressources spécifiques de thème telles que des styles CSS en mode édition.",
+					"lang":"fr"
+				},
+				{
+					"value":"מספק משאבים ספציפיים לערכה כגון סגנונות css במצב עריכה.",
+					"lang":"he"
+				},
+				{
+					"value":"Pruža resurse specifične za temu, kao što su css stilovi u načinu uređivanja.",
+					"lang":"hr"
+				},
+				{
+					"value":"Biztosítja a témaspecifikus erőforrásokat, például a CSS stílusokat szerkesztési módban.",
+					"lang":"hu"
+				},
+				{
+					"value":"Fornisce risorse specifiche di tema come ad esempio stili css in modalità di modifica.",
+					"lang":"it"
+				},
+				{
+					"value":"編集モードの CSS スタイルなどのテーマ固有のリソース提供します。",
+					"lang":"ja"
+				},
+				{
+					"value":"Өңдеу режиміндегі css мәнерлері сияқты тақырың арнайы ресурстарын береді.",
+					"lang":"kk"
+				},
+				{
+					"value":"편집 모드에서 CSS 스타일과 같은 테마 특정 자원을 제공합니다.",
+					"lang":"ko"
+				},
+				{
+					"value":"Biedt themaspecifieke resources, zoals CSS-stijlen, in bewerkingsmodus.",
+					"lang":"nl"
+				},
+				{
+					"value":"Leverer temaspesifikke ressurser som CSS-stiler i redigeringsmodus.",
+					"lang":"no"
+				},
+				{
+					"value":"Udostępnia zasoby specyficzne dla kompozycji, takie jak style CSS i tryb edycji.",
+					"lang":"pl"
+				},
+				{
+					"value":"Fornece recursos específicos de tema como, por exemplo, estilos css em modo de edição.",
+					"lang":"pt"
+				},
+				{
+					"value":"Fornece recursos de tema específicos como estilos css no modo de edição.",
+					"lang":"pt_BR"
+				},
+				{
+					"value":"Furnizează resursele specifice temei cum ar fi stilurile css în modul de editare.",
+					"lang":"ro"
+				},
+				{
+					"value":"Предоставляет ресурсы для тем, такие как стили css, в режиме редактирования.",
+					"lang":"ru"
+				},
+				{
+					"value":"Poskytuje prostriedky špecifické pre tému, ako sú štýly, v režime úpravy.",
+					"lang":"sk"
+				},
+				{
+					"value":"Ponuja vire, specifične za določeno temo, kot so slogi CSS, v načinu urejanja.",
+					"lang":"sl"
+				},
+				{
+					"value":"Temaspecifika resurser som CSS-format i redigeringsläge.",
+					"lang":"sv"
+				},
+				{
+					"value":"จัดเตรียมรีซอร์สที่ระบุเฉพาะ เช่น สไตล์ css ในโหมดแก้ไข",
+					"lang":"th"
+				},
+				{
+					"value":"Düzenleme kipinde CSS biçemleri gibi, temaya özel kaynakları sağlar.",
+					"lang":"tr"
+				},
+				{
+					"value":"Надає ресурси окремої теми, наприклад стилі css, у режимі редагування.",
+					"lang":"uk"
+				},
+				{
+					"value":"在编辑方式下提供特定于主题的资源（例如，CSS 样式）。",
+					"lang":"zh"
+				},
+				{
+					"value":"提供佈景主題特定的資源（例如編輯模式中的 CSS 樣式）。",
+					"lang":"zh_TW"
+				}
+			]
+		}
+	]
+}

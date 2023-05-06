@@ -17,7 +17,7 @@
 package com.cws.esolutions.web.helpers;
 /*
  * Project: eSolutions_java_source
- * Package: com.cws.esolutions.web.controllers
+ * Package: com.cws.esolutions.web.portlet
  * File: LoginController.java
  *
  * History

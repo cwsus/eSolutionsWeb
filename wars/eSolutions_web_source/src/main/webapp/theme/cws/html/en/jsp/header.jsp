@@ -37,17 +37,12 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@page import="com.cws.esolutions.security.enums.SecurityUserRole" %>
 
-<spring:htmlEscape defaultHtmlEscape="true" />
-
-<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<html lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
 
     <head>
-        <title><spring:message code="theme.title" /></title>
+        <title>eSolutions</title>
         <link rel="stylesheet" href="/static/layout/styles/layout.css" type="text/css" />
         <link rel="stylesheet" href="/static/layout/styles/messages.css" type="text/css" />
         <link rel="image/x-icon" href="/static/img/favicon.ico" />
@@ -62,7 +57,7 @@
         <meta name="robots" content="index,follow,noarchive" />
         <meta name="GoogleBot" content="noarchive" />
         <meta name="Author" content="eSolutions" />
-        <meta name="copyright" content="<spring:message code="theme.footer.copyright" />" />
+        <meta name="copyright" content="&copy; 2007 - 2013 CaspersBox Web Services" />
         <meta name="description" content="eSolutionsService" />
         <meta name="keywords" content="incident, change management, incident management, infinix, caspersbox, caspersbox web services" />
 		<script type="text/javascript" src="/static/layout/scripts/jquery.min.js"></script>
@@ -121,12 +116,12 @@
     			<c:if test="${not empty fn:trim(sessionScope.userAccount)}">
     				<div id="topnav">
     					<ul>
-    					    <li><a href="<c:url value='/ui/datacenter-management/default' />" title="<spring:message code='theme.navbar.datacenter-mgmt' />"><spring:message code='theme.navbar.datacenter-mgmt' /></a></li>
-        					<li><a href="<c:url value='/ui/dns-service/default' />" title="<spring:message code='theme.navbar.dns-services' />"><spring:message code='theme.navbar.dns-services' /></a></li>
-                            <li><a href="<c:url value='/ui/knowledge-management/default' />" title="<spring:message code='theme.navbar.knowledge' />"><spring:message code="theme.navbar.knowledge" /></a></li>
-                            <li><a href="<c:url value='/ui/server-management/default' />" title="<spring:message code='theme.navbar.server-mgmt' />"><spring:message code='theme.navbar.server-mgmt' /></a></li>
+    					    <li><a href="<c:url value='/ui/datacenter-management/default' />" title="<spring:message code='theme.navbar.datacenter-mgmt' />">DC</a></li>
+        					<li><a href="<c:url value='/ui/dns-service/default' />" title="<spring:message code='theme.navbar.dns-services' />">DNS</a></li>
+                            <li><a href="<c:url value='/ui/knowledge-management/default' />" title="<spring:message code='theme.navbar.knowledge' />">KBASE</a></li>
+                            <li><a href="<c:url value='/ui/server-management/default' />" title="<spring:message code='theme.navbar.server-mgmt' />">SRVR</a></li>
                             <c:if test="${fn:trim(sessionScope.userAccount.userRole) eq SecurityUserRole.USER_ADMIN or fn:trim(sessionScope.userAccount.userRole) eq SecurityUserRole.SITE_ADMIN}">
-		                        <li class="last"><a href="<c:url value='/ui/user-management/default' />" title="<spring:message code='theme.navbar.useradmin' />"><spring:message code='theme.navbar.useradmin' /></a></li>
+		                        <li class="last"><a href="<c:url value='/ui/user-management/default' />" title="<spring:message code='theme.navbar.useradmin' />">USERS</a></li>
 	                        </c:if>
         				</ul>
     				</div>

@@ -1,0 +1,297 @@
+{
+	"moduleIDs": [
+      "wp_dynamicContentSpots_eSolutions",
+      "wp_dynamicContentSpots_85",
+      "wp_toolbar_host",
+      "wp_portlet_css",
+      "wp_one_ui_30",
+      "wp_one_ui_dijit_30",
+      "wp_legacy_layouts",
+      "wp_client_ext",
+      "wp_status_bar",
+      "wp_theme_menus",
+      "wp_theme_skin_region",
+      "wp_theme_high_contrast",
+      "wp_layout_windowstates",      
+      "wp_portal",
+      "wp_ic4_wai_resources",
+      "wp_worklight",
+      "dojo",
+      "dojo_dom",
+      "dijit",
+      "dijit_menu",
+      "dijit_app",
+      "dijit_form",
+      "dijit_tree",
+      "dijit_layout_basic",
+      "dojox_layout_basic",
+      "wp_pagebuilder_ui",
+      "wp_sitebuilder_full"
+   ],
+   "deferredModuleIDs": [
+      
+   ],
+	"metadata":{
+		"com.ibm.portal.Hidden":"true"
+	},   
+   "titles": [
+      {
+         "value": "Site Builder Main Page",
+         "lang": "ar"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "ca"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "cs"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "da"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "de"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "el"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "en"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "es"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "fi"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "fr"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "iw"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "hr"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "hu"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "it"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "ja"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "kk"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "ko"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "nl"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "no"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "pl"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "pt"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "pt_BR"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "ro"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "ru"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "sk"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "sl"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "sv"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "th"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "tr"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "uk"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "zh"
+      },
+      {
+         "value": "Site Builder Main Page",
+         "lang": "zh_TW"
+      }
+   ],
+   "descriptions": [
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "ar"
+      },
+      {
+		 "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "ca"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "cs"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "da"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "de"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "el"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "en"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "es"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "fi"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "fr"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "iw"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "hr"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "hu"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "it"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "ja"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "kk"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "ko"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "nl"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "no"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "pl"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "pt"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "pt_BR"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "ro"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "ru"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "sk"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "sl"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "sv"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "th"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "tr"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "uk"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "zh"
+      },
+      {
+         "value": "This profile is for the Site Builder Application Page only, it loads only what is required for that application.",
+         "lang": "zh_TW"
+      }
+   ]
+}

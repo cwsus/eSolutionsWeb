@@ -23,10 +23,10 @@
 
     <properties>
     	<javax.servlet.version>4.0.1</javax.servlet.version>
+    	<javax.portlet.version>3.0.1</javax.portlet.version>
         <taglibs.version>1.2.5</taglibs.version>
         <jstl.version>1.2</jstl.version>
         <jsp-api.version>2.3.3</jsp-api.version>
-        <spring.version>5.3.26</spring.version>
         <jsch.version>0.1.55</jsch.version>
         <jzlib.version>1.1.3</jzlib.version>
         <dnsjava.version>3.5.2</dnsjava.version>
@@ -39,7 +39,10 @@
         <module>../jars/eSolutions_java_source</module>
         <module>../jars/eSolutions_web_config</module>
         <module>../wars/eSolutions_web_source</module>
-        <module>../ears/eSolutions_web_sourceEAR</module>
+        <module>../theme/eSolutionsThemeDynamic</module>
+        <module>../theme/eSolutionsThemeStatic</module>
+        <module>../ears/eSolutionsWebEAR</module>
+        <module>../ears/eSolutionsThemeEAR</module>
     </modules>
 
     <dependencyManagement>
@@ -103,72 +106,13 @@
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
-            <!-- spring -->
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${spring.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
 			<dependency>
-    			<groupId>org.springframework</groupId>
-    			<artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-                <type>jar</type>
-                <scope>compile</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+				<groupId>javax.portlet</groupId>
+				<artifactId>portlet-api</artifactId>
+				<version>${javax.portlet.version}</version>
+				<type>jar</type>
+				<scope>provided</scope>
+			</dependency>
             <!-- servlet api -->
 	        <dependency>
 	            <groupId>javax.servlet</groupId>

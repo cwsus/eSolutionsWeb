@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request build="20180912-1300" type="update" version="8.5.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PortalConfig_8.5.0.xsd">
+    <portal action="locate">
+        <global-settings action="update">
+            <parameter name="locale.default.language" type="string" update="set"><![CDATA[en]]></parameter>
+        </global-settings>
+        <web-app action="update" active="true" domain="rel" objectid="Z1_0H0G11K031ER306S7A7ER93000" removable="true" uid="eSolutions_web_source-1.0-SNAPSHOT.war.webmod" predeployed="true">
+            <url>file://localhost/$app_install_root$/dmgrCell01/eSolutionsWeb.ear/eSolutions-eSolutions_web_source-1.0-SNAPSHOT.war</url>
+            <context-root>/wps/esolutions</context-root>
+            <display-name>eSolutionsWeb</display-name>
+            <access-control externalized="false" owner="uid=wpsadmin,o=defaultwimfilebasedrealm" private="false"/>
+            <servlet action="update" active="true" domain="rel" name="LoginPortlet" objectid="ZV_0H0G11K031ER306S7A7ER93002" remote-cache-dynamic="false"/>
+            <portlet-app action="update" active="true" defaultlocale="en" domain="rel" name="eSolutions_web_source" objectid="Z2_0H0G11K031ER306S7A7ER93004" uid="eSolutions_web_source-1.0-SNAPSHOT.war">
+                <access-control externalized="false" owner="uid=wpsadmin,o=defaultwimfilebasedrealm" private="false"/>
+                <portlet action="update" active="true" defaultlocale="en" domain="rel" name="LoginPortlet" uniquename="esolutions.LoginPortlet" objectid="Z3_0H0G11K031ER306S7A7ER93006" provided="false" servletref="ZV_0H0G11K031ER306S7A7ER93002">
+                    <access-control externalized="false" owner="uid=wpsadmin,o=defaultwimfilebasedrealm" private="false"/>
+                </portlet>
+            </portlet-app>
+        </web-app>
+    </portal>
+    <status element="all" result="ok"/>
+</request>
