@@ -89,6 +89,7 @@
                     	<input type="password" id="password" name="password" />
                     </td>
                     <td><a href="<c:url value='/ui/online-reset/forgot-password' />" title="<spring:message code='login.user.forgot_pwd' />">Forgot Password?</a></td>
+                </tr>
             </table>
             <br class="clear" /><br class="clear" />
             <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />

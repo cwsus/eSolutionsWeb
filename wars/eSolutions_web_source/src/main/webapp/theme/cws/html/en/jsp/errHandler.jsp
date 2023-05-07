@@ -37,9 +37,9 @@
 
 <div id="homecontent">
 	<div class="wrapper">
-	    <h1><spring:message code="theme.error.system.failure" /></h1>
+	    <h1>System Failure</h1>
 	    <p>
-        	<spring:message code="theme.system.service.failure" />
+        	System Failure
 	    </p>
 	</div>
 </div>

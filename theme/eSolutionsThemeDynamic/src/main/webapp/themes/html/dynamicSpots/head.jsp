@@ -20,3 +20,7 @@
 
 <%-- Link to the Portal favicon --%>
 <link href="<r:url uri="${themeWebDAVBaseURI}images/favicon.ico" keepNavigationalState="false" lateBinding="false" protected="false"/>" rel="shortcut icon" type="image/x-icon" />
+<link rel="stylesheet" href="/static/layout/styles/layout.css" type="text/css" />
+<link rel="stylesheet" href="/static/layout/styles/messages.css" type="text/css" />
+<link rel="image/x-icon" href="/static/img/favicon.ico" />
+<link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />

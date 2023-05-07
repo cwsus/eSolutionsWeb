@@ -1,4 +1,4 @@
-<%@ page session="false" buffer="none" %>
+<%@ page session="true" buffer="none" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%-- Licensed Materials - Property of IBM, 5724-E76, (C) Copyright IBM Corp. 2001, 2004, 2006, 2010 - All Rights reserved. --%> 
 <%-- NOTE: By default, automatic reloading of theme and skin JSP files is turned off.
