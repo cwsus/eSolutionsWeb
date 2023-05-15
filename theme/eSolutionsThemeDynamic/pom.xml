@@ -54,15 +54,8 @@
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-ear-plugin</artifactId>
+                <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <modules>
-                        <webModule>
-                            <groupId>${project.dependencies[0].groupId}</groupId>
-                            <artifactId>${project.dependencies[0].artifactId}</artifactId>
-                            <contextRoot>/eSolutionsThemeDynamic</contextRoot>
-                        </webModule>
-                    </modules>
                     <packagingExcludes>**/*.jar</packagingExcludes>
                 </configuration>
             </plugin>

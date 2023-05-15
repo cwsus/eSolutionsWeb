@@ -1,4 +1,3 @@
-<%@ page session="false" buffer="none" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ include file="../includePortalTaglibs.jspf" %>
 

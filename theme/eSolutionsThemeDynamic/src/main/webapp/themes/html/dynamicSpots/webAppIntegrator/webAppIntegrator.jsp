@@ -1,4 +1,4 @@
-<%@ page session="false" buffer="none" contentType="text/javascript" %> 
+<%@ page buffer="none" contentType="text/javascript" %> 
 <%-- Licensed Materials - Property of IBM, 5724-E76, (C) Copyright IBM Corp. 2007 - All Rights reserved. --%> 
 <%@ page import="java.net.URL,com.ibm.wps.state.utils.CharWriter,java.util.Map,java.util.LinkedHashMap,java.util.Iterator,java.io.Reader"%>
 

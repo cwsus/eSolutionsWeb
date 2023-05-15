@@ -1,6 +1,5 @@
 <%-- Licensed Materials - Property of IBM, 5724-E76, (C) Copyright IBM Corp. 2001, 2004, 2006, 2010 - All Rights reserved. --%>
 <%-- This JSP will render the Plain.html template which only displays the layout of the page --%>
-<%@ page session="false" buffer="none" %>
 <%@ page trimDirectiveWhitespaces="true" %><%@ 
 taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %><%@
 taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>

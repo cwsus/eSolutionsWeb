@@ -1,27 +1,29 @@
-<%@ page session="false" buffer="none" import="java.util.*, java.net.*, javax.portlet.*, javax.servlet.ServletRequest"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../includePortalTaglibs.jspf" %>
-<portal-core:constants/><portal-core:defineObjects/>
+<portal-core:constants/>
+<portal-core:defineObjects/>
+
+<fmt:setBundle basename="nls.theme.resources" var="resources" />
 
 <div class="wpthemeFooterCol wpthemeLeft">
-	<h3><portal-fmt:text escapeXml="true" key="helpandsupport.title" bundle="nls.commonUI"/></h3>
+	<h3>insert text here</h3>
 	<ul>
-		<li><a href="https://help.hcltechsw.com/digital-experience/dx/wp_welcome_portal.html" target="_blank"><span><portal-fmt:text escapeXml="true" key="helpandsupport.documentation" bundle="nls.commonUI"/></span></a></li>
-		<li><a href="https://hclpnpsupport.hcltech.com/csm?id=kb_view2" target="_blank"><span><portal-fmt:text escapeXml="true" key="helpandsupport.knowledgebase" bundle="nls.commonUI"/></span></a></li>
-		<li><a href="https://hclpnpsupport.hcltech.com/csm" target="_blank"><span><portal-fmt:text escapeXml="true" key="helpandsupport.support" bundle="nls.commonUI"/></span></a></li>
-		<li><a href="https://www.hcltechsw.com/products/dx" target="_blank"><span><portal-fmt:text escapeXml="true" key="helpandsupport.supportedhardwareandsoftware" bundle="nls.commonUI"/></span></a></li>
-	</ul>
+        <c:if test="${not empty fn:trim(sessionScope.userAccount)}">
+            Welcome<br /><br />
+            <li><a href="<c:url value='/ui/common/default' />" title="<fmt:message key='theme.navbar.homepage' bundle='${resources}' />"><fmt:message key='theme.navbar.homepage' bundle='${resources}' /></a></li>
+            <li><a href="<c:url value='/ui/auth/logout' />" title="<fmt:message key='theme.navbar.logoff' bundle='${resources}' />"><fmt:message key='theme.navbar.logoff' bundle='${resources}' /></a></li>
+            <li><a href="<c:url value='/ui/user-account/default' />" title="<fmt:message key='theme.navbar.myaccount' bundle='${resources}' />"><fmt:message key='theme.navbar.myaccount' bundle='${resources}' /></a></li>
+        </c:if>
+        <li><a href="<c:url value='/ui/common/contact' />" title="<spring:message code='theme.contact.us' bundle='${resources}' />"><fmt:message key='theme.contact.us' bundle='${resources}' /></a></li>
+    </ul>
 </div>
 <div class="wpthemeFooterCol wpthemeRight">
-	<h3><portal-fmt:text escapeXml="true" key="abouthcldigitalexperience.title" bundle="nls.commonUI"/></h3>
-	<ul>
-		<li><a href="https://www.hcltechsw.com/products/dx" target="_blank"><span><portal-fmt:text escapeXml="true" key="abouthcldigitalexperience.productinfo" bundle="nls.commonUI"/></span></a></li>
-		<li><a href="https://www.hcltechsw.com" target="_blank"><span><portal-fmt:text escapeXml="true" key="abouthcldigitalexperience.hclsoftware" bundle="nls.commonUI"/></span></a></li>
-		<li><a href="https://www.hcltech.com" target="_blank"><span><portal-fmt:text escapeXml="true" key="abouthcldigitalexperience.hcltechnologies" bundle="nls.commonUI"/></span></a></li>
-	</ul>
-	<p class="legalClaim">&copy; <portal-fmt:text escapeXml="true" key="Copyright" bundle="nls.commonUI"/></p>
-	<p class="legalClaim" id="allRightsRes"><portal-fmt:text escapeXml="true" key="AllRightsRes" bundle="nls.commonUI"/></p>
+	<h3><fmt:message key="theme.footer.more.info" bundle="${resources}" /></h3>
+	<p class="legalClaim">&copy; <fmt:message key="theme.footer.copyright" bundle='${resources}' /></p>
+	<p class="legalClaim" id="allRightsRes"><fmt:message key="theme.footer.allrights" bundle='${resources}' /></p>
 </div> 
 
 <%-- On smartphones, scroll the screen down on page load. This hides the top navigation to save real estate --%>

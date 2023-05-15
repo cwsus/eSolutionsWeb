@@ -10,12 +10,7 @@
 --%>
 <%@ include file="./includePortalTaglibs.jspf" %>
 
-<div style="overflow:auto;clear:both;border:1px solid grey;margin:5px;padding:5px;">
-	<h2>
-		<portal-skin:portletTitle>
-			<span style="color:red;"><portal-fmt:problem bundle="nls.problem"/></span>
-		</portal-skin:portletTitle>
-	</h2>
+<div style="overflow:auto; clear:both;margin:5px;padding:5px;">
 	<div>
 		<portal-skin:portletRender>
 			<span style="color:red;"><portal-fmt:problem bundle="nls.problem"/></span>
