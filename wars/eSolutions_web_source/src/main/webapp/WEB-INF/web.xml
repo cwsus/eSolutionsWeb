@@ -20,8 +20,8 @@
 <web-app id="eSolutions_web_source" version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
-    <display-name>eSolutions_web_source</display-name>
-    <description>eSolutions_web_source</description>
+    <display-name>PA_esolutions</display-name>
+    <description>PA_esolutions</description>
     <distributable />
 
     <context-param>
@@ -40,12 +40,6 @@
         <param-name>SecurityServiceLogger</param-name>
         <param-value>SecurityService/logging/logging.xml</param-value>
     </context-param>
-
-	<env-entry>
-  		<description>webURL</description>
-  		<env-entry-name>webURL</env-entry-name>
-  		<env-entry-type>java.lang.String</env-entry-type>
-	</env-entry>
 
     <resource-ref id="esolutions">
         <description>Application Datasource</description>
@@ -124,17 +118,6 @@
         <welcome-file>default.html</welcome-file>
         <welcome-file>default.jsp</welcome-file>
     </welcome-file-list>
-
-    <jsp-config>
-        <jsp-property-group>
-            <description>jsp-group</description>
-            <display-name>jsp-group</display-name>
-            <url-pattern>/*</url-pattern>
-            <page-encoding>UTF-8</page-encoding>
-            <include-prelude>/theme/cws/html/en/jsp/header.jsp</include-prelude>
-            <include-coda>/theme/cws/html/en/jsp/footer.jsp</include-coda>
-        </jsp-property-group>
-    </jsp-config>
 
     <deny-uncovered-http-methods />
 

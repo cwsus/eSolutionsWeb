@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>icon/image/settings/24 copy 36</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M8,1 C4.15,1 1,4.15 1,8 C1,11.85 4.15,15 8,15 C11.85,15 15,11.85 15,8 C15,4.15 11.85,1 8,1 Z M8,14 C4.7,14 2,11.3 2,8 C2,4.7 4.7,2 8,2 C11.3,2 14,4.7 14,8 C14,11.3 11.3,14 8,14 Z M8,12 C8.41421356,12 8.75,11.6642136 8.75,11.25 C8.75,10.8357864 8.41421356,10.5 8,10.5 C7.58578644,10.5 7.25,10.8357864 7.25,11.25 C7.25,11.6642136 7.58578644,12 8,12 Z M8.5,4 L7.75,4 C6.5,4 5.5,5 5.5,6.25 L5.5,6.5 L6.5,6.5 L6.5,6.25 C6.5,5.55 7.05,5 7.75,5 L8.5,5 C9.2,5 9.75,5.55 9.75,6.25 C9.75,6.95 9.2,7.5 8.5,7.5 L7.5,7.5 L7.5,9.5 L8.5,9.5 L8.5,8.5 C9.75,8.5 10.75,7.5 10.75,6.25 C10.75,5 9.75,4 8.5,4 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Apple-TV-Copy" transform="translate(-1281.000000, -1294.000000)">
+            <g id="icon/status/help/16" transform="translate(1280.000000, 1293.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="icon-color" fill="#8CD7FA" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

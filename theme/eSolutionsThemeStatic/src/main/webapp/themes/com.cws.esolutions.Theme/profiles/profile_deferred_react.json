@@ -1,0 +1,295 @@
+{
+	"moduleIDs": [
+		"getting_started_module",
+		"wp_theme_portal_85",
+		"eSolutionsTheme",
+		"wp_toolbar_host_view",
+		"wp_portlet_css",
+		"wp_client_ext",
+		"wp_status_bar",
+		"wp_theme_menus",
+		"wp_theme_skin_region",
+		"wp_high_contrast",
+		"wp_layout_windowstates",
+		"wp_portal",
+		"wp_analytics_aggregator",
+		"wp_oob_sample_styles",
+		"wp_ic4_wai_resources",
+		"wp_worklight_ext",
+		"wp_sametime_proxy",
+		"wp_gridlayout",
+		"wp_react_16_10_2",
+		"wp_react_dom_16_10_2",
+		"wp_react_router_dom_512"
+	],
+	"deferredModuleIDs": [
+		"wp_theme_portal_edit_85",
+		"wp_toolbar_host_edit",
+		"wp_analytics_tags",
+		"wp_contextmenu_live_object",
+		"wp_content_targeting_cam",
+		"wcm_inplaceEdit",
+		"wp_skin_cam",
+		"wp_toolbar_gridlayout_inlineedit"
+	],
+	"titles": [
+		{
+			"value":"مؤجل بواسطة رد الفعل",
+			"lang":"ar"
+		},
+		{
+			"value":"Ajornat amb React",
+			"lang":"ca"
+		},
+		{
+			"value":"Odloženo s React",
+			"lang":"cs"
+		},
+		{
+			"value":"Udskudt med React",
+			"lang":"da"
+		},
+		{
+			"value":"Verzögert mit React",
+			"lang":"de"
+		},
+		{
+			"value":"Αναβολή με αντίδραση",
+			"lang":"el"
+		},
+		{
+			"value":"Deferred with React",
+			"lang":"en"
+		},
+		{
+			"value":"Aplazado con React",
+			"lang":"es"
+		},
+		{
+			"value":"Lykätty ja React",
+			"lang":"fi"
+		},
+		{
+			"value":"Différé avec React",
+			"lang":"fr"
+		},
+		{
+			"value":"נדחה עם React",
+			"lang":"he"
+		},
+		{
+			"value":"Odgođeno pomoću portleta za odgovore",
+			"lang":"hr"
+		},
+		{
+			"value":"Elhalasztva Reacttal",
+			"lang":"hu"
+		},
+		{
+			"value":"Rinviato con React",
+			"lang":"it"
+		},
+		{
+			"value":"対応を使用した据え置き",
+			"lang":"ja"
+		},
+		{
+			"value":"React көмегімен кейінге қалдырылған",
+			"lang":"kk"
+		},
+		{
+			"value":"지연됨(React 포함)",
+			"lang":"ko"
+		},
+		{
+			"value":"Uitgesteld met Reageren",
+			"lang":"nl"
+		},
+		{
+			"value":"Utsatt med React",
+			"lang":"no"
+		},
+		{
+			"value":"Odroczony z React",
+			"lang":"pl"
+		},
+		{
+			"value":"Diferido com o React",
+			"lang":"pt"
+		},
+		{
+			"value":"Adiar com React",
+			"lang":"pt_BR"
+		},
+		{
+			"value":"Amânat cu React",
+			"lang":"ro"
+		},
+		{
+			"value":"Отложенные — React",
+			"lang":"ru"
+		},
+		{
+			"value":"Odložené s portletom React",
+			"lang":"sk"
+		},
+		{
+			"value":"Odloženo z Reactom",
+			"lang":"sl"
+		},
+		{
+			"value":"Uppskjuten med React",
+			"lang":"sv"
+		},
+		{
+			"value":"เลื่อนออกไปด้วย React",
+			"lang":"th"
+		},
+		{
+			"value":"React ile ertelendi",
+			"lang":"tr"
+		},
+		{
+			"value":"Відкладений із React",
+			"lang":"uk"
+		},
+		{
+			"value":"推迟（包含 React）",
+			"lang":"zh"
+		},
+		{
+			"value":"延遲與反應",
+			"lang":"zh_TW"
+		}
+	],
+	"descriptions": [
+		{
+			"value":"يحتوي ملف المواصفات هذا على المجموعة الكاملة لوحدات برامج النسق الرئيسي، لكنه يؤجل تحميل معظم وحدات البرامج هذه إلا إذا كانت مطلوبة بالفعل. يقوم ملف المواصفات هذا بالموازنة بين الوظائف والأداء. تتم إضافة رد الفعل جنبًا إلى جنب مع ملف المواصفات المؤجل.",
+			"lang":"ar"
+		},
+		{
+			"value":"Aquest perfil conté el conjunt complet de mòduls per al tema, però ajorna la càrrega de la major part d'aquests mòduls tret que siguin realment necessaris. Aquest perfil equilibra la funció i el rendiment. S'hi afegeix React, a més del perfil bàsic diferit.",
+			"lang":"ca"
+		},
+		{
+			"value":"Tento profil obsahuje úplnou sadu modulů pro motiv, ale odkládá načítání většiny těchto modulů, dokud nejsou skutečně zapotřebí. Tento profil vyvažuje funkčnost a výkonnost. Kromě základního odloženého profilu je přidán React.",
+			"lang":"cs"
+		},
+		{
+			"value":"Denne profil indeholder et helt sæt moduler til temaet, men den udskyder indlæsning af de fleste moduler, medmindre de rent faktisk skal anvendes. Denne profil afbalancerer funktion og ydeevne. React tilføjes ud over den udskudte basisprofil.",
+			"lang":"da"
+		},
+		{
+			"value":"Dieses Profil enthält den vollständige Satz von Modulen für das Thema, verzögert aber das Laden der meisten dieser Module, bis diese tatsächlich benötigt werden. React wird zusätzlich zum Basisprofil Deferred hinzugefügt.",
+			"lang":"de"
+		},
+		{
+			"value":"Αυτό το προφίλ περιέχει το πλήρες σύνολο λειτουργικών μονάδων για το θέμα, αλλά αναβάλλει τη φόρτωση των περισσότερων μέχρι να χρειαστεί να χρησιμοποιηθούν. Αυτό το προφίλ εξισορροπεί τη λειτουργικότητα με την απόδοση. Αντίδραση προστίθεται στο βασικό αναβλημένο προφίλ.",
+			"lang":"el"
+		},
+		{
+			"value":"This profile contains the full set of modules for the theme, but it defers loading most of these modules unless they are actually needed. This profile balances function and performance. React is added in addition to the base deferred profile.",
+			"lang":"en"
+		},
+		{
+			"value":"Este perfil tiene un conjunto completo de módulos para el tema, pero aplaza la carga de la mayoría de estos módulos a no ser que sea necesario. Este perfil equilibra función y rendimiento. React se añade además del perfil base aplazado.",
+			"lang":"es"
+		},
+		{
+			"value":"Tässä profiilissa on täysi joukko moduuleita teemalle, mutta profiili lykkää useimpien moduulien latausta, kunnes niitä tarvitaan. Tämä profiili tasapainottaa toiminnallisuutta ja suorituskykyä. React lisätään lykätyn perusprofiilin lisäksi.",
+			"lang":"fi"
+		},
+		{
+			"value":"Ce profil contient l'ensemble complet de modules pour le thème, mais diffère le chargement de la plupart de ces modules, sauf s'ils sont requis. Il équilibre la fonctionnalité et les performances. React est ajouté en plus du profil différé de base.",
+			"lang":"fr"
+		},
+		{
+			"value":"פרופיל זה כולל מערכת שלמה של מודולים עבור הערכה, אבל משהה את הטעינה של רוב המודולים אלא אם הם נחוצים בפועל. פרופיל זה מאזן פונקציונליות וביצועים. תגובה נוספת לפרופיל הבסיסי.",
+			"lang":"he"
+		},
+		{
+			"value":"Profil sadrži potpuni skup modula za temu, ali odgađa učitavanje većine tih modula sve dok nisu stvarno potrebni. Ovim se profilom uspostavlja ravnoteža između funkcionalnosti i performansi. Portlet za odgovore dodaje se osnovnom odgođenom profilu.",
+			"lang":"hr"
+		},
+		{
+			"value":"Ez a profil tartalmazza a téma teljes modulkészletét, de nem tudja betölteni a legtöbb modult, kivéve, ha valójában szüksége van rájuk. A profil egyensúlyt teremt a funkciók és a teljesítmény között. Az alap elhalasztott profil mellett a React is hozzáadásra kerül.",
+			"lang":"hu"
+		},
+		{
+			"value":"Questo profilo contiene l'intero insieme di moduli per il tema ma rimanda il caricamento della maggior parte di questi moduli se non sono effettivamente necessari. Questo profilo bilancia funzioni e prestazioni. React viene aggiunto assieme al profilo di base rinviato.",
+			"lang":"it"
+		},
+		{
+			"value":"このプロファイルにはテーマに関するすべてのモジュールのセットが含まれていますが、実際に必要にならない限り、それらのほとんどのモジュールのロードを据え置きます。このプロファイルは機能とパフォーマンスのバランスを取ります。基本の据え置きプロファイルに加えて、対応が追加されます。",
+			"lang":"ja"
+		},
+		{
+			"value":"Бұл профильде тақырыпқа арналған модульдердің толық жиынтығы бар, бірақ егер олар қажет болмаса, осы модульдердің көпшілігін жүктеуді кешіктіреді. Бұл профиль функционалдылық пен өнімділік арасындағы тепе-теңдікті қамтамасыз етеді. React кейінге қалдырылған негізгі профильге қосымша қосылады.",
+			"lang":"kk"
+		},
+		{
+			"value":"이 프로파일에는 테마의 전체 모듈 세트가 있지만 이러한 모듈이 실제로 필요하지 않는 한 이러한 모듈 대부분의 로드를 지연합니다. 이 프로파일은 기능과 성능의 균형을 맞춥니다. 기본 지연된 프로파일에 더해 React가 추가되었습니다.",
+			"lang":"ko"
+		},
+		{
+			"value":"Dit profiel bevat de volledige set modules voor het thema maar stelt het laden van de meeste modules uit totdat ze feitelijk nodig zijn. Dit profiel zorgt voor een balans tussen functies en performance. Reageren is toegevoegd aan het standaard uitgestelde profiel.",
+			"lang":"nl"
+		},
+		{
+			"value":"Denne profilen inneholder et fullstendig sett med moduler for temaet, men den utsetter innlastingen av de fleste av disse modulene til de faktisk trengs. Denne profilen balanserer funksjon og ytelse. Reakt er lagt til i tillegg til den utsatte basisprofilen.",
+			"lang":"no"
+		},
+		{
+			"value":"Ten profil zawiera pełny zestaw modułów kompozycji, ale ładowanie większości z nich jest odroczone do momentu, w którym będą rzeczywiście potrzebne. Ten profil zapewnia równowagę między funkcjonalnością a wydajnością. Do podstawowego odroczonego profilu jest dodana aplikacja React.",
+			"lang":"pl"
+		},
+		{
+			"value":"Este perfil contém o conjunto completo de módulos para o tema, mas difere o carregamento da maioria destes módulos, exceto se forem realmente necessários. Este perfil equilibra a função e o desempenho. O React é adicionado, além do perfil diferido de base.",
+			"lang":"pt"
+		},
+		{
+			"value":"Este perfil contém o conjunto completo de módulos para o tema, mas adia o carregamento da maioria destes módulos, a menos que eles sejam de fato necessários. Esse perfil equilibra função e desempenho. O React é adicionado além do perfil de base adiado.",
+			"lang":"pt_BR"
+		},
+		{
+			"value":"Acest profil conține setul complet de module pentru temă, dar amână încărcarea majorității acestor module, cu excepția cazului în care acestea sunt necesare. Acest profil asigură un echilibru între funcționalitate și performanță. React este adăugat în plus față de profilul de bază amânat.",
+			"lang":"ro"
+		},
+		{
+			"value":"Этот профайл содержит полный набор модулей для темы, но большинство из них загружается, только когда это действительно необходимо. Такой профайл является сбалансированным между функциональностью и производительностью. React добавляется в дополнение к базовому отложенному профилю.",
+			"lang":"ru"
+		},
+		{
+			"value":"Tento profil obsahuje úplnú množinu modulov pre tému, ale oneskoruje načítanie väčšiny týchto modulov, kým nebudú skutočne potrebné. Tento profil vyvažuje funkčnosť a výkon. Okrem základného odloženého profilu je pridaný portlet React.",
+			"lang":"sk"
+		},
+		{
+			"value":"Ta profil vsebuje celoten nabor modulov za temo, vendar nalaganje večine teh modulov odloži, dokler jih dejansko ne potrebuje. Ta profil uravnoteži funkcijo in zmogljivost. React je dodan poleg osnovnega odloženega modula.",
+			"lang":"sl"
+		},
+		{
+			"value":"Profilen innehåller en full uppsättning moduler för temat, men skjuter upp inläsningen av de flesta moduler tills de verkligen behövs. Profilen balanserar funktion och prestanda. React läggs till utöver den grundläggande uppskjutna profilen.",
+			"lang":"sv"
+		},
+		{
+			"value":"โปรไฟล์นี้มีชุดเต็มของโมดูลสำหรับธีม แต่จะยืดเวลาในการโหลดโมดูลโดยส่วนใหญ่ยกเว้นว่าจำเป็นจริง โปรไฟล์นี้จะปรับสมดุลระหว่างฟังก์ชันและประสิทธิภาพการทำงาน เพิ่ม React นอกเหนือจากโปรไฟล์ฐานที่ถูกเลื่อนออกไป",
+			"lang":"th"
+		},
+		{
+			"value":"Bu profil, temayla ilgili tüm modül kümesini içerir; ancak, gerçekten gerekmedikçe bu modüllerin çoğunun yüklenmesini erteler. Bu profil işlev ile performansı dengeler. Ertelenen temel profile ek olarak React da eklenir.",
+			"lang":"tr"
+		},
+		{
+			"value":"Цей профайл містить повний набір модулів для теми, але більшість з них завантажуються лише на вимогу. Такий профайл забезпечує баланс між функціональністю та продуктивністю. React додається на додаток до базового відкладеного профайлу.",
+			"lang":"uk"
+		},
+		{
+			"value":"此概要文件包含主题的完整模块集，但如果并非真正需要，将推迟装入这些模块中的绝大多数模块。此概要文件将均衡功能和性能。除基本的推迟概要文件外，还添加了 React。",
+			"lang":"zh"
+		},
+		{
+			"value":"這個設定檔包含佈景主題的完整模組集，但除非實際需要，否則會延遲載入這其中的大部分模組。這個設定檔可平衡功能與效能。除了基本延遲設定檔，還會新增反應。",
+			"lang":"zh_TW"
+		}
+	]
+}

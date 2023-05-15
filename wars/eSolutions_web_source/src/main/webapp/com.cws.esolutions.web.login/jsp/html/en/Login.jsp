@@ -32,6 +32,8 @@
  * cws-khuntly          11/23/2008 22:39:20             Created.
  */
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <script>
     function validateForm(theForm)

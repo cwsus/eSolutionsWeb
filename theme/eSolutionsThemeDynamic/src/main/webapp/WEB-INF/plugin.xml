@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin id="eSolutionsTheme" name="eSolutionsTheme" provider-name="CWSNA" version="1.0.0">
-    <extension id="wp_dynamicContentSpots_eSolutionsTheme" point="com.ibm.portal.resourceaggregator.module">
-        <module id="wp_dynamicContentSpots_eSolutionsTheme">
-        	<title lang="en" value="Dynamic Content Spots for the eSolutions Theme"/>
-            <description lang="en" value="Defines all dynamic content spots for the 8.5 Theme. This allows to easily overlay any dynamic content spot through other modules."/>
+<plugin id="eSolutionsTheme" name="CWS eSolutions Theme Modules" provider-name="CWS" version="1.0.0">
+    <extension id="eSolutionsTheme" point="com.ibm.portal.resourceaggregator.module">
+        <module id="eSolutionsTheme">
+            <title lang="en" value="Dynamic Content Spots for the eSolutionsTheme"/>
+            <description lang="en" value="Defines all dynamic content spots for the eSolutions Theme."/>
             <contribution type="dyn-cs">
                 <sub-contribution type="markup" ref-id="eSolutionsTheme_footer">
                     <uri value="res:{war:context-root}/themes/html/dynamicSpots/footer.jsp"/>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<request build="20230406-175959" type="update" version="8.5.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PortalConfig_8.5.0.xsd">
+    <portal action="locate">
+        <skin action="update" active="true" context-root="/eSolutionsThemeDynamic" default="false" domain="rel" resourceroot="com.cws.esolutions.Skin" type="default" uniquename="com.cws.esolutions.Skin">
+            <localedata locale="en">
+                <title>eSolutionsSkin</title>
+                <description>CWS eSolutions Skin</description>
+            </localedata>
+            <parameter name="com.ibm.portal.skin.template.file.name.html" type="string" update="set"><![CDATA[skin.html]]></parameter>
+            <parameter name="com.ibm.portal.skin.template.ref" type="string" update="set"><![CDATA[war:eSolutionsThemeStatic/themes/com.cws.esolutions.Theme/skins/com.cws.esolutions.Skin/]]></parameter>
+        </skin>
+        <theme action="update" active="true" context-root="/eSolutionsThemeDynamic" default="false" defaultskinref="com.cws.esolutions.Skin" domain="rel" resourceroot="dynamicSpots" uniquename="com.cws.esolutions.Theme">
+            <localedata locale="en">
+                <title>eSolutionsTheme</title>
+                <description>CWS eSolutions Theme</description>
+            </localedata>
+            <allowed-skin skin="com.cws.esolutions.Skin" update="set"/>
+            <parameter name="com.ibm.portal.theme.aggregationmodes" type="string" update="set"><![CDATA[ssa]]></parameter>
+            <parameter name="com.ibm.portal.layout.template.href" type="string" update="set"><![CDATA[war:eSolutionsThemeStatic/themes/com.cws.esolutions.Theme/layout-templates/1Column/]]></parameter>
+            <parameter name="resourceaggregation.autoLoadPortletCapabilities" type="string" update="set"><![CDATA[true]]></parameter>
+            <parameter name="com.ibm.portal.theme.disallow" type="string" update="set"><![CDATA[export,delete]]></parameter>
+            <parameter name="ibm.portal.shelf.category.json.webcontent" type="string" update="set"><![CDATA[system/WebContentCategory.json,label:shelf_socialCategory]]></parameter>
+            <parameter name="theme.origination.version" type="string" update="set"><![CDATA[MjAyMzA0MDYtMTc1OTU5]]></parameter>
+            <parameter name="com.ibm.portal.theme.template.ref" type="string" update="set"><![CDATA[war:eSolutionsThemeStatic/themes/com.cws.esolutions.Theme/]]></parameter>
+            <parameter name="ibm.portal.shelf.layout.json.layoutEditor" type="string" update="set"><![CDATA[war:eSolutionsThemeStatic/system/layouts.json]]></parameter>
+            <parameter name="resourceaggregation.profile" type="string" update="set"><![CDATA[profiles/profile_deferred.json]]></parameter>
+        </theme>
+    </portal>
+    <status element="all" result="ok"/>
+</request>

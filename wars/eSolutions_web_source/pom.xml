@@ -16,7 +16,7 @@
     <description>WAR file for eSolutions_web_source</description>
 
     <properties>
-        <context.root>eSolutions</context.root>
+        <context.root>esolutions</context.root>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -26,6 +26,10 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>javax.portlet</groupId>
+            <artifactId>portlet-api</artifactId>
+        </dependency>
         <!-- tld's -->
         <dependency>
             <groupId>org.apache.taglibs</groupId>

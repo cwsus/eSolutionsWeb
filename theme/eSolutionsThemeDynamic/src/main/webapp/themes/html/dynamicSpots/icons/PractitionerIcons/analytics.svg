@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>icon/data/analytics/24</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M3,1.5 L1.5,1.5 L1.5,21.75 C1.5,22.1642136 1.83578644,22.5 2.25,22.5 L22.5,22.5 L22.5,21 L3,21 L3,1.5 Z M22.5,6.75 L17.25,6.75 L17.25,8.25 L19.939425,8.25 L14.25,13.939425 L11.03025,10.719675 C10.7373665,10.4268386 10.2625585,10.4268386 9.969675,10.719675 L4.5,16.189425 L5.560575,17.25 L10.5,12.310575 L13.71975,15.530325 C14.0126335,15.8231614 14.4874415,15.8231614 14.780325,15.530325 L21,9.310575 L21,12 L22.5,12 L22.5,6.75 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/data/analytics/24" transform="translate(-1.000000, -1.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="icon-color" fill="#717171" fill-rule="evenodd" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

@@ -17,7 +17,7 @@
  *
  */
 -->
-<Context useNaming="true" reloadable="true" docBase="${catalina.home}/installedApps/eSolutions_web_source-1.0-SNAPSHOT.war">
+<Context useNaming="true" reloadable="true">
 
     <Environment name="environment" value="dev" type="java.lang.String" override="false" />
     <Environment name="webURL" value="esolutions.caspersbox.com" type="java.lang.String" override="false" />

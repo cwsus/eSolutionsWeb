@@ -40,7 +40,7 @@
 <c:if test="${pageScope.isTablet && !pageScope.isFirstLevel}">
     <li class="wpthemeNavListItem wpthemeNavClose">
         <a role="button" aria-label="<portal-fmt:text key="theme.close" bundle="nls.commonUI"/>" title="<portal-fmt:text key="theme.close" bundle="nls.commonUI"/>" href="javascript:;" onclick="wptheme.toggleMobileNav('${wp.identification[parent]}','wpthemeNavCollapsed','<portal-fmt:text key="theme.expand" bundle="nls.commonUI"/>','<portal-fmt:text key="theme.collapse" bundle="nls.commonUI"/>','wpthemeNavRoot',null,<c:if test="${pageScope.isTablet}">true</c:if><c:if test="${!pageScope.isTablet}">false</c:if>,'${wp.identification[parent]}',null,<c:out value="${pageScope.level+1}"/>); <c:out value="${pageScope.cancelEvent}"/>">
-            &nbsp;<img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="/>
+            <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="/>
             <span class="wpthemeAltText"><portal-fmt:text key="theme.close" bundle="nls.commonUI"/></span>
         </a>
     </li>

@@ -24,9 +24,9 @@
     <li>
         <span class="wpthemeBranding">
             <a class="wpthemeBrandingLink" href="${fn:escapeXml(pageScope.node.urlGeneration.autoNavigationalState.clearScreenTemplate)}" alt="<portal-fmt:out>${pageScope.node.title}</portal-fmt:out>">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="<portal-fmt:text key="theme.ibmLogo" bundle="nls.commonUI"/>">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="<portal-fmt:text key="theme.dxLogo" bundle="nls.commonUI"/>">
             </a>
-            <span class="wpthemeAltText"><portal-fmt:text key="theme.ibmLogo" bundle="nls.commonUI"/></span>
+            <span class="wpthemeAltText"><portal-fmt:text key="theme.dxLogo" bundle="nls.commonUI"/></span>
         </span>
     </li>
 

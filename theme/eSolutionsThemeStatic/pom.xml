@@ -13,20 +13,59 @@
     <artifactId>eSolutionsThemeStatic</artifactId>
     <packaging>war</packaging>
     <name>${project.artifactId}</name>
-    <description>WAR file for eSolutionsThemeStatic</description>
+    <description>WAR file for eSolutions_web_source</description>
 
     <properties>
+        <context.root>eSolutionsThemeStatic</context.root>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<packagingExcludes>**/*.jar</packagingExcludes>
-				</configuration>
-      		</plugin>
-    	</plugins>
-  	</build>
+    <dependencies>
+        <!-- Provided dependencies -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.portlet</groupId>
+            <artifactId>portlet-api</artifactId>
+        </dependency>
+        <!-- tld's -->
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl-api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <modules>
+                        <webModule>
+                            <groupId>${project.dependencies[0].groupId}</groupId>
+                            <artifactId>${project.dependencies[0].artifactId}</artifactId>
+                            <contextRoot>/eSolutionsThemeStatic</contextRoot>
+                        </webModule>
+                    </modules>
+                    <packagingExcludes>**/*.jar</packagingExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

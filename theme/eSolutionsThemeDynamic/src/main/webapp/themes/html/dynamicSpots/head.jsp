@@ -20,7 +20,13 @@
 
 <%-- Link to the Portal favicon --%>
 <link href="<r:url uri="${themeWebDAVBaseURI}images/favicon.ico" keepNavigationalState="false" lateBinding="false" protected="false"/>" rel="shortcut icon" type="image/x-icon" />
-<link rel="stylesheet" href="/static/layout/styles/layout.css" type="text/css" />
-<link rel="stylesheet" href="/static/layout/styles/messages.css" type="text/css" />
-<link rel="image/x-icon" href="/static/img/favicon.ico" />
-<link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+
+<link href="<r:url uri="${themeWebDAVBaseURI}css/custom/layout.css" keepNavigationalState="false" lateBinding="false" protected="false"/>" rel="stylesheet" type="text/css" />
+
+<%-- BEGIN --%>
+<script type="text/javascript" src="<r:url uri="${themeWebDAVBaseURI}js/custom/jquery.min.js" keepNavigationalState="false" lateBinding="false" protected="false"/>"></script>
+<script type="text/javascript" src="<r:url uri="${themeWebDAVBaseURI}js/custom/jquery.easing.1.3.js" keepNavigationalState="false" lateBinding="false" protected="false"/>"></script>
+<script type="text/javascript" src="<r:url uri="${themeWebDAVBaseURI}js/custom/jquery.hslides.1.0.js" keepNavigationalState="false" lateBinding="false" protected="false"/>"></script>
+<script type="text/javascript" src="<r:url uri="${themeWebDAVBaseURI}js/custom/Scripts.js" keepNavigationalState="false" lateBinding="false" protected="false"/>"></script>
+<script type="text/javascript" src="<r:url uri="${themeWebDAVBaseURI}js/custom/FormHandler.js" keepNavigationalState="false" lateBinding="false" protected="false"/>"></script>
+<%-- END --%>
