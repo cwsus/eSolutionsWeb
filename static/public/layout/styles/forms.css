@@ -10,7 +10,7 @@ File: Forms CSS
 
 form, fieldset, legend {margin:0; padding:0; border:none;}
 legend {display:none;}
-.submit {background-image: url('/static/img/btn.gif') repeat;}
+input.submit { background-image: url('images/btn.gif'); border-radius: 8px; }
 
 /* ----------------------------------------------Search Form------------------------------------- */
 

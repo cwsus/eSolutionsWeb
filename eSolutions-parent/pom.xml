@@ -39,7 +39,7 @@
         <module>../jars/eSolutions_java_source</module>
         <module>../jars/eSolutions_web_config</module>
         <module>../wars/eSolutions_web_source</module>
-        <module>../ears/eSolutions_web_sourceEAR</module>
+        <module>../ears/eSolutionsWebEAR</module>
     </modules>
 
     <dependencyManagement>
@@ -82,6 +82,13 @@
                 <scope>compile</scope>
             </dependency>
             <!-- servlet/jstl -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet.version}</version>
+                <type>jar</type>
+                <scope>provided</scope>
+            </dependency>
             <dependency>
                 <groupId>org.apache.taglibs</groupId>
                 <artifactId>taglibs-standard-impl</artifactId>
@@ -169,14 +176,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <!-- servlet api -->
-	        <dependency>
-	            <groupId>javax.servlet</groupId>
-	            <artifactId>javax.servlet-api</artifactId>
-			    <version>${javax.servlet.version}</version>
-			    <type>jar</type>
-			    <scope>compile</scope>
-			</dependency>
 		    <!-- ssh -->
             <dependency>
                 <groupId>sshtools</groupId>

@@ -761,7 +761,7 @@ public class UserAccountController
         final HttpServletRequest hRequest = requestAttributes.getRequest();
         final HttpSession hSession = hRequest.getSession();
         final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
-        final IAccountChangeProcessor processor = (IAccountChangeProcessor) new AccountChangeProcessorImpl();
+        final IAccountChangeProcessor processor = new AccountChangeProcessorImpl();
 
         if (DEBUG)
         {
@@ -1167,19 +1167,12 @@ public class UserAccountController
             AuthenticationData userSecurity = new AuthenticationData();
             userSecurity.setPassword(changeReq.getCurrentPassword());
 
-            UserAccount modAccount = userAccount;
-            modAccount.setEmailAddr(changeReq.getEmailAddr());
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("UserAccount: {}", modAccount);
-            }
-
             AccountChangeRequest request = new AccountChangeRequest();
             request.setHostInfo(reqInfo);
             request.setRequestor(userAccount);
             request.setUserAccount(userAccount);
             request.setUserSecurity(userSecurity);
+            request.setChangeData(changeReq);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setApplicationName(this.appConfig.getApplicationName());
             request.setServiceId(this.serviceId);
@@ -1325,20 +1318,12 @@ public class UserAccountController
             AuthenticationData userSecurity = new AuthenticationData();
             userSecurity.setPassword(changeReq.getCurrentPassword());
 
-            UserAccount modAccount = userAccount;
-            modAccount.setPagerNumber(changeReq.getPagerNumber());
-            modAccount.setTelephoneNumber(changeReq.getTelNumber());
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("UserAccount: {}", modAccount);
-            }
-
             AccountChangeRequest request = new AccountChangeRequest();
             request.setHostInfo(reqInfo);
             request.setRequestor(userAccount);
             request.setUserAccount(userAccount);
             request.setUserSecurity(userSecurity);
+            request.setChangeData(changeReq);
             request.setApplicationId(this.appConfig.getApplicationId());
             request.setApplicationName(this.appConfig.getApplicationName());
             request.setServiceId(this.serviceId);

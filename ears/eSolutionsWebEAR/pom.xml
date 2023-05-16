@@ -35,8 +35,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 <configuration>
                     <modules>
                         <webModule>
-                            <groupId>${project.dependencies[0].groupId}</groupId>
-                            <artifactId>${project.dependencies[0].artifactId}</artifactId>
+                            <groupId>eSolutions</groupId>
+                            <artifactId>eSolutions_web_source</artifactId>
                             <contextRoot>/esolutions</contextRoot>
                         </webModule>
                     </modules>

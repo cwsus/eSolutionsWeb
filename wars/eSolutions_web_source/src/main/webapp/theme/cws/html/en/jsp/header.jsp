@@ -33,7 +33,7 @@
  * cws-khuntly          11/23/2008 22:39:20             Created.
  */
 --%>
-<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isThreadSafe="true" errorPage="/theme/cws/html/en/jsp/errHandler.jsp" %>
+<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isThreadSafe="true" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -43,15 +43,14 @@
 
 <spring:htmlEscape defaultHtmlEscape="true" />
 
-<html xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<html lang="en" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.w3.org/1999/xhtml http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
 
     <head>
         <title><spring:message code="theme.title" /></title>
-        <link rel="stylesheet" href="/static/layout/styles/layout.css" type="text/css" />
-        <link rel="stylesheet" href="/static/layout/styles/messages.css" type="text/css" />
-        <link rel="image/x-icon" href="/static/img/favicon.ico" />
-        <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="/static/layout/styles/main.css" type="text/css" />
+        <link rel="image/x-icon" href="/static/layout/images/favicon.ico" />
+        <link rel="shortcut icon" href="/static/layout/images/favicon.ico" type="image/x-icon" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Language" content="en-US" />
@@ -68,8 +67,8 @@
 		<script type="text/javascript" src="/static/layout/scripts/jquery.min.js"></script>
 		<script type="text/javascript" src="/static/layout/scripts/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="/static/layout/scripts/jquery.hslides.1.0.js"></script>
-        <script type="text/javascript" src="/static/js/Scripts.js"></script>
-        <script type="text/javascript" src="/static/js/FormHandler.js"></script>
+        <script type="text/javascript" src="/static/layout/scripts/Scripts.js"></script>
+        <script type="text/javascript" src="/static/layout/scripts/FormHandler.js"></script>
 		<script type="text/javascript">
 			$((function () {
 			    $('#accordion').hSlides({
