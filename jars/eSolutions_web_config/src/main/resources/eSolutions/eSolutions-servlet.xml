@@ -28,9 +28,9 @@
 	</bean>
 
     <bean id="messageValidator" class="com.cws.esolutions.web.validators.WebMessageValidator">
-        <property name="messageSubjectRequired" value="theme.subject.required" />
-        <property name="messageBodyRequired" value="theme.body.required" />
-        <property name="messageFromRequired" value="theme.from.required" />
+        <property name="messageSubjectRequired" value="common.subject.required" />
+        <property name="messageBodyRequired" value="common.body.required" />
+        <property name="messageFromRequired" value="common.from.required" />
     </bean>
 
     <bean id="addressValidator" class="com.cws.esolutions.web.validators.EmailAddressValidator">
@@ -67,19 +67,6 @@
         <property name="contactAdminsRedirect" value="redirect:/ui/common/contact" />
         <property name="expiredRedirect" value="redirect:/ui/user-account/password" />
         <property name="olrRedirect" value="redirect:/ui/user-account/security" />
-        <property name="themeMessageSource" value="nls.theme.resources" />
-        <property name="messageEmailSendFailed" value="theme.system.message.email.send.failed" />
-        <property name="messageRequestCanceled" value="theme.system.message.request.canceled" />
-        <property name="messagePasswordExpired" value="theme.login.user.expired" />
-        <property name="messageUserNotLoggedIn" value="theme.error.user.not.authenticated" />
-        <property name="messageRequestProcessingFailure" value="theme.system.service.failure" />
-        <property name="messageAccountNotAuthorized" value="theme.error.user.not.authorized" />   
-        <property name="messageValidationFailed" value="theme.request.validation.failed" />
-        <property name="messageNoSearchResults" value="theme.search.no.results" />
-        <property name="messageEmailSentSuccess" value="theme.email.sent.success" />
-        <property name="messageAccountLocked" value="theme.error.account.locked" />
-        <property name="messageAccountSuspended" value="theme.error.account.suspended" />
-        <property name="messageOlrSetup" value="theme.olr.setup" />
     </bean>
 
 	<bean class="org.springframework.web.context.support.ServletContextAttributeExporter">
@@ -93,6 +80,14 @@
     </bean>
 
     <!-- import controllers -->
-    <import resource="classpath:eSolutions/controller-config.xml" />
+    <import resource="classpath:eSolutions/servlets/CommonController.xml" />
+    <import resource="classpath:eSolutions/servlets/DatacenterManagementController.xml" />
+    <import resource="classpath:eSolutions/servlets/DNSServiceController.xml" />
+    <import resource="classpath:eSolutions/servlets/KnowledgeManagementController.xml" />
+    <import resource="classpath:eSolutions/servlets/LoginController.xml" />
+    <import resource="classpath:eSolutions/servlets/OnlineResetController.xml" />
+    <import resource="classpath:eSolutions/servlets/ServerManagementController.xml" />
+    <import resource="classpath:eSolutions/servlets/UserAccountController.xml" />
+    <import resource="classpath:eSolutions/servlets/UserManagementController.xml" />
 </beans>
 

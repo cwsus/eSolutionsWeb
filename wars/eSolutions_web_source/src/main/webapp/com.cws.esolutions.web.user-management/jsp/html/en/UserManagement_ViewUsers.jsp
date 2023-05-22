@@ -33,10 +33,7 @@
  */
 --%>
 
-<script>
-<!--
 <script type="text/javascript">
-    <!--
     function changeView()
     {
         document.getElementById('userRoleInput').style.display = 'none';
@@ -51,96 +48,78 @@
 
         window.location.href = '${pageContext.request.contextPath}/ui/user-management/change-role/account/${foundAccount.guid}/role/' + newRole;
     }
-    //-->
 </script>
 
-<div id="homecontent">
-    <div class="wrapper">
-        <div id="error"></div>
-        <div id="validationError" style="color: #FF0000"></div>
-    
-        <c:if test="${not empty fn:trim(messageResponse)}">
-            <p id="info">${messageResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorResponse)}">
-            <p id="error">${errorResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(responseMessage)}">
-            <p id="info"><spring:message code="${responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorMessage)}">
-            <p id="error"><spring:message code="${errorMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.responseMessage)}">
-            <p id="info"><spring:message code="${param.responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.errorMessage)}">
-            <p id="error"><spring:message code="${param.errorMessage}" /></p>
-        </c:if>
+<div id="content">
+    <h1><spring:message code="user.mgmt.list.users" /></h1>
 
-        <h1><spring:message code="user.mgmt.list.users" /></h1>
-        <c:choose>
-            <c:when test="${not empty userList}">
+    <%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
+
+    <c:choose>
+        <c:when test="${not empty userList}">
+            <table>
+                <thead>
+                    <tr>
+                        <th><label><spring:message code="user.mgmt.user.name" /></label></th>
+                        <th><label><spring:message code="user.mgmt.user.role" /></label></th>
+                        <th><label><spring:message code="user.mgmt.mgmt.lastlogin" /></label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="user" items="${userList}">
+                        <tr>
+                            <td><a href="<c:url value='/ui/user-management/view/account/${user.guid}' />" title="${user.username}">${user.username}</a></td>
+                            <td>${user.userRole}</td>
+                            <td>${user.lastLogin}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            <br class="clear" />
+            <br class="clear" />
+            <c:if test="${pages gt 1}">
+                <br />
+                <hr />
                 <table>
-                    <thead>
-                        <tr>
-                            <th><label><spring:message code="user.mgmt.user.name" /></label></th>
-                            <th><label><spring:message code="user.mgmt.user.role" /></label></th>
-                            <th><label><spring:message code="user.mgmt.mgmt.lastlogin" /></label></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="user" items="${userList}">
-                            <tr>
-                                <td><a href="<c:url value='/ui/user-management/view/account/${user.guid}' />" title="${user.username}">${user.username}</a></td>
-                                <td>${user.userRole}</td>
-                                <td>${user.lastLogin}</td>
-                            </tr>
+                    <tr>
+                        <c:forEach begin="1" end="${pages}" var="i">
+                            <c:set var="pageCount" value="${i}" />
+
+                            <c:choose>
+                                <c:when test="${page eq i}">
+                                    <td>${i}</td>
+                                    <c:if test="${pageCount gt 10 and i eq 10}">
+                                        <td><a href="<c:url value='/user-management/audit/account/${foundAccount.guid}/page/10' />" title="Next">Next</a></td>
+                                    </c:if>
+                                </c:when>
+                                <c:otherwise>
+                                    <td><a href="<c:url value='/user-management/audit/account/${foundAccount.guid}/page/${i}' />" title="${i}">${i}</a></td>
+                                </c:otherwise>
+                            </c:choose>
                         </c:forEach>
-                    </tbody>
+                    </tr>
                 </table>
-                <br class="clear" />
-                <br class="clear" />
-                <c:if test="${pages gt 1}">
-                    <br />
-                    <hr />
-                    <table>
-                        <tr>
-                            <c:forEach begin="1" end="${pages}" var="i">
-                                <c:set var="pageCount" value="${i}" />
-    
-                                <c:choose>
-                                    <c:when test="${page eq i}">
-                                        <td>${i}</td>
-                                        <c:if test="${pageCount gt 10 and i eq 10}">
-                                            <td><a href="<c:url value='/user-management/audit/account/${foundAccount.guid}/page/10' />" title="Next">Next</a></td>
-                                        </c:if>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td><a href="<c:url value='/user-management/audit/account/${foundAccount.guid}/page/${i}' />" title="${i}">${i}</a></td>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                        </tr>
-                    </table>
-                </c:if>
-            </c:when>
-            <c:otherwise>
-                <spring:message code="user.mgmt.no.audit.found" />
-            </c:otherwise>
-        </c:choose>
-    </div>
+            </c:if>
+        </c:when>
+        <c:otherwise>
+            <spring:message code="user.mgmt.no.audit.found" />
+        </c:otherwise>
+    </c:choose>
 </div>
 
-<div id="container">
-    <div class="wrapper">
-        <div id="content">
-            <h1><spring:message code="user.mgmt.header" /></h1>
-            <ul>
-                <li><a href="<c:url value='/ui/user-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
-                <li><a href="<c:url value='/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
-            </ul>
-        </div>
-    <br class="clear" />
+<div id="column">
+    <div class="holder">
+        <h1><spring:message code="user.mgmt.header" /></h1>
+        <ul id="latestnews">
+	        <li>
+	            <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+	            <p><a href="<c:url value='/ui/user-management/default' />" title="<fmt:message key='theme.search.banner' bundle='${theme}' />"><fmt:message key="theme.search.banner" bundle="${theme}" /></a></p>
+	        </li>
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></p>
+            </li>
+        </ul>
     </div>
 </div>
+<br class="clear" />

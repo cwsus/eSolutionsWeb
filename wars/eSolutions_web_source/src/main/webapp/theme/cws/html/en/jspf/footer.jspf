@@ -1,0 +1,16 @@
+<div id="footer">
+    <div id="login">
+        <c:if test="${not empty fn:trim(sessionScope.userAccount)}">
+            <fmt:message key="theme.welcome.message" bundle="${theme}">
+                <fmt:param value="${sessionScope.userAccount.username}" />
+                <fmt:param value="${sessionScope.userAccount.lastLogin}" />
+            </fmt:message>
+            <br /><br />
+            <a href="<c:url value='/ui/common/default' />" title="<fmt:message key='theme.navbar.homepage' bundle='${theme}' />"><fmt:message key='theme.navbar.homepage' bundle='${theme}' /></a> |
+            <a href="<c:url value='/ui/auth/logout' />" title="<fmt:message key='theme.navbar.logoff' bundle='${theme}' />"><fmt:message key='theme.navbar.logoff' bundle='${theme}' /></a> |
+            <a href="<c:url value='/ui/user-account/default' />" title="<fmt:message key='theme.navbar.myaccount' bundle='${theme}' />"><fmt:message key="theme.navbar.myaccount" bundle='${theme}' /></a> |
+            <a href="<c:url value='/ui/common/contact' />" title="<fmt:message key='theme.contact.us' bundle='${theme}' />"><fmt:message key='theme.contact.us' bundle='${theme}' /></a>
+        </c:if>
+    </div>
+    <br class="clear" />
+</div>

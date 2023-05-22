@@ -34,14 +34,13 @@
 --%>
 
 <script>
-<!--
     function validateForm(theForm)
     {
         if (theForm.searchTerms.value == '')
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'You must provide a hostname or IP address to perform a query against.';
+            document.getElementById('validationError').innerHTML = '<fmt:message key="theme.provide.search.terms' bundle="${theme}" />';
             document.getElementById('txtSearchTerms').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('searchTerms').focus();
@@ -51,94 +50,74 @@
 
         theForm.submit();
     }
-//-->
 </script>
 
-<div id="homecontent">
-    <div class="wrapper">
-        <div id="error"></div>
-        <div id="validationError" style="color: #FF0000"></div>
-    
-        <c:if test="${not empty fn:trim(messageResponse)}">
-            <p id="info">${messageResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorResponse)}">
-            <p id="error">${errorResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(responseMessage)}">
-            <p id="info"><spring:message code="${responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorMessage)}">
-            <p id="error"><spring:message code="${errorMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.responseMessage)}">
-            <p id="info"><spring:message code="${param.responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.errorMessage)}">
-            <p id="error"><spring:message code="${param.errorMessage}" /></p>
-        </c:if>
+<div id="content">
+    <%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
 
-        <form:form id="searchUserAccounts" name="searchUserAccounts" action="${pageContext.request.contextPath}/ui/user-management/search" method="post">
-            <label id="txtSearchTerms"><spring:message code="user.mgmt.search.terms" /><br /></label>
-            <form:input path="searchTerms" id="searchTerms" />
-            <form:errors path="searchTerms" cssClass="error" />
+    <form:form id="searchUserAccounts" name="searchUserAccounts" action="${pageContext.request.contextPath}/ui/user-management/search" method="post">
+        <label id="txtSearchTerms"><spring:message code="user.mgmt.search.terms" /><br /></label>
+        <form:input path="searchTerms" id="searchTerms" />
+        <form:errors path="searchTerms" cssClass="error" />
+        <br /><br />
+        <input type="button" name="execute" value="<fmt:message key='theme.button.submit.text' bundle='${theme}' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
+        <input type="button" name="reset" value="<fmt:message key='theme.button.reset.text' bundle='${theme}' />" id="reset" class="submit" onclick="clearForm();" />
+    </form:form>
 
-            <br /><br />
-            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
-            <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-        </form:form>
+    <br class="clear" />
+    <br class="clear" />
 
-        <br class="clear" />
-        <br class="clear" />
-
-        <c:if test="${not empty fn:trim(requestScope.searchResults)}">
-            <h1><spring:message code="theme.search.results" /></h1>
-            <table id="userSearchResults">
+    <c:if test="${not empty fn:trim(requestScope.searchResults)}">
+        <h1><fmt:message key="theme.search.results" bundle="${theme}" /></h1>
+        <table id="userSearchResults">
+            <tr>
+                <td><spring:message code="user.mgmt.user.name" /></td>
+                <td><spring:message code="user.mgmt.display.name" /></td>
+            </tr>
+            <c:forEach var="userResult" items="${requestScope.searchResults}">
                 <tr>
-                    <td><spring:message code="user.mgmt.user.name" /></td>
-                    <td><spring:message code="user.mgmt.display.name" /></td>
+                    <td><a href="<c:url value='/ui/user-management/view/account/${userResult.guid}' />" title="${userResult.username}">${userResult.username}</a></td>
+                    <td>${userResult.displayName}</td>
                 </tr>
-                <c:forEach var="userResult" items="${requestScope.searchResults}">
-                    <tr>
-                        <td><a href="<c:url value='/ui/user-management/view/account/${userResult.guid}' />" title="${userResult.username}">${userResult.username}</a></td>
-                        <td>${userResult.displayName}</td>
-                    </tr>
-                </c:forEach>
+            </c:forEach>
+        </table>
+
+        <c:if test="${pages gt 1}">
+            <br />
+            <hr />
+            <table>
+                <tr>
+                    <c:forEach begin="1" end="${pages}" var="i">
+                        <c:choose>
+                            <c:when test="${page eq i}">
+                                <td>${i}</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td>
+                                    <a href="<c:url value='/user-management/search/terms/${searchTerms}/type/${searchType}/page/${i}' />" title="${i}">${i}</a>
+                                </td>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </tr>
             </table>
-
-            <c:if test="${pages gt 1}">
-                <br />
-                <hr />
-                <table>
-                    <tr>
-                        <c:forEach begin="1" end="${pages}" var="i">
-                            <c:choose>
-                                <c:when test="${page eq i}">
-                                    <td>${i}</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td>
-                                        <a href="<c:url value='/user-management/search/terms/${searchTerms}/type/${searchType}/page/${i}' />" title="${i}">${i}</a>
-                                    </td>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </tr>
-                </table>
-            </c:if>
         </c:if>
-    </div>
+    </c:if>
 </div>
 
-<div id="container">
-    <div class="wrapper">
-        <div id="content">
-            <h1><spring:message code="user.mgmt.header" /></h1>
-            <ul>
-                <li><a href="<c:url value='/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></li>
-                <li><a href="<c:url value='/ui/user-management/list-users' />" title="<spring:message code='user.mgmt.list.users' />"><spring:message code="user.mgmt.list.users" /></a></li>
-            </ul>
-        </div>
-        <br class="clear" />
+<div id="column">
+    <div class="holder">
+        <h1><fmt:message key="user.mgmt.header" /></h1>
+        <ul id="latestnews">
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/user-management/add-user' />" title="<spring:message code='user.mgmt.create.user' />"><spring:message code="user.mgmt.create.user" /></a></p>
+            </li>
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/user-management/list-users' />" title="<spring:message code='user.mgmt.list.users' />"><spring:message code="user.mgmt.list.users" /></a></p>
+            </li>
+        </ul>
     </div>
 </div>
+<br class="clear" />

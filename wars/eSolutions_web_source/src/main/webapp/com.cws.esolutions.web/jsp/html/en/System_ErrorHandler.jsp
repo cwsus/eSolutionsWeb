@@ -20,7 +20,7 @@
 /**
  * Project: eSolutions_web_source
  * Package: com.cws.esolutions.web\jsp\html\en
- * File: System_ErrorHandler.jsp
+ * File: System_Unauthorized.jsp
  *
  * @author cws-khuntly
  * @version 1.0
@@ -32,62 +32,30 @@
  * cws-khuntly          11/23/2008 22:39:20             Created.
  */
 --%>
-<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isThreadSafe="true" isErrorPage="true" %>
 
-<div id="homecontent">
-	<div class="wrapper">
-	    <h1><spring:message code="theme.error.system.failure" /></h1>
-	    <spring:message code="theme.system.service.failure" />
+<h1><fmt:message key="theme.error.system.failure" bundle="${theme}" /></h1>
+<fmt:message key="theme.system.service.failure" bundle="${theme}" />
 
-	    <c:if test="${not empty fn:trim(messageResponse)}">
-	        <p id="info">${messageResponse}</p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorResponse)}">
-	        <p id="error">${errorResponse}</p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(responseMessage)}">
-	        <p id="info"><spring:message code="${responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorMessage)}">
-	        <p id="error"><spring:message code="${errorMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.responseMessage)}">
-	        <p id="info"><spring:message code="${param.responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.errorMessage)}">
-	        <p id="error"><spring:message code="${param.errorMessage}" /></p>
-	    </c:if>
+<%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
 
-		<c:if test="${not empty exception}">
-			Reported exception:
-			<br />
-			${exception}
-		</c:if>
-	
-	    <c:choose>
-	        <c:when test="${empty fn:trim(sessionScope.userAccount) or empty fn:trim(sessionScope.userAccount.status)}">
-	            <p>
-	                <a href="<c:url value='/ui/login/default' />" title="<spring:message code='theme.navbar.login' />">
-	                    <spring:message code="theme.click.continue" /></a>
-	            </p>
-	        </c:when>
-	        <c:otherwise>
-	            <c:choose>
-	                <c:when test="${sessionScope.userAccount.status == 'SUCCESS'}">
-	                    <p>
-	                        <a href="<c:url value='/ui/common/default' />" title="<spring:message code='theme.navbar.home' />">
-	                            <spring:message code="theme.click.continue" /></a>
-	                    </p>
-	                </c:when>
-	                <c:otherwise>
-	                    <p>
-	                        <a href="<c:url value='/ui/login/default' />" title="<spring:message code='theme.navbar.login' />">
-	                            <spring:message code="theme.click.continue" /></a>
-	                    </p>
-	                </c:otherwise>
-	            </c:choose>
-	        </c:otherwise>
-	    </c:choose>
-  		<br class="clear" />
-	</div>
-</div>
+<c:if test="${not empty exception}">
+    Reported exception:
+    <br />
+    ${exception}
+</c:if>
+
+<c:choose>
+    <c:when test="${empty fn:trim(sessionScope.userAccount) or empty fn:trim(sessionScope.userAccount.status)}">
+        <p><a href="<c:url value='/ui/login/default' />" title="<fmt:message key='theme.navbar.login' bundle="${theme}" />"><fmt:message key="theme.click.continue" bundle="${theme}" /></a></p>
+    </c:when>
+    <c:otherwise>
+        <c:choose>
+            <c:when test="${sessionScope.userAccount.status == 'SUCCESS'}">
+                <p><a href="<c:url value='/ui/common/default' />" title="<fmt:message key='theme.navbar.home' bundle="${theme}" />"><fmt:message key="theme.click.continue" bundle="${theme}" /></a></p>
+            </c:when>
+            <c:otherwise>
+                <p><a href="<c:url value='/ui/login/default' />" title="<fmt:message key='theme.navbar.login' bundle="${theme}" />"><fmt:message key="theme.click.continue" bundle="${theme}" /></a></p>
+            </c:otherwise>
+        </c:choose>
+    </c:otherwise>
+</c:choose>

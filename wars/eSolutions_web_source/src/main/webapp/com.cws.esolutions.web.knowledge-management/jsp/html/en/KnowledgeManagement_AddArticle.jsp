@@ -40,154 +40,145 @@
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide a title for the new article.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="kbase.provide.title" />';
             document.getElementById('"txtTitle"').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('title').focus();
+
+            return;
         }
         else if (theForm.keywords.value == '')
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide searchable keywords for the new article.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="kbase.provide.keywords" />';
             document.getElementById('"txtKeywords"').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('keywords').focus();
+
+            return;
         }
         else if (theForm.symptoms.value == '')
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide the symptoms that correlate to the issue for this article.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="kbase.provide.symptoms" />';
             document.getElementById('txtSymptoms').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('symptoms').focus();
+
+            return;
         }
         else if (theForm.cause.value == '')
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide the cause that correlate to the issue for this article.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="kbase.provide.cause" />';
             document.getElementById('txtCause').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('cause').focus();
+
+            return;
         }
         else if (theForm.resolution.value == '')
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide the resolution to the issue for this article.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="kbase.provide.resolution" />';
             document.getElementById('txtResolution').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('resolution').focus();
+
+            return;
         }
-        else
-        {
-            theForm.submit();
-        }
+
+        theForm.submit();
     }
 </script>
 
-<div id="homecontent">
-    <div class="wrapper">
-        <div id="error"></div>
-        <div id="validationError" style="color: #FF0000"></div>
-    
-        <c:if test="${not empty fn:trim(messageResponse)}">
-            <p id="info">${messageResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorResponse)}">
-            <p id="error">${errorResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(responseMessage)}">
-            <p id="info"><spring:message code="${responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorMessage)}">
-            <p id="error"><spring:message code="${errorMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.responseMessage)}">
-            <p id="info"><spring:message code="${param.responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.errorMessage)}">
-            <p id="error"><spring:message code="${param.errorMessage}" /></p>
-        </c:if>
+<div id="content">
+    <%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
 
-        <form:form id="createNewArticle" name="createNewArticle" action="${pageContext.request.contextPath}/ui/knowledge-management/add-article" method="post">
-            <table>
+    <form:form id="createNewArticle" name="createNewArticle" action="${pageContext.request.contextPath}/ui/knowledge-management/add-article" method="post">
+        <table>
+            <tr>
+                <td><label><spring:message code="knowledge.mgmt.article.newtitle" /></label></td>
+                <td>
+           <form:input path="title" />
+           <form:errors path="title" cssClass="error" />
+                </td>
+            </tr>
+        </table>
+        <table>
+            <thead>
                 <tr>
-                    <td><label><spring:message code="knowledge.mgmt.article.newtitle" /></label></td>
+                    <th><label><spring:message code="knowledge.article.keywords" /></label></th>
+                    <th><label><spring:message code="knowledge.article.symptoms" /></label></th>
+                    <th><label><spring:message code="knowledge.article.cause" /></label></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
                     <td>
-			            <form:input path="title" />
-			            <form:errors path="title" cssClass="error" />
+                        <form:input path="keywords" />
+                        <form:errors path="keywords" cssClass="error" />
+                    </td>
+                    <td>
+                        <form:input path="symptoms" />
+                        <form:errors path="symptoms" cssClass="error" />
+                    </td>
+                    <td>
+                        <form:input path="cause" />
+                        <form:errors path="cause" cssClass="error" />
                     </td>
                 </tr>
-            </table>
-            <table>
-                <thead>
-                    <tr>
-                        <th><label><spring:message code="knowledge.article.keywords" /></label></th>
-                        <th><label><spring:message code="knowledge.article.symptoms" /></label></th>
-                        <th><label><spring:message code="knowledge.article.cause" /></label></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <form:input path="keywords" />
-                            <form:errors path="keywords" cssClass="error" />
-                        </td>
-                        <td>
-                            <form:input path="symptoms" />
-                            <form:errors path="symptoms" cssClass="error" />
-                        </td>
-                        <td>
-                            <form:input path="cause" />
-                            <form:errors path="cause" cssClass="error" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <br class="clear" />
-            <form:textarea path="resolution" style="width: 915px; height: 150px;" spellcheck="true" />
-            <form:errors path="resolution" cssClass="error" />
-            <br class="clear" />
-            <table>
-                <thead>
-                    <tr>
-                        <th><label><spring:message code="knowledge.article.author" /></label></th>
-                        <th><label><spring:message code="knowledge.article.approver" /></label></th>
-                        <th><label><spring:message code="knowledge.article.approvedOn" /></label></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>${sessionScope.userAccount.username}</td>
-                        <td>---</td>
-                        <td>---</td>
-                    </tr>
-                </tbody>
-            </table>
-            <br class="clear" /><br class="clear" />
-            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
-            <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-            <input type="button" name="cancel" value="<spring:message code='theme.button.cancel.text' />" id="cancel" class="submit" onclick="redirectOnCancel('${pageContext.request.contextPath}/ui/knowledge-management/default');" />
-        </form:form>
+            </tbody>
+        </table>
         <br class="clear" />
-    </div>
+        <form:textarea path="resolution" style="width: 915px; height: 150px;" spellcheck="true" />
+        <form:errors path="resolution" cssClass="error" />
+        <br class="clear" />
+        <table>
+            <thead>
+                <tr>
+                    <th><label><spring:message code="knowledge.article.author" /></label></th>
+                    <th><label><spring:message code="knowledge.article.approver" /></label></th>
+                    <th><label><spring:message code="knowledge.article.approvedOn" /></label></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>${sessionScope.userAccount.username}</td>
+                    <td>---</td>
+                    <td>---</td>
+                </tr>
+            </tbody>
+        </table>
+        <br class="clear" /><br class="clear" />
+        <input type="button" name="execute" value="<fmt:message key='theme.button.submit.text' bundle='${theme}' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
+        <input type="button" name="reset" value="<fmt:message key='theme.button.reset.text' bundle='${theme}' />" id="reset" class="submit" onclick="clearForm();" />
+        <input type="button" name="cancel" value="<fmt:message key='theme.button.cancel.text' bundle='${theme}' />" id="cancel" class="submit" onclick="redirectOnCancel('${pageContext.request.contextPath}/ui/knowledge-management/default');" />
+    </form:form>
+    <br class="clear" />
 </div>
 
-<div id="container">
-    <div class="wrapper">
-        <div id="content">
-            <h1><spring:message code="knowledge.mgmt.header" /></h1>
-            <ul>
-                <li><a href="<c:url value='/ui/knowledge-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
-                <li><a href="<c:url value='/ui/knowledge-management/list-articles' />" title="<spring:message code='knowledge.mgmt.list.articles' />"><spring:message code='knowledge.mgmt.list.articles' /></a></li>
-                <c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
-                    <li><a href="<c:url value='/ui/knowledge-management/list-articles/pending-approval' />" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></li>
-                </c:if>
-            </ul>
-        </div>
-        <br class="clear" />
+<div id="column">
+    <div class="holder">
+        <h1><spring:message code="knowledge.mgmt.header" /></h1>
+        <ul id="latestnews">
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/knowledge-management/default' />" title="<fmt:message key='theme.search.banner' bundle='${theme}' />"><fmt:message key="theme.search.banner" bundle="${thene}" /></a></p>
+            </li>
+            <li class="last">
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/knowledge-management/list-articles' />" title="<spring:message code='knowledge.mgmt.list.articles' />"><spring:message code='knowledge.mgmt.list.articles' /></a></p>
+            </li>
+            <c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/knowledge-management/list-articles/pending-approval' />" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></p>
+            </c:if>
+        </ul>
     </div>
 </div>
+<br class="clear" />

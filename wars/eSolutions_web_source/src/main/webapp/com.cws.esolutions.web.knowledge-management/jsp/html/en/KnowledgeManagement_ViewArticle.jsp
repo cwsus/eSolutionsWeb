@@ -33,90 +33,78 @@
  */
 --%>
 
-<div id="homecontent">
-    <div class="wrapper">
-        <div id="error"></div>
-        <div id="validationError" style="color: #FF0000"></div>
-    
-        <c:if test="${not empty fn:trim(messageResponse)}">
-            <p id="info">${messageResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorResponse)}">
-            <p id="error">${errorResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(responseMessage)}">
-            <p id="info"><spring:message code="${responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorMessage)}">
-            <p id="error"><spring:message code="${errorMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.responseMessage)}">
-            <p id="info"><spring:message code="${param.responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.errorMessage)}">
-            <p id="error"><spring:message code="${param.errorMessage}" /></p>
-        </c:if>
+<div id="content">
+    <%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
 
-        <c:choose>
-            <c:when test="${not empty articleData}">
-                <h1><spring:message code="knowledge.article.title" arguments="${articleData.title}" /></h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th><label><spring:message code="knowledge.article.keywords" /></label></th>
-                            <th><label><spring:message code="knowledge.article.symptoms" /></label></th>
-                            <th><label><spring:message code="knowledge.article.cause" /></label></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>${articleData.keywords}</td>
-                            <td>${articleData.symptoms}</td>
-                            <td>${articleData.cause}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br class="clear" />
-                ${articleData.resolution}
-                <br class="clear" />
-                <table>
-                    <thead>
-                        <tr>
-                            <th><label><spring:message code="knowledge.article.author" /></label></th>
-                            <th><label><spring:message code="knowledge.article.approver" /></label></th>
-                            <th><label><spring:message code="knowledge.article.approvedOn" /></label></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>${articleData.author.displayName}</td>
-                            <td>${articleData.approvedBy.displayName}</td>
-                            <td>${articleData.approveDate}</td>
-                        </tr>
-                    </tbody>
-                </table>                
-            </c:when>
-            <c:otherwise>
-                <spring:message code="knowledge.article.load.failed" />
-            </c:otherwise>
-        </c:choose>
-        <br class="clear" />
-    </div>
+    <c:choose>
+        <c:when test="${not empty articleData}">
+            <h1><spring:message code="knowledge.article.title" arguments="${articleData.title}" /></h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th><label><spring:message code="knowledge.article.keywords" /></label></th>
+                        <th><label><spring:message code="knowledge.article.symptoms" /></label></th>
+                        <th><label><spring:message code="knowledge.article.cause" /></label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${articleData.keywords}</td>
+                        <td>${articleData.symptoms}</td>
+                        <td>${articleData.cause}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br class="clear" />
+            ${articleData.resolution}
+            <br class="clear" />
+            <table>
+                <thead>
+                    <tr>
+                        <th><label><spring:message code="knowledge.article.author" /></label></th>
+                        <th><label><spring:message code="knowledge.article.approver" /></label></th>
+                        <th><label><spring:message code="knowledge.article.approvedOn" /></label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${articleData.author.displayName}</td>
+                        <td>${articleData.approvedBy.displayName}</td>
+                        <td>${articleData.approveDate}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </c:when>
+        <c:otherwise>
+            <spring:message code="knowledge.article.load.failed" />
+        </c:otherwise>
+    </c:choose>
+    <br class="clear" />
 </div>
 
-<div id="container">
-    <div class="wrapper">
-        <div id="content">
-            <h1><spring:message code="knowledge.mgmt.header" /></h1>
-            <ul>
-                <li><a href="<c:url value='/ui/knowledge-management/default' />" title="<spring:message code='theme.search.banner' />"><spring:message code="theme.search.banner" /></a></li>
-                <li><a href="<c:url value='/ui/knowledge-management/list-articles' />" title="<spring:message code='knowledge.mgmt.list.articles' />"><spring:message code='knowledge.mgmt.list.articles' /></a></li>
-                <li><a href="<c:url value='/ui/knowledge-management/add-article' />" title="<spring:message code='knowledge.mgmt.add.article' />"><spring:message code='knowledge.mgmt.add.article' /></a></li>
-                <c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
-                    <li><a href="<c:url value='/ui/knowledge-management/list-articles/pending-approval' />" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></li>
-                </c:if>
-            </ul>
-        </div>
-        <br class="clear" />
+<div id="column">
+    <div class="holder">
+        <h1><spring:message code="knowledge.mgmt.header" /></h1>
+        <ul id="latestnews">
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/knowledge-management/default' />" title="<fmt:message key='theme.search.banner' bundle='${theme}' />"><fmt:message key="theme.search.banner" bundle="${theme}" /></a></p>
+            </li>
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/knowledge-management/list-articles' />" title="<spring:message code='knowledge.mgmt.list.articles' />"><spring:message code='knowledge.mgmt.list.articles' /></a></p>
+            </li>
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/knowledge-management/add-article' />" title="<spring:message code='knowledge.mgmt.add.article' />"><spring:message code='knowledge.mgmt.add.article' /></a></p>
+            </li>
+            <c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
+                <li class="last">
+                    <img class="imgl" src="layout/images/blue_file.gif" alt="" />
+                    <p><a href="<c:url value='/ui/knowledge-management/list-articles/pending-approval' />" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></p>
+                </li>
+            </c:if>
+        </ul>
     </div>
 </div>
+<br class="clear" />
