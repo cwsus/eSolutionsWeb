@@ -13,7 +13,7 @@
     <name>eSolutions</name>
     <groupId>eSolutions</groupId>
     <artifactId>eSolutions-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
     <description>eSolutions</description>
 
@@ -59,7 +59,7 @@
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
-            <!-- cws shared -->
+            <!-- esolutions -->
             <dependency>
                 <groupId>com.cws</groupId>
                 <artifactId>eSolutionsCore</artifactId>
@@ -163,9 +163,9 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-			<dependency>
-    			<groupId>org.springframework</groupId>
-    			<artifactId>spring-beans</artifactId>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
                 <version>${spring.version}</version>
                 <type>jar</type>
                 <scope>compile</scope>

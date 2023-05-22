@@ -27,6 +27,9 @@
                 <value>classpath:nls/ServerManagementServlet/ServerManagementServlet</value>
                 <value>classpath:nls/UserAccountServlet/UserAccountServlet</value>
                 <value>classpath:nls/UserManagementServlet/UserManagementServlet</value>
+                <value>classpath:nls/ServerManagementServlet/ServerManagementServlet</value>
+                <value>classpath:nls/UserAccountServlet/UserAccountServlet</value>
+                <value>classpath:nls/UserManagementServlet/UserManagementServlet</value>
             </list>
         </property>
         <property name="cacheSeconds">
