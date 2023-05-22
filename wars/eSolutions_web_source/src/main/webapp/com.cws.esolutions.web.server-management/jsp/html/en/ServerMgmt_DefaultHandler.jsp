@@ -83,7 +83,7 @@
                 <form:input path="operHostName" />
                 <form:errors path="operHostName" cssClass="error" />
                 <br /><br />
-                <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
+                <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
                 <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
             </form:form>
         </p>
@@ -94,7 +94,7 @@
             <table id="searchResults">
                 <c:forEach var="result" items="${searchResults}">
                     <tr>
-                        <td><a href="${pageContext.request.contextPath}/ui/server-management/server/${result.serverGuid}" title="${result.operHostName}">${result.operHostName}</a></td>
+                        <td><a href="<c:url value='/ui/server-management/server/${result.serverGuid}' />" title="${result.operHostName}">${result.operHostName}</a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -111,9 +111,7 @@
                                     <td>${i}</td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>
-                                        <a href="${pageContext.request.contextPath}/server-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a>
-                                    </td>
+                                    <td><a href="<c:url value='/server-management/search/terms/${searchTerms}/page/${i}' />" title="${i}">${i}</a></td>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>
@@ -129,9 +127,9 @@
         <div id="content">
             <h1><spring:message code="server.mgmt.header" /></h1>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/add-server" title="<spring:message code='server.mgmt.add.server' />"><spring:message code="server.mgmt.add.server" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/install-software" title="<spring:message code='server.mgmt.install.software.header' />"><spring:message code="server.mgmt.install.software.header" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/server-management/server-control" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
+                <li><a href="<c:url value='/ui/server-management/add-server' />" title="<spring:message code='server.mgmt.add.server' />"><spring:message code="server.mgmt.add.server" /></a></li>
+                <li><a href="<c:url value='/ui/server-management/install-software' />" title="<spring:message code='server.mgmt.install.software.header' />"><spring:message code="server.mgmt.install.software.header" /></a></li>
+                <li><a href="<c:url value='/ui/server-management/server-control' />" title="<spring:message code='server.mgmt.server.control.header' />"><spring:message code='server.mgmt.server.control.header' /></a></li>
             </ul>
         </div>
         <br class="clear" />

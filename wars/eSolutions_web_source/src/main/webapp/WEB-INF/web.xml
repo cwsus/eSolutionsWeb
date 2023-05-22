@@ -17,8 +17,11 @@
  *
  */
 -->
-<web-app id="eSolutions_web_source" version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+  version="6.0" id="eSolutions_web_source">
 
     <display-name>eSolutions_web_source</display-name>
     <description>eSolutions_web_source</description>
@@ -92,6 +95,12 @@
         <servlet-name>eSolutions</servlet-name>
         <url-pattern>/ui/*</url-pattern>
     </servlet-mapping>
+
+	<env-entry>
+  		<description>webURL</description>
+  		<env-entry-name>webURL</env-entry-name>
+  		<env-entry-type>java.lang.String</env-entry-type>
+	</env-entry>
 
     <resource-ref id="esolutions">
         <description>Application Datasource</description>
@@ -183,6 +192,19 @@
     </jsp-config>
 
     <deny-uncovered-http-methods />
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Restricted Methods</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>TRACE</http-method>
+            <http-method>TRACK</http-method>
+            <http-method>PUT</http-method>
+            <http-method>DELETE</http-method>
+            <http-method>OPTIONS</http-method>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
 
     <security-constraint>
         <web-resource-collection>

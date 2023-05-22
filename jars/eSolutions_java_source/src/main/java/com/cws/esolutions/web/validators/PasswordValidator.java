@@ -44,6 +44,7 @@ public class PasswordValidator implements Validator
 	private int passwordMinLength = 8; // default
 	private int passwordMaxLength = 128; // default
     private String messageNewPasswordRequired = null;
+    private String messagePasswordSizeRequirement = null;
     private String messageConfirmPasswordRequired = null;
     private String messageCurrentPasswordRequired = null;
 
@@ -117,6 +118,19 @@ public class PasswordValidator implements Validator
         this.messageConfirmPasswordRequired = value;
     }
 
+    public final void setMessagePasswordSizeRequirement(final String value)
+    {
+        final String methodName = PasswordValidator.CNAME + "#setMessagePasswordSizeRequirement(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.messagePasswordSizeRequirement = value;
+    }
+
     public final boolean supports(final Class<?> value)
     {
         final String methodName = PasswordValidator.CNAME + "#supports(final Class<?> value)";
@@ -144,24 +158,18 @@ public class PasswordValidator implements Validator
         if (DEBUG)
         {
             DEBUGGER.debug(methodName);
-            DEBUGGER.debug("target: {}", target);
-            DEBUGGER.debug("errors: {}", errors);
         }
 
         final AccountChangeData changeReq = (AccountChangeData) target;
-        final int minLength = this.passwordMinLength;
-        final int maxLength = this.passwordMaxLength;
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug("UserChangeRequest: {}", changeReq);
-            DEBUGGER.debug("minLength: {}", minLength);
-            DEBUGGER.debug("maxLength: {}", maxLength);
-        }
 
         if (!(changeReq.isReset()))
         {
             ValidationUtils.rejectIfEmptyOrWhitespace(errors, "currentPassword", this.messageCurrentPasswordRequired);
+        }
+
+        if ((changeReq.getNewPassword().length < this.passwordMinLength) || (changeReq.getNewPassword().length > this.passwordMaxLength))
+        {
+        	errors.reject("newPassword", this.messagePasswordSizeRequirement);
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "newPassword", this.messageNewPasswordRequired);

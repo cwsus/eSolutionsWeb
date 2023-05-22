@@ -35,11 +35,7 @@
 
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isThreadSafe="true" isErrorPage="true" %>
 
-<div id="homecontent">
-	<div class="wrapper">
-	    <h1><spring:message code="theme.error.system.failure" /></h1>
-	    <p>
-        	<spring:message code="theme.system.service.failure" />
-	    </p>
-	</div>
-</div>
+<h1><fmt:message key="theme.error.system.failure" bundle="${theme}" /></h1>
+<p>
+   	<fmt:message key="theme.system.service.failure" bundle="${theme}" />
+</p>

@@ -42,8 +42,10 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -545,7 +547,7 @@ public class UserManagementController
         this.messageAccountRemovalFailure = value;
     }
     
-    @RequestMapping(value = "/default", method = RequestMethod.GET)
+    @GetMapping(value = "/default")
     public final ModelAndView showDefaultPage(final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#showDefaultPage(final Model model)";
@@ -615,7 +617,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/add-user", method = RequestMethod.GET)
+    @GetMapping(value = "/add-user")
     public final ModelAndView showAddUser(final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#showAddUser(final Model model)";
@@ -686,7 +688,7 @@ public class UserManagementController
         return mView;
     }
     
-    @RequestMapping(value = "/list-users", method = RequestMethod.GET)
+    @GetMapping(value = "/list-users")
     public final ModelAndView showListUsers(final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#showListUsers(final Model model)";
@@ -827,7 +829,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/view/account/{userGuid}", method = RequestMethod.GET)
+    @GetMapping(value = "/view/account/{userGuid}")
     public final ModelAndView showAccountData(@PathVariable("userGuid") final String userGuid, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#showAccountData(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
@@ -979,7 +981,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/audit/account/{userGuid}", method = RequestMethod.GET)
+    @GetMapping(value = "/audit/account/{userGuid}")
     public final ModelAndView showAuditData(@PathVariable("userGuid") final String userGuid, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#showAuditData(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
@@ -1142,7 +1144,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/lock/account/{userGuid}", method = RequestMethod.GET)
+    @GetMapping(value = "/lock/account/{userGuid}")
     public final ModelAndView lockUserAccount(@PathVariable("userGuid") final String userGuid, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#lockUserAccount(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
@@ -1295,7 +1297,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/unlock/account/{userGuid}", method = RequestMethod.GET)
+    @GetMapping(value = "/unlock/account/{userGuid}")
     public final ModelAndView unlockUserAccount(@PathVariable("userGuid") final String userGuid, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#unlockUserAccount(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
@@ -1447,7 +1449,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/suspend/account/{userGuid}", method = RequestMethod.GET)
+    @GetMapping(value = "/suspend/account/{userGuid}")
     public final ModelAndView suspendUserAccount(@PathVariable("userGuid") final String userGuid, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#suspendUserAccount(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
@@ -1599,7 +1601,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/unsuspend/account/{userGuid}", method = RequestMethod.GET)
+    @GetMapping(value = "/unsuspend/account/{userGuid}")
     public final ModelAndView unsuspendUserAccount(@PathVariable("userGuid") final String userGuid, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#unsuspendUserAccount(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
@@ -1751,7 +1753,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/reset/account/{userGuid}", method = RequestMethod.GET)
+    @GetMapping(value = "/reset/account/{userGuid}")
     public final ModelAndView resetUserAccount(@PathVariable("userGuid") final String userGuid, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#resetUserAccount(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
@@ -1979,7 +1981,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/change-role/account/{userGuid}/role/{role}", method = RequestMethod.GET)
+    @GetMapping(value = "/change-role/account/{userGuid}/role/{role}")
     public final ModelAndView changeUserRole(@PathVariable("userGuid") final String userGuid, @PathVariable("role") final String role, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#changeUserRole(@PathVariable(\"userGuid\") final String userGuid, @PathVariable(\"role\") final String role, final Model model)";
@@ -2132,7 +2134,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/disable/account/{userGuid}", method = RequestMethod.GET)
+    @GetMapping(value = "/disable/account/{userGuid}")
     public final ModelAndView disableUserAccount(@PathVariable("userGuid") final String userGuid, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#disableUserAccount(@PathVariable(\"userGuid\") final String userGuid, final Model model)";
@@ -2149,7 +2151,7 @@ public class UserManagementController
         final HttpServletRequest hRequest = requestAttributes.getRequest();
         final HttpSession hSession = hRequest.getSession();
         final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
-        final IAccountControlProcessor processor = (IAccountControlProcessor) new AccountControlProcessorImpl();
+        final IAccountControlProcessor processor = new AccountControlProcessorImpl();
 
         if (DEBUG)
         {
@@ -2275,7 +2277,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @PostMapping(value = "/search")
     public final ModelAndView doSearchUsers(@ModelAttribute("request") final AccountSearchRequest request, final BindingResult bindResult, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#doSearchUsers(@ModelAttribute(\"request\") final AccountSearchRequest request, final BindingResult bindResult, final Model model)";
@@ -2293,7 +2295,7 @@ public class UserManagementController
         final HttpServletRequest hRequest = requestAttributes.getRequest();
         final HttpSession hSession = hRequest.getSession();
         final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
-        final IAccountSearchProcessor searchProcessor = (IAccountSearchProcessor) new AccountSearchProcessorImpl();
+        final IAccountSearchProcessor searchProcessor = new AccountSearchProcessorImpl();
 
         if (DEBUG)
         {
@@ -2430,7 +2432,7 @@ public class UserManagementController
         return mView;
     }
 
-    @RequestMapping(value = "/add-user", method = RequestMethod.POST)
+    @PostMapping(value = "/add-user")
     public final ModelAndView doAddUser(@ModelAttribute("user") final UserAccount user, final BindingResult bindResult, final Model model)
     {
         final String methodName = UserManagementController.CNAME + "#doAddUser(@ModelAttribute(\"user\") final UserAccount user, final BindingResult bindResult, final Model model)";
@@ -2441,7 +2443,7 @@ public class UserManagementController
             DEBUGGER.debug("Value: {}", user);
         }
 
-        ModelAndView mView = new ModelAndView();
+        ModelAndView rView = new ModelAndView(new RedirectView());
 
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         final HttpServletRequest hRequest = requestAttributes.getRequest();
@@ -2496,10 +2498,10 @@ public class UserManagementController
         {
             ERROR_RECORDER.error("Errors: {}", bindResult.getAllErrors());
 
-            mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageValidationFailed());
-            mView.addObject(Constants.BIND_RESULT, bindResult.getAllErrors());
-            mView.addObject(Constants.COMMAND, user);
-            mView.setViewName(this.createUserPage);
+            rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageValidationFailed());
+            rView.addObject(Constants.BIND_RESULT, bindResult.getAllErrors());
+            rView.addObject(Constants.COMMAND, user);
+            rView.setViewName(this.createUserPage);
         }
         else
         {
@@ -2554,11 +2556,10 @@ public class UserManagementController
 	            switch (response.getRequestStatus())
 	            {
 					case FAILURE:
-						mView.addObject(Constants.COMMAND, new UserAccount());
-	                	mView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
-	                	mView.setViewName(this.addUserRedirect);
+						rView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
+	                	rView.setViewName(this.addUserRedirect);
 
-						break;
+	                	break;
 					case SUCCESS:
 						UserAccount builtAccount = response.getUserAccount();
 
@@ -2630,31 +2631,30 @@ public class UserManagementController
 		                    {
 		                        ERROR_RECORDER.error(mx.getMessage(), mx);
 		
-		                        mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageEmailSendFailed());
+		                        rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageEmailSendFailed());
 		                    }
 
-		                    mView.addObject(Constants.COMMAND, new UserAccount());
-		                    mView.addObject(Constants.RESPONSE_MESSAGE, String.format(this.messageAddUserSuccess, newUser.getUsername()));
-		                    mView.setViewName(this.createUserPage);
+		                    rView.addObject(Constants.RESPONSE_MESSAGE, String.format(this.messageAddUserSuccess, newUser.getUsername()));
+		                    rView.setViewName(this.addUserRedirect);
 		                }
 		                else
 		                {
 		                    // some failure occurred
-		                	mView.addObject(Constants.COMMAND, new UserAccount());
-		                	mView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
-		                	mView.setViewName(this.appConfig.getErrorResponsePage());
+		                	rView.addObject(Constants.COMMAND, new UserAccount());
+		                	rView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
+		                	rView.setViewName(this.addUserRedirect);
 		                }
 
 						break;
 					case UNAUTHORIZED:
-						mView.setViewName(this.appConfig.getUnauthorizedPage());
+						rView.setViewName(this.appConfig.getUnauthorizedPage());
 
 						break;
 					default:
 	                    // some failure occurred
-						mView.addObject(Constants.COMMAND, new UserAccount());
-	                	mView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
-	                	mView.setViewName(this.addUserRedirect);
+						rView.addObject(Constants.COMMAND, new UserAccount());
+	                	rView.addObject(Constants.ERROR_RESPONSE, this.messageAddUserFailed);
+	                	rView.setViewName(this.addUserRedirect);
 
 						break;
 	            }
@@ -2663,15 +2663,15 @@ public class UserManagementController
 	        {
 	            ERROR_RECORDER.error(acx.getMessage(), acx);
 	
-	            mView.setViewName(this.appConfig.getErrorResponsePage());
+	            rView.setViewName(this.appConfig.getErrorResponsePage());
 	        }
         }
 
         if (DEBUG)
         {
-            DEBUGGER.debug("ModelAndView: {}", mView);
+            DEBUGGER.debug("ModelAndView: {}", rView);
         }
 
-        return mView;
+        return rView;
     }
 }

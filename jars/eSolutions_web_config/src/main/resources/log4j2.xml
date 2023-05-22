@@ -159,7 +159,7 @@
         <Logger name="AUDIT_RECORDER" additivity="false" level="info">
             <AppenderRef ref="utility-audit-logger" />
         </Logger>
-        <Logger name="ERROR_RECORDER.com.cws.esolutions.security" additivity="false" level="error">
+        <Logger name="ERROR_RECORDER.com.cws.esolutions.utility" additivity="false" level="error">
             <AppenderRef ref="utility-error-logger" />
         </Logger>
         <Logger name="UTILITY_DEBUGGER" additivity="false" level="debug">
@@ -182,7 +182,7 @@
             <AppenderRef ref="web-debug-logger" />
         </Logger>
 
-        <Root level="warn">
+        <Root level="INFO">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

@@ -363,9 +363,6 @@ public class LoginController
         if (DEBUG)
         {
             DEBUGGER.debug(methodName);
-            DEBUGGER.debug("AuthenticationData: {}", authData);
-            DEBUGGER.debug("Model: {}", model);
-            DEBUGGER.debug("RedirectAttributes: {}", redirectAttributes);
         }
 
         ModelAndView mView = new ModelAndView();
@@ -529,6 +526,7 @@ public class LoginController
 	                    		userAccount.setSessionId(hSession.getId());
 	                        	hSession.setAttribute(Constants.USER_ACCOUNT, userAccount);
 
+	                        	rView.addObject("isReset", "true");
 	                			rView.addObject(Constants.RESPONSE_MESSAGE, this.appConfig.getMessagePasswordExpired());
 	                			rView.setViewName(this.appConfig.getExpiredRedirect());
 

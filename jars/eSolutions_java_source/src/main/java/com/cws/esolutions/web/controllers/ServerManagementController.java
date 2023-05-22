@@ -80,19 +80,17 @@ public class ServerManagementController
     private String defaultPage = null;
     private String addServerPage = null;
     private String viewServerPage = null;
-    private String adminConsolePage = null;
     private String addServerRedirect = null;
     private ServerValidator validator = null;
-    private String messageServerAdded = null;
     private String messageNoDmgrsFound = null;
     private String messageNoServersFound = null;
     private String addDatacenterRedirect = null;
     private List<String> availableDomains = null;
     private String messageAddServerSuccess = null;
+    private String messageNoDatacentersFound = null;
     private ApplicationServiceBean appConfig = null;
 
     private static final String CNAME = ServerManagementController.class.getName();
-    private static final String ADD_SERVER_REDIRECT = "redirect:/ui/server-management/add-server";
 
     private static final Logger DEBUGGER = LogManager.getLogger(Constants.DEBUGGER);
     private static final boolean DEBUG = DEBUGGER.isDebugEnabled();
@@ -176,19 +174,6 @@ public class ServerManagementController
         this.addServerRedirect = value;
     }
 
-    public final void setAdminConsolePage(final String value)
-    {
-        final String methodName = ServerManagementController.CNAME + "#setAdminConsolePage(final String value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.adminConsolePage = value;
-    }
-
     public final void setAppConfig(final ApplicationServiceBean value)
     {
         final String methodName = ServerManagementController.CNAME + "#setAppConfig(final ApplicationServiceBean value)";
@@ -254,19 +239,6 @@ public class ServerManagementController
         this.addDatacenterRedirect = value;
     }
 
-    public final void setMessageServerAdded(final String value)
-    {
-        final String methodName = ServerManagementController.CNAME + "#setMessageServerAdded(final String value)";
-
-        if (DEBUG)
-        {
-            DEBUGGER.debug(methodName);
-            DEBUGGER.debug("Value: {}", value);
-        }
-
-        this.messageServerAdded = value;
-    }
-
     public final void setMessageAddServerSuccess(final String value)
     {
         final String methodName = ServerManagementController.CNAME + "#setMessageAddServerSuccess(final String value)";
@@ -293,6 +265,19 @@ public class ServerManagementController
         this.messageNoServersFound = value;
     }
 
+    public final void setMessageNoDatacentersFound(final String value)
+    {
+        final String methodName = ServerManagementController.CNAME + "#setMessageNoDatacentersFound(final String value)";
+
+        if (DEBUG)
+        {
+            DEBUGGER.debug(methodName);
+            DEBUGGER.debug("Value: {}", value);
+        }
+
+        this.messageNoDatacentersFound = value;
+    }
+    
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public final ModelAndView showDefaultPage()
     {
@@ -710,12 +695,12 @@ public class ServerManagementController
         }
 
         ModelAndView mView = new ModelAndView();
+        ModelAndView rView = new ModelAndView(new RedirectView());
 
         final ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         final HttpServletRequest hRequest = requestAttributes.getRequest();
         final HttpSession hSession = hRequest.getSession();
         final UserAccount userAccount = (UserAccount) hSession.getAttribute(Constants.USER_ACCOUNT);
-        final IServerManagementProcessor processor = (IServerManagementProcessor) new ServerManagementProcessorImpl();
         final IDatacenterManagementProcessor dataCtrProcessor = (IDatacenterManagementProcessor) new DatacenterManagementProcessorImpl();
 
         if (DEBUG)
@@ -769,46 +754,6 @@ public class ServerManagementController
             DEBUGGER.debug("RequestHostInfo: {}", reqInfo);
         }
 
-        ServerManagementRequest dmgrRequest = new ServerManagementRequest();
-        dmgrRequest.setRequestInfo(reqInfo);
-        dmgrRequest.setUserAccount(userAccount);
-        dmgrRequest.setServiceId(this.serviceId);
-        dmgrRequest.setApplicationId(this.appConfig.getApplicationId());
-        dmgrRequest.setApplicationName(this.appConfig.getApplicationName());
-        dmgrRequest.setAttribute(ServerType.DMGRSERVER.toString());
-
-        try
-        {
-            ServerManagementResponse dmgrResponse = processor.listServersByAttribute(dmgrRequest);
-
-            if (DEBUG)
-            {
-                DEBUGGER.debug("ServerManagementResponse: {}", dmgrResponse);
-            }
-
-            if (dmgrResponse.getRequestStatus() == CoreServicesStatus.SUCCESS)
-            {
-                List<Server> dmgrServers = dmgrResponse.getServerList();
-
-                if (DEBUG)
-                {
-                    DEBUGGER.debug("List<Server>: {}", dmgrServers);
-                }
-
-                mView.addObject("dmgrServers", dmgrServers);
-            }
-            else if (dmgrResponse.getRequestStatus() == CoreServicesStatus.UNAUTHORIZED)
-            {
-                mView.setViewName(this.appConfig.getUnauthorizedPage());
-
-                return mView;
-            }
-        }
-        catch (final ServerManagementException smx)
-        {
-            ERROR_RECORDER.error(smx.getMessage(), smx);
-        }
-
         // list datacenters
         DatacenterManagementRequest dmRequest = new DatacenterManagementRequest();
         dmRequest.setApplicationId(this.appConfig.getApplicationId());
@@ -834,40 +779,61 @@ public class ServerManagementController
             switch (dcResponse.getRequestStatus())
             {
 				case FAILURE:
-					mView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
-					mView.setViewName(this.addServerPage);
-	
-					break;
+					rView.addObject(Constants.MESSAGE_RESPONSE, this.messageNoDatacentersFound);
+					rView.setViewName(this.addDatacenterRedirect);
+
+					if (DEBUG)
+					{
+						DEBUGGER.debug("ModelAndView: rView: {}", rView);
+					}
+
+					return rView;
 				case SUCCESS:
 	                List<Datacenter> datacenters = dcResponse.getDatacenterList();
-	
+
 	                if (DEBUG)
 	                {
 	                    DEBUGGER.debug("List<Datacenter>: {}", datacenters);
 	                }
-	
+
 	                mView.addObject("datacenters", datacenters);
-	
+
 					break;
 				case UNAUTHORIZED:
-					mView.setViewName(this.appConfig.getUnauthorizedPage());
-	
-					break;
+					rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageAccountNotAuthorized());
+					rView.setViewName(this.appConfig.getHomeRedirect());
+
+					if (DEBUG)
+					{
+						DEBUGGER.debug("ModelAndView: rView: {}", rView);
+					}
+
+					return rView;
 				default:
-	                // redirect to add datacenter
-	                mView = new ModelAndView(new RedirectView());
-	                mView.setViewName(this.addDatacenterRedirect);
-	
-					break;
+					rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
+					rView.setViewName(this.appConfig.getHomeRedirect());
+
+					if (DEBUG)
+					{
+						DEBUGGER.debug("ModelAndView: rView: {}", rView);
+					}
+
+					return rView;
             }
         }
         catch (final DatacenterManagementException dmx)
         {
             ERROR_RECORDER.error(dmx.getMessage(), dmx);
 
-            // redirect to add datacenter
-            mView = new ModelAndView(new RedirectView());
-            mView.setViewName(this.addDatacenterRedirect);
+			rView.addObject(Constants.ERROR_MESSAGE, this.appConfig.getMessageRequestProcessingFailure());
+			rView.setViewName(this.appConfig.getHomeRedirect());
+
+			if (DEBUG)
+			{
+				DEBUGGER.debug("ModelAndView: rView: {}", rView);
+			}
+
+			return rView;
         }
 
         mView.addObject("domainList", this.availableDomains);
@@ -1073,7 +1039,7 @@ public class ServerManagementController
 								case FAILURE:
 			                        // no dmgr information found for the request
 			                        mView.addObject(Constants.ERROR_RESPONSE, this.messageNoDmgrsFound);
-			                        mView.setViewName(ServerManagementController.ADD_SERVER_REDIRECT);
+			                        mView.setViewName(this.addServerRedirect);
 	
 									break;
 								case SUCCESS:
@@ -1098,7 +1064,7 @@ public class ServerManagementController
 								default:
 			                        // no dmgr information found for the request
 			                        mView.addObject(Constants.ERROR_RESPONSE, this.messageNoDmgrsFound);
-			                        mView.setViewName(ServerManagementController.ADD_SERVER_REDIRECT);
+			                        mView.setViewName(this.addServerRedirect);
 	
 									break;
 		                    }
@@ -1165,7 +1131,7 @@ public class ServerManagementController
 		                serverMgr.installSoftwarePackage(installRequest);*/ // we are NOT waiting for a response here
 
 		                mView.addObject(Constants.RESPONSE_MESSAGE, this.messageAddServerSuccess);
-		                mView.setViewName(ServerManagementController.ADD_SERVER_REDIRECT);
+		                mView.setViewName(this.addServerRedirect);
 		            }
 		            else if (response.getRequestStatus() == CoreServicesStatus.UNAUTHORIZED)
 		            {

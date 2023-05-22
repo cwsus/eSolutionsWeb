@@ -20,7 +20,7 @@
 /**
  * Project: eSolutions_web_source
  * Package: com.cws.esolutions.web\jsp\html\en
- * File: System_ContactAdmins.jsp
+ * File: System_Unauthorized.jsp
  *
  * @author cws-khuntly
  * @version 1.0
@@ -40,70 +40,89 @@
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide a brief subject for your request.';
+            document.getElementById('validationError').innerHTML = '<fmt:message key="theme.provide.mail.subject" bundle="${theme}" />';
             document.getElementById('txtMessageSubject').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('messageSubject').focus();
+
+            return;
         }
         else if (theForm.messageBody.value == '')
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide the information regarding your request.';
+            document.getElementById('validationError').innerHTML = '<fmt:message key="theme.provide.mail.body" bundle="${theme}" />';
             document.getElementById('txtMessageBody').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('messageSubject').focus();
+
+            return;
         }
-        else
-        {
-            theForm.submit();
-        }
+
+        theForm.submit();
     }
 </script>
 
-<div id="homecontent">
-	<div class="wrapper">
-	    <h1><spring:message code="theme.messaging.send.email.message" /></h1>
+<h1><fmt:message key="theme.error.system.failure" bundle="${theme}" /></h1>
+<fmt:message key="theme.system.service.failure" bundle="${theme}" />
 
-	    <div id="validationError" style="color: #FF0000"></div>
+<%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
 
-	    <c:if test="${not empty fn:trim(messageResponse)}">
-	        <p id="info">${messageResponse}</p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorResponse)}">
-	        <p id="error">${errorResponse}</p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(responseMessage)}">
-	        <p id="info"><spring:message code="${responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorMessage)}">
-	        <p id="error"><spring:message code="${errorMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.responseMessage)}">
-	        <p id="info"><spring:message code="${param.responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.errorMessage)}">
-	        <p id="error"><spring:message code="${param.errorMessage}" /></p>
-	    </c:if>
-
-        <form:form id="submitContactForm" name="submitContactForm" action="${pageContext.request.contextPath}/ui/common/contact" method="post">
-	       <form:hidden path="messageTo" value="${serviceEmail}" />
+<div id="content">
+	<form:form id="submitContactForm" name="submitContactForm" action="${pageContext.request.contextPath}/ui/common/contact" method="post">
+	    <form:hidden path="messageTo" value="${serviceEmail}" />
 	
-	       <label id="txtMessageSubject"><spring:message code="theme.add.contact.request.subject" /></label>
-	       <form:input path="messageSubject" />
-	       <form:errors path="messageSubject" cssClass="error" />
-	       <br /><br />
-	       <label id="txtRequestorEmail"><spring:message code="theme.add.contact.source.email" /></label>
-	       <form:input path="emailAddr" />
-	       <form:errors path="emailAddr" cssClass="error" />
-	       <br /><br />
-	       <label id="txtMessageBody"><spring:message code="theme.add.contact.request.body" /></label>
-	       <form:textarea path="messageBody" />
-	       <form:errors path="messageBody" cssClass="error" />
-	       <br /><br />
-	       <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
-	       <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-	    </form:form>
-  		<br class="clear" />
-	</div>
+	    <table>
+	        <tr>
+	            <td><label id="txtMessageSubject"><fmt:message key="theme.add.contact.request.subject" bundle="${theme}" /></label></td>
+	            <td>
+	                <form:input path="messageSubject" />
+	                <form:errors path="messageSubject" cssClass="error" />
+	            </td>
+	        </tr>
+	        <tr>
+	            <td><label id="txtRequestorEmail"><fmt:message key="theme.add.contact.source.email" bundle="${theme}" /></label></td>
+	            <td>
+	                <form:input path="emailAddr" />
+	                <form:errors path="emailAddr" cssClass="error" />
+	            </td>
+	        </tr>
+	        <tr>
+	            <td><label id="txtMessageBody"><fmt:message key="theme.add.contact.request.body" bundle="${theme}" /></label></td>
+	            <td>
+	                <form:textarea path="messageBody" />
+	                <form:errors path="messageBody" cssClass="error" />
+	            </td>
+	        </tr>
+	    </table>
+	    <br class="clear" /><br class="clear" />
+	    <input type="button" name="execute" value="<fmt:message key='theme.button.submit.text' bundle='${theme}' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
+	    <input type="button" name="reset" value="<fmt:message key='theme.button.reset.text' bundle='${theme}' />" id="reset" class="submit" onclick="clearForm();" />
+	</form:form>
 </div>
+
+<div id="column">
+    <div class="holder">
+        <ul id="latestnews">
+            <c:choose>
+                <c:when test="${empty fn:trim(sessionScope.userAccount) or empty fn:trim(sessionScope.userAccount.status)}">
+                    <li>
+                        <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                        <p><a href="<c:url value='/ui/login/default' />" title="<fmt:message key='theme.navbar.login' bundle='${theme}' />"><fmt:message key="theme.click.continue" bundle="${theme}" /></a></p>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li>
+                        <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                        <p><a href="<c:url value='/ui/common/default' />" title="<fmt:message key='theme.navbar.home' bundle='${theme}' />"><fmt:message key="theme.click.continue" bundle="${theme}" /></a></p>
+                    </li>
+                    <li>
+                        <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                        <p><a href="<c:url value='/ui/login/default' />" title="<fmt:message key='theme.navbar.login' bundle='${theme}' />"><fmt:message key="theme.click.continue"  bundle="${theme}"/></a></p>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+        </ul>
+    </div>
+</div>
+<br class="clear" />

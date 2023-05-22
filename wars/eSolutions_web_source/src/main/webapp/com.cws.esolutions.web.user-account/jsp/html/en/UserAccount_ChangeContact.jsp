@@ -40,94 +40,84 @@
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide a contact telephone number.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="user.account.provide.tel.number" />';
             document.getElementById('txtTelNumber').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('telNumber').focus();
+
+            return;
         }
         else if (theForm.pagerNumber.value == '')
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'Please provide a notification pager number.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="user.account.provide.pager.number" />';
             document.getElementById('txtPagerNumber').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('pagerNumber').focus();
+
+            return;
         }
-        else
-        {
-            theForm.submit();
-        }
+
+        theForm.submit();
     }
 </script>
 
-<div id="homecontent">
-    <div class="wrapper">
-        <div id="error"></div>
+<div id="content">
+    <h1><spring:message code="user.account.update.contact.info" /></h1>
+    
+    <%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
 
-        <c:if test="${not empty fn:trim(messageResponse)}">
-            <p id="info">${messageResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorResponse)}">
-            <p id="error">${errorResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(responseMessage)}">
-            <p id="info"><spring:message code="${responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorMessage)}">
-            <p id="error"><spring:message code="${errorMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.responseMessage)}">
-            <p id="info"><spring:message code="${param.responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.errorMessage)}">
-            <p id="error"><spring:message code="${param.errorMessage}" /></p>
-        </c:if>
+    <form:form name="submitContactChange" id="submitContactChange" action="${pageContext.request.contextPath}/ui/user-account/contact" method="post">
+        <table>
+            <tr>
+                <td><label id="txtTelNumber"><spring:message code="user.account.telephone" /></label></td>
+                <td>
+                    <form:input path="telNumber" value="${sessionScope.userAccount.telephoneNumber}" />
+                    <form:errors path="telNumber" cssClass="error" />
+                </td>
+            </tr>
+            <tr>
+                <td><label id="txtPagerNumber"><spring:message code="user.account.pager" /></label></td>
+                <td>
+                    <form:input path="pagerNumber" value="${sessionScope.userAccount.pagerNumber}" />
+                    <form:errors path="pagerNumber" cssClass="error" />
+                </td>
+            </tr>
+            <tr>
+                <td><label id="txtPassword"><spring:message code="login.user.pwd" /><br /></label></td>
+                <td>
+                    <form:password path="currentPassword" />
+                    <form:errors path="currentPassword" cssClass="error" />
+                </td>
+            </tr>
+        </table>
 
-        <h1><spring:message code="user.account.update.contact.info" /></h1>
-        <form:form name="submitContactChange" id="submitContactChange" action="${pageContext.request.contextPath}/ui/user-account/contact" method="post">
-            <table>
-                <tr>
-                    <td><label id="txtTelNumber"><spring:message code="user.account.telephone" /></label></td>
-                    <td>
-			            <form:input path="telNumber" value="${sessionScope.userAccount.telephoneNumber}" />
-			            <form:errors path="telNumber" cssClass="error" />
-                    </td>
-                </tr>
-                <tr>
-                    <td><label id="txtPagerNumber"><spring:message code="user.account.pager" /></label></td>
-                    <td>
-						<form:input path="pagerNumber" value="${sessionScope.userAccount.pagerNumber}" />
-						<form:errors path="pagerNumber" cssClass="error" />
-				    </td>
-				</tr>
-				<tr>
-				    <td><label id="txtPassword"><spring:message code="login.user.pwd" /><br /></label></td>
-				    <td>
-						<form:password path="currentPassword" />
-						<form:errors path="currentPassword" cssClass="error" />
-                    </td>
-            </table>
+        <br class="clear" /><br class="clear" />
 
-            <br class="clear" /><br class="clear" />
-
-            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
-            <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-            <input type="button" name="cancel" value="<spring:message code='theme.button.cancel.text' />" id="cancel" class="submit" onclick="redirectOnCancel('/esolutions/ui/user-account/default');" />
-        </form:form>
-    </div>
+        <input type="button" name="execute" value="<fmt:message key='theme.button.submit.text' bundle='${theme}' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
+        <input type="button" name="reset" value="<fmt:message key='theme.button.reset.text' bundle='${theme}' />" id="reset" class="submit" onclick="clearForm();" />
+        <input type="button" name="cancel" value="<fmt:message key='theme.button.cancel.text' bundle='${theme}' />" id="cancel" class="submit" onclick="redirectOnCancel('${pageContext.request.contextPath}/ui/user-account/default');" />
+    </form:form>
 </div>
 
-<div id="container">
-    <div class="wrapper">
-        <div id="content">
-            <h1><spring:message code="user.account.update.security" /></h1>
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/user-account/email" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/user-account/password" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/user-account/security" title="<spring:message code='user.account.change.security.questions' />"><spring:message code="user.account.change.security.questions" /></a></li>
-            </ul>
-        </div>
-        <br class="clear" />
+<div id="column">
+    <div class="holder">
+        <h1><spring:message code="user.account.update.security" /></h1>
+        <ul id="latestnews">
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/user-account/email' />" title="<spring:message code='user.account.change.email' />"><spring:message code="user.account.change.email" /></a></p>
+            </li>
+            <li>
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/user-account/password' />" title="<spring:message code='user.account.change.password' />"><spring:message code="user.account.change.password" /></a></p>
+            </li>
+            <li class="last">
+                <img class="imgl" src="/static/layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/user-account/security' />" title="<spring:message code='user.account.change.security.questions' />"><spring:message code="user.account.change.security.questions" /></a></p>
+            </li>
+        </ul>
     </div>
 </div>
+<br class="clear" />

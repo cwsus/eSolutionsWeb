@@ -40,7 +40,7 @@
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'You must provide a hostname or IP address to perform a query against.';
+            document.getElementById('validationError').innerHTML = '<fmt:message key="theme.provide.search.terms" bundle="${theme}" />';
             document.getElementById('txtAppName').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('name').focus();
@@ -52,102 +52,87 @@
     }
 </script>
 
-<div id="homecontent">
-    <div class="wrapper">   
-        <div id="error"></div>
-        <div id="validationError" style="color: #FF0000"></div>
-    
-        <c:if test="${not empty fn:trim(messageResponse)}">
-            <p id="info">${messageResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorResponse)}">
-            <p id="error">${errorResponse}</p>
-        </c:if>
-        <c:if test="${not empty fn:trim(responseMessage)}">
-            <p id="info"><spring:message code="${responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(errorMessage)}">
-            <p id="error"><spring:message code="${errorMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.responseMessage)}">
-            <p id="info"><spring:message code="${param.responseMessage}" /></p>
-        </c:if>
-        <c:if test="${not empty fn:trim(param.errorMessage)}">
-            <p id="error"><spring:message code="${param.errorMessage}" /></p>
-        </c:if>
+<div id="content">
+    <h1><spring:message code="knowledge.mgmt.search.articles" /></h1>
 
-        <h1><spring:message code="knowledge.mgmt.search.articles" /></h1>
-        <p>
-            <form:form id="searchRequest" name="searchRequest" action="${pageContext.request.contextPath}/ui/knowledge-management/search" method="post">
-                <label id="txtSearchTerms"><spring:message code="theme.search.terms" /></label>
-                <form:input path="searchTerms" />
-                <form:errors path="searchTerms" cssClass="error" />
-                <br /><br />
-                <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
-                <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-            </form:form>
-        </p>
-        <br class="clear" />
-        <br class="clear" />
-        <c:if test="${not empty searchResults}">
-            <h1><spring:message code="theme.search.results" /></h1>
-            <table id="searchResults">
-                <c:forEach var="result" items="${searchResults}">
-                    <tr>
-                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.title}</a></td>
-                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${result.articleId}" title="${result.title}">${result.author.username}</a></td>
-                    </tr>
-                </c:forEach>
+    <%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
+
+    <p>
+        <form:form id="searchRequest" name="searchRequest" action="${pageContext.request.contextPath}/ui/knowledge-management/search" method="post">
+            <label id="txtSearchTerms"><fmt:message key="theme.search.terms" /></label>
+            <form:input path="searchTerms" />
+            <form:errors path="searchTerms" cssClass="error" />
+            <br /><br />
+            <input type="button" name="execute" value="<fmt:message key='theme.button.submit.text' bundle='${theme}' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
+            <input type="button" name="reset" value="<fmt:message key='theme.button.reset.text' bundle='${theme}' />" id="reset" class="submit" onclick="clearForm();" />
+        </form:form>
+    </p>
+    <br class="clear" />
+    <br class="clear" />
+    <c:if test="${not empty searchResults}">
+        <h1><fmt:message key="theme.search.results" bundle="${theme}" /></h1>
+        <table id="searchResults">
+            <c:forEach var="result" items="${searchResults}">
+                <tr>
+                    <td><a href="<c:url value='/ui/knowledge-management/article/view/${result.articleId}' />" title="${result.title}">${result.title}</a></td>
+                    <td><a href="<c:url value='/ui/knowledge-management/article/view/${result.articleId}' />" title="${result.title}">${result.author.username}</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+
+        <c:if test="${pages gt 1}">
+            <br class="clear" />
+            <hr />
+            <br class="clear" />
+            <table>
+                <tr>
+                    <c:forEach begin="1" end="${pages}" var="i">
+                        <c:choose>
+                            <c:when test="${page eq i}">
+                                <td>${i}</td>
+                            </c:when>
+                            <c:otherwise>
+                                <td><a href="<c:url value='/knowledge-management/search/terms/${searchTerms}/page/${i}' />" title="${i}">${i}</a></td>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </tr>
             </table>
+        </c:if>
+    </c:if>
+    <br class="clear" />
+    <c:if test="${not empty articleList}">
+        <h1><spring:message code="knowledgebase.article.list" /></h1>
+        <table id="articleList">
+            <c:forEach var="entry" items="${articleList}">
+                <tr>
+                    <td><a href="<c:url value='/ui/knowledge-management/article/view/${entry.articleId}' />" title="${entry.title}">${entry.title}</a></td>
+                    <td><a href="<c:url value='/ui/knowledge-management/article/view/${entry.articleId}' />" title="${entry.title}">${entry.author.username}</a></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:if>
+</div>
 
-            <c:if test="${pages gt 1}">
-                <br class="clear" />
-                <hr />
-                <br class="clear" />
-                <table>
-                    <tr>
-                        <c:forEach begin="1" end="${pages}" var="i">
-                            <c:choose>
-                                <c:when test="${page eq i}">
-                                    <td>${i}</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td><a href="${pageContext.request.contextPath}/knowledge-management/search/terms/${searchTerms}/page/${i}" title="{i}">${i}</a></td>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </tr>
-                </table>
+<div id="column">
+    <div class="holder">
+        <h1><spring:message code="knowledge.mgmt.header" /></h1>
+        <ul id="latestnews">
+            <li>
+                <img class="imgl" src="layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/knowledge-management/list-articles' />" title="<spring:message code='knowledge.mgmt.list.articles' />"><spring:message code='knowledge.mgmt.list.articles' /></a></p>
+            </li>
+            <li>
+                <img class="imgl" src="layout/images/blue_file.gif" alt="" />
+                <p><a href="<c:url value='/ui/knowledge-management/add-article' />" title="<spring:message code='knowledge.mgmt.add.article' />"><spring:message code='knowledge.mgmt.add.article' /></a></p>
+            </li>
+            <c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
+                <li class="last">
+                    <img class="imgl" src="layout/images/blue_file.gif" alt="" />
+                    <p><a href="<c:url value='/ui/knowledge-management/list-articles/pending-approval' />" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></p>
+                </li>
             </c:if>
-        </c:if>
-        <br class="clear" />
-        <c:if test="${not empty articleList}">
-            <h1><spring:message code="knowledgebase.article.list" /></h1>
-            <table id="articleList">
-                <c:forEach var="entry" items="${articleList}">
-                    <tr>
-                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${entry.articleId}" title="${entry.title}">${entry.title}</a></td>
-                        <td><a href="${pageContext.request.contextPath}/ui/knowledge-management/article/view/${entry.articleId}" title="${entry.title}">${entry.author.username}</a></td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </c:if>
+        </ul>
     </div>
 </div>
-
-<div id="container">
-    <div class="wrapper">
-        <div id="content">
-            <h1><spring:message code="knowledge.mgmt.header" /></h1>
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/list-articles" title="<spring:message code='knowledge.mgmt.list.articles' />"><spring:message code='knowledge.mgmt.list.articles' /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/add-article" title="<spring:message code='knowledge.mgmt.add.article' />"><spring:message code='knowledge.mgmt.add.article' /></a></li>
-				<c:if test="${sessionScope.userAccount.userRole eq SecurityUserRole.ADMIN or sessionScope.userAccount.userRole eq SecurityUserRole.SITE_ADMIN}">
-				    <li><a href="${pageContext.request.contextPath}/ui/knowledge-management/list-articles/pending-approval" title="<spring:message code='knowledge.mgmt.approve.articles' />"><spring:message code='knowledge.mgmt.approve.articles' /></a></li>
-				</c:if>
-            </ul>
-        </div>
-        <br class="clear" />
-    </div>
-</div>
-
+<br class="clear" />

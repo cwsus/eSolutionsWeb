@@ -82,9 +82,8 @@
                 <form:input path="name" />
                 <form:errors path="name" cssClass="error" />
                 <br /><br />
-                <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
+                <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
                 <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-                <input type="button" name="cancel" value="<spring:message code='theme.button.cancel.text' />" id="cancel" class="submit" onclick="redirectOnCancel('/esolutions/ui/datacenter-management/default');" />
             </form:form>
         </p>
         <br class="clear" />
@@ -94,7 +93,7 @@
             <table id="searchResults">
                 <c:forEach var="result" items="${searchResults}">
                     <tr>
-                        <td><a href="${pageContext.request.contextPath}/ui/datacenter-management/${searchType}/${result.path}" title="${result.title}">${result.title}</a></td>
+                        <td><a href="<c:url value='/ui/datacenter-management/${result.guid}' />" title="${result.name}">${result.name}</a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -112,7 +111,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/datacenter-management/search/terms/${searchTerms}/type/${searchType}page/${i}" title="{i}">${i}</a>
+                                        <a href="<c:url value='/datacenter-management/search/terms/${searchTerms}/type/${searchType}page/${i}' />" title="${i}">${i}</a>
                                     </td>
                                 </c:otherwise>
                             </c:choose>
@@ -127,10 +126,10 @@
 <div id="container">
     <div class="wrapper">
         <div id="content">
-            <h1><spring:message code="svc.mgmt.header" /></h1>
+            <h1><spring:message code="datacenter.mgmt.header" /></h1>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/ui/datacenter-management/list-datacenters" title="<spring:message code='datacenter.mgmt.list.datacenters' />"><spring:message code="svc.mgmt.list.datacenters" /></a></li>
-                <li><a href="${pageContext.request.contextPath}/ui/datacenter-management/add-datacenter" title="<spring:message code='datacenter.mgmt.add.datacenter' />"><spring:message code="svc.mgmt.add.datacenter" /></a></li>
+                <li><a href="<c:url value='/ui/datacenter-management/list-datacenters' />" title="<spring:message code='datacenter.mgmt.list.datacenters' />"><spring:message code="datacenter.mgmt.list.datacenters" /></a></li>
+                <li><a href="<c:url value='/ui/datacenter-management/add-datacenter' />" title="<spring:message code='datacenter.mgmt.add.datacenter' />"><spring:message code="datacenter.mgmt.add.datacenter" /></a></li>
             </ul>
         </div>
         <br class="clear" />

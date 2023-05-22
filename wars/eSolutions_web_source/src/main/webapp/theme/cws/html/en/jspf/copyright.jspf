@@ -1,0 +1,7 @@
+<div id="copyright">
+    <p class="fl_left"><fmt:message key="theme.footer.copyright" bundle="${theme}" /></p>
+    <br class="clear" />
+    <p class="fl_left"><fmt:message key="theme.footer.allrights" bundle="${theme}" /></p>
+    <p class="fl_right"><a href="<c:url value='http://www.caspersbox.com/cws/ui/home/default' />" target="_blank" title="<fmt:message key='theme.footer.homepage' bundle='${theme}' />"><strong><fmt:message key="theme.footer.more.info" bundle="${theme}" /></strong></a></p>
+    <br class="clear" />
+</div>

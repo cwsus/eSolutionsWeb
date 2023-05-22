@@ -40,18 +40,18 @@
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'You must provide a hostname or IP address to perform a query against.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="dns.provide.query" />';
             document.getElementById('txtServiceName').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('recordName').focus();
 
-			return;
+            return;
         }
         else if ((theForm.recordType.value == 'Select....') || (theForm.recordType.value == '------'))
         {
             clearText(theForm);
 
-            document.getElementById('validationError').innerHTML = 'You must provide a query record type.';
+            document.getElementById('validationError').innerHTML = '<spring:message code="dns.provide.type" />';
             document.getElementById('txtLookupType').style.color = '#FF0000';
             document.getElementById('execute').disabled = false;
             document.getElementById('recordName').focus();
@@ -59,81 +59,60 @@
             return;
         }
 
-		theForm.submit();
+        theForm.submit();
     }
 </script>
 
-<div id="homecontent">
-	<div class="wrapper">
-	    <div id="error"></div>
-        <div id="validationError" style="color: #FF0000"></div>
-	
-	    <c:if test="${not empty fn:trim(messageResponse)}">
-	        <p id="info">${messageResponse}</p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorResponse)}">
-	        <p id="error">${errorResponse}</p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(responseMessage)}">
-	        <p id="info"><spring:message code="${responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorMessage)}">
-	        <p id="error"><spring:message code="${errorMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.responseMessage)}">
-	        <p id="info"><spring:message code="${param.responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.errorMessage)}">
-	        <p id="error"><spring:message code="${param.errorMessage}" /></p>
-	    </c:if>
+<div id="content">
+    <h1><spring:message code="dns.lookup.service.name" /></h1>
 
-        <h1><spring:message code="dns.lookup.service.name" /></h1>
-		<form:form id="submitNameLookup" name="submitNameLookup" action="${pageContext.request.contextPath}/ui/dns-service/search" method="post">
-		    <table>
-		        <tr>
-		            <td><label id="txtServiceName"><spring:message code="dns.service.hostname" /></label></td>
-                    <td>
-				        <form:input path="recordName" />
-				        <form:errors path="recordName" cssClass="error" />
-				    </td>
-				</tr>
-				<tr>
-				    <td><label id="txtLookupType"><spring:message code="dns.lookup.record.type" /></label></td>
-				    <td>
-				        <form:select path="recordType">
-					        <option><spring:message code="theme.option.select" /></option>
-					        <option><spring:message code="theme.option.spacer" /></option>
-					        <form:options items="${serviceTypes}" />
-				        </form:select>
-				    </td>
-                </tr>
-		    </table>
-            <br class="clear" /><br class="clear" />
-            <input type="button" name="execute" value="<spring:message code='theme.button.submit.text' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form, event);" />
-		    <input type="button" name="reset" value="<spring:message code='theme.button.reset.text' />" id="reset" class="submit" onclick="clearForm();" />
-		</form:form>
+    <%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
 
+    <form:form id="submitNameLookup" name="submitNameLookup" action="${pageContext.request.contextPath}/ui/dns-service/search" method="post">
+        <table>
+            <tr>
+                <td><label id="txtServiceName"><spring:message code="dns.service.hostname" /></label></td>
+                <td>
+                    <form:input path="recordName" />
+                    <form:errors path="recordName" cssClass="error" />
+                </td>
+            </tr>
+            <tr>
+                <td><label id="txtLookupType"><spring:message code="dns.lookup.record.type" /></label></td>
+                <td>
+                    <form:select path="recordType">
+                        <option><fmt:message key="theme.option.select" bundle="${theme}" /></option>
+                        <option><fmt:message key="theme.option.spacer" bundle="${theme}" /></option>
+                        <form:options items="${serviceTypes}" />
+                    </form:select>
+                </td>
+            </tr>
+        </table>
         <br class="clear" /><br class="clear" />
+        <input type="button" name="execute" value="<fmt:message key='theme.button.submit.text' bundle='${theme}' />" id="execute" class="submit" onclick="disableButton(this); validateForm(this.form);" />
+        <input type="button" name="reset" value="<fmt:message key='theme.button.reset.text' bundle='${theme}' />" id="reset" class="submit" onclick="clearForm();" />
+    </form:form>
 
-        <c:if test="${not empty dnsEntry or not empty dnsEntries}">
-	        <h2><spring:message code="dns.lookup.results" /></h2>
-	        <p>
-	            <c:choose>
-	                <c:when test="${not empty dnsEntry}">
-	                        <spring:message code="dns.service.hostname" /> <a href="${dnsEntry.recordName}" title="${dnsEntry.recordName}">${dnsEntry.recordName}</a><br />
-	                        <spring:message code="dns.lookup.record.type" /> ${dnsEntry.recordType}<br />
-	                        <spring:message code="dns.lookup.record.address" /> ${dnsEntry.recordAddress}<br />
-	                </c:when>
-	                <c:when test="${not empty dnsEntries}">
-	                    <c:forEach var="dnsEntry" items="${dnsEntries}">
-	                        <spring:message code="dns.service.hostname" /> <a href="${dnsEntry.recordName}" title="${dnsEntry.recordName}">${dnsEntry.recordName}</a><br />
-	                        <spring:message code="dns.lookup.record.type" /> ${dnsEntry.recordType}<br />
-	                        <spring:message code="dns.lookup.record.address" /> ${dnsEntry.recordAddress}<br />
-	                        <br />
-	                    </c:forEach>
-	                </c:when>
-	            </c:choose>
-	        </p>
-        </c:if>
-	</div>
+    <br class="clear" /><br class="clear" />
+
+    <c:if test="${not empty dnsEntry or not empty dnsEntries}">
+        <h2><spring:message code="dns.lookup.results" /></h2>
+        <p>
+            <c:choose>
+                <c:when test="${not empty dnsEntry}">
+                    <spring:message code="dns.service.hostname" /> <a href="<c:url value='${dnsEntry.recordName}' />" title="${dnsEntry.recordName}">${dnsEntry.recordName}</a><br />
+                    <spring:message code="dns.lookup.record.type" /> ${dnsEntry.recordType}<br />
+                    <spring:message code="dns.lookup.record.address" /> ${dnsEntry.recordAddress}<br />
+                </c:when>
+                <c:when test="${not empty dnsEntries}">
+                    <c:forEach var="dnsEntry" items="${dnsEntries}">
+                        <spring:message code="dns.service.hostname" /> <a href="<c:url value='${dnsEntry.recordName}' />" title="${dnsEntry.recordName}">${dnsEntry.recordName}</a><br />
+                        <spring:message code="dns.lookup.record.type" /> ${dnsEntry.recordType}<br />
+                        <spring:message code="dns.lookup.record.address" /> ${dnsEntry.recordAddress}<br />
+                        <br />
+                    </c:forEach>
+                </c:when>
+            </c:choose>
+        </p>
+    </c:if>
 </div>

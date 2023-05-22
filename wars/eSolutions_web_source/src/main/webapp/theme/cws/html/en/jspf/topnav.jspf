@@ -1,0 +1,11 @@
+<div id="topnav">
+    <c:if test="${not empty fn:trim(sessionScope.userAccount)}">
+        <ul>
+            <li><a href="<c:url value='/ui/dns-service/default' />" title="<fmt:message key='theme.navbar.dns-services' bundle='${theme}' />"><fmt:message key='theme.navbar.dns-services' bundle='${theme}' /></a></li>
+            <li><a href="<c:url value='/ui/knowledge-management/default' />" title="<fmt:message key='theme.navbar.knowledge' bundle='${theme}' />"><fmt:message key="theme.navbar.knowledge" bundle='${theme}' /></a></li>
+            <c:if test="${fn:trim(sessionScope.userAccount.userRole) eq SecurityUserRole.USER_ADMIN or fn:trim(sessionScope.userAccount.userRole) eq SecurityUserRole.SITE_ADMIN}">
+                <li class="last"><a href="<c:url value='/ui/user-management/default' />" title="<fmt:message key='theme.navbar.useradmin' bundle='${theme}' />"><fmt:message key='theme.navbar.useradmin' bundle='${theme}' /></a></li>
+            </c:if>
+        </ul>
+    </c:if>
+</div>

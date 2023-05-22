@@ -33,36 +33,9 @@
  */
 --%>
 
-<div id="homecontent">
-	<div class="wrapper">
-	    <h1><spring:message code="theme.welcome.back" arguments="${sessionScope.userAccount.givenName}" /></h1>
+<h1><fmt:message key="theme.welcome.back"  bundle="${theme}">
+        <fmt:param value="${sessionScope.userAccount.givenName}" />
+    </fmt:message>
+</h1>
 
-	    <c:if test="${not empty fn:trim(messageResponse)}">
-	        <p id="info">${messageResponse}</p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorResponse)}">
-	        <p id="error">${errorResponse}</p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(responseMessage)}">
-	        <p id="info"><spring:message code="${responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(errorMessage)}">
-	        <p id="error"><spring:message code="${errorMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.responseMessage)}">
-	        <p id="info"><spring:message code="${param.responseMessage}" /></p>
-	    </c:if>
-	    <c:if test="${not empty fn:trim(param.errorMessage)}">
-	        <p id="error"><spring:message code="${param.errorMessage}" /></p>
-	    </c:if>
-	</div>
-</div>
-
-<div id="container">
-	<div class="wrapper">
-		<div id="content">
-		    <br class="clear" />
-		</div>
-		<br class="clear" />
-	</div>
-</div>
+<%@include file="/theme/cws/html/en/jspf/errorMessages.jspf" %>
